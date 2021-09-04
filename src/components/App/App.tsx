@@ -1,10 +1,11 @@
-import Game from '@pages/Game/Game';
-import Home from '@pages/Home/Home';
-import Lobby from '@pages/Lobby/Lobby';
-import PageNotFound from '@pages/PageNotFound/PageNotFound';
-import Settings from '@pages/Settings/Settings';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+
+import Game from '@/pages/Game/Game';
+import Home from '@/pages/Home/Home';
+import Lobby from '@/pages/Lobby/Lobby';
+import PageNotFound from '@/pages/PageNotFound/PageNotFound';
+import Settings from '@/pages/Settings/Settings';
 
 import s from './App.scss';
 

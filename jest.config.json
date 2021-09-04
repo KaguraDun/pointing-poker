@@ -13,10 +13,10 @@
   },
   "moduleNameMapper": {
     "\\.svg": "<rootDir>/src/test/__mocks__/svgrMock.jsx",
-    "@components/(.*)": "<rootDir>/src/components/$1",
-    "@pages/(.*)": "<rootDir>/src/pages/$1",
-    "@services/(.*)": "<rootDir>/src/services/$1",
-    "@features/(.*)": "<rootDir>/src/features/$1",
-    "@models/(.*)": "<rootDir>/src/models/$1"
+    "@/components/(.*)": "<rootDir>/src/components/$1",
+    "@/pages/(.*)": "<rootDir>/src/pages/$1",
+    "@/services/(.*)": "<rootDir>/src/services/$1",
+    "@/features/(.*)": "<rootDir>/src/features/$1",
+    "@/models/(.*)": "<rootDir>/src/models/$1"
   }
 }

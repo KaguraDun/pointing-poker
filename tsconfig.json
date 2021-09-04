@@ -29,25 +29,25 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@components/*": [
+      "@/components/*": [
         "src/components/*"
       ],
-      "@features/*": [
+      "@/features/*": [
         "src/features/*"
       ],
-      "@models/*": [
+      "@/models/*": [
         "src/models/*"
       ],
-      "@pages/*": [
+      "@/pages/*": [
         "src/pages/*"
       ],
-      "@services/*": [
+      "@/services/*": [
         "src/services/*"
       ],
-      "@styles/*": [
+      "@/styles/*": [
         "src/styles/*"
       ],
-      "@test/*": [
+      "@/test/*": [
         "src/test/*"
       ]
     }

@@ -1,11 +1,22 @@
+import Game from '@pages/Game/Game';
+import Home from '@pages/Home/Home';
+import Lobby from '@pages/Lobby/Lobby';
+import PageNotFound from '@pages/PageNotFound/PageNotFound';
+import Settings from '@pages/Settings/Settings';
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 import s from './App.scss';
-import Cat from './happy.svg';
 
 const App = () => (
   <div className={s.container}>
-    <Cat />
+    <Switch>
+      <Route component={Home} exact path="/" />
+      <Route component={Lobby} exact path="/lobby" />
+      <Route component={Settings} exact path="/settings" />
+      <Route component={Game} exact path="/game" />
+      <Route component={PageNotFound} />
+    </Switch>
   </div>
 );
 

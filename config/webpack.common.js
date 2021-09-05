@@ -103,6 +103,7 @@ module.exports = {
       '@': paths.src,
       "@components": `${paths.src}/components`,
       "@features": `${paths.src}/features`,
+      "@icons" :`${paths.src}/icons`,
       "@models": `${paths.src}/models`,
       "@pages": `${paths.src}/pages`,
       "@services": `${paths.src}/services`,

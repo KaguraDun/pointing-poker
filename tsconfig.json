@@ -35,6 +35,9 @@
       "@/features/*": [
         "src/features/*"
       ],
+      "@/icons/*": [
+        "src/icons/*"
+      ],
       "@/models/*": [
         "src/models/*"
       ],

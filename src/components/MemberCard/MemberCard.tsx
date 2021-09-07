@@ -1,18 +1,17 @@
-import 'memberCard.scss';
-
+import s from 'memberCard.scss';
 import React from 'react';
 
 import { Member } from '@/models/interfaces';
 
 const MemberCard = ({ image, name, surname, position }: Member) => (
-  <div className="member-card">
-    <img alt="avatar" src={image} />
-    <h4>
+  <div className={s.memberCard}>
+    <img alt="avatar" className={s.image} src={image} />
+    <h4 className={s.title}>
       {name}
       {surname}
     </h4>
-    <p>{position}</p>
-    <div className="member-card__remove" />
+    <p className={s.position}>{position}</p>
+    <div className={s.remove} />
   </div>
 );
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Member } from '@/models/interfaces';
+import { Member } from '@/models/Member';
 
 import s from './memberCard.scss';
 

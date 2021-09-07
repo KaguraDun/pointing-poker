@@ -2,7 +2,7 @@ import 'memberCard.scss';
 
 import React from 'react';
 
-import { Member } from '../../member/interface';
+import { Member } from '@/models/interfaces';
 
 const MemberCard = ({ image, name, surname, position }: Member) => (
   <div className="member-card">

@@ -1,0 +1,27 @@
+@import '@/styles/variables';
+
+.modal,
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  z-index: $z-index-modal-overlay;
+  backdrop-filter: blur(1px);
+}
+
+.container {
+  z-index: $z-index-modal;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,44 @@
+@import '@/styles/variables';
+
+.button {
+  display: block;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px 20px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid $color-primary-medium;
+  cursor: pointer;
+}
+
+.primary {
+  color: $white;
+  background: $color-primary-dark;
+
+  &:hover {
+    background: $color-primary-light;
+  }
+}
+
+.additional {
+  color: $color-primary-dark;
+  background: $white;
+
+  &:hover {
+    color: $white;
+    background: $color-primary-light;
+  }
+}
+
+.small {
+  width: 150px;
+}
+
+.medium {
+  width: 200px;
+}
+
+.big {
+  width: 250px;
+}

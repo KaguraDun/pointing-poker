@@ -5,15 +5,18 @@ import s from './ToggleSwitch.scss';
 interface Props {
   id: string;
   name: string;
+  isOn: boolean;
+  handleToggle: () => void;
 }
 
-const ToggleSwitch = ({ id, name }: Props) => (
+const ToggleSwitch = ({ id, name, isOn, handleToggle }: Props) => (
   <div className={s.switch}>
     <input
+      checked={isOn}
       className={s.switchCheckbox}
       id={id}
       name={name}
-      onChange={(e) => e.target.checked}
+      onChange={handleToggle}
       type="checkbox"
     />
 

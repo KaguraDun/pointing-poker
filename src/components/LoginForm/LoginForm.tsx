@@ -49,52 +49,55 @@ const LoginForm = () => {
     if (formData.name) setFieldDirty(false);
   };
 
-  return (
-    <div className={s.formWrapper}>
-      <div className={s.formTitle}>Connect to lobby</div>
-      <form className={s.form}>
-        {fieldDirty && <div style={{ color: 'red' }}>{error}</div>}
-        <input
-          className={s.formInput}
-          onBlur={() => blurHandler()}
-          onChange={inputHandler('name')}
-          placeholder="Your first name"
-          required
-          type="text"
-          value={formData.name}
-        />
-        <input
-          className={s.formInput}
-          onChange={inputHandler('surname')}
-          placeholder="Your last name"
-          type="text"
-          value={formData.surname}
-        />
-        <input
-          className={s.formInput}
-          onChange={inputHandler('position')}
-          placeholder="Your job position"
-          type="text"
-          value={formData.position}
-        />
-        <div className={s.formSubtitle}>Image:</div>
-        <input
-          accept="image/png, image/jpeg"
-          className={[s.formInput, s.formInputImage].join('')}
-          onChange={imageHandler}
-          type="file"
-          value={formData.image.image}
-        />
-      </form>
-      {image.image !== '' ? (
-        <img alt="avatar" className={s.image} src={image.image || ''} />
-      ) : null}
-      <div className={s.submitButtons}>
-        <Button disabled={!formValid}>Submit</Button>
-        <Button variant="additional">Cancel</Button>
+    return (
+      <div className={s.formWrapper}>
+        <div className={s.formTitle}>Connect to lobby</div>
+        <form className={s.form}>
+          {fieldDirty && <div className={s.fieldName}>{error}</div>}
+          <input
+            className={s.formInput}
+            onBlur={() => blurHandler()}
+            onChange={inputHandler('name')}
+            placeholder="Your first name"
+            required
+            type="text"
+            value={formData.name}
+          />
+          <input
+            className={s.formInput}
+            onChange={inputHandler('surname')}
+            placeholder="Your last name"
+            type="text"
+            value={formData.surname}
+          />
+          <input
+            className={s.formInput}
+            onChange={inputHandler('position')}
+            placeholder="Your job position"
+            type="text"
+            value={formData.position}
+          />
+          <div className={s.formSubtitle}>Image:</div>
+          <input
+            accept="image/png, image/jpeg"
+            className={[s.formInput, s.formInputImage].join('')}
+            onChange={imageHandler}
+            type="file"
+            value={formData.image.image}
+          />
+          {image.image !== '' ? (
+          <img alt="avatar" className={s.image} src={image.image || ''} />
+        ) : null}
+        <div className={s.submitButtons}>
+          <Button handleClick={() => ()}>Submit</Button>
+          <Button handleClick={() => handleCloseModal()} variant="additional">
+            Cancel
+          </Button>
+        </div>
+        </form>
+        
       </div>
-    </div>
-  );
+    );
 };
 
 export default LoginForm;

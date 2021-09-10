@@ -5,7 +5,7 @@ import Member from '@/models/member';
 import Button from '../Button/Button';
 import s from './LoginForm.scss';
 
-const LoginForm = () => {
+const LoginForm = ({ handleCloseModal, saveData }: any) => {
   const memberData: Member = {
     image: { image: '' },
     name: '',
@@ -49,6 +49,11 @@ const LoginForm = () => {
     if (formData.name) setFieldDirty(false);
   };
 
+  const submitForm = () => {
+    if (formValid) {
+      saveData(formData);
+    }
+
     return (
       <div className={s.formWrapper}>
         <div className={s.formTitle}>Connect to lobby</div>
@@ -86,18 +91,18 @@ const LoginForm = () => {
             value={formData.image.image}
           />
           {image.image !== '' ? (
-          <img alt="avatar" className={s.image} src={image.image || ''} />
-        ) : null}
-        <div className={s.submitButtons}>
-          <Button handleClick={() => ()}>Submit</Button>
-          <Button handleClick={() => handleCloseModal()} variant="additional">
-            Cancel
-          </Button>
-        </div>
+            <img alt="avatar" className={s.image} src={image.image || ''} />
+          ) : null}
+          <div className={s.submitButtons}>
+            <Button handleClick={() => submitForm()}>Submit</Button>
+            <Button handleClick={() => handleCloseModal()} variant="additional">
+              Cancel
+            </Button>
+          </div>
         </form>
-        
       </div>
     );
+  };
 };
 
 export default LoginForm;

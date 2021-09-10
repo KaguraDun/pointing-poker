@@ -56,14 +56,7 @@
       content: attr(data-yes);
     }
   }
-  &Disabled {
-    background-color: $color-primary-dark;
-    cursor: not-allowed;
-    &::before {
-      background-color: $color-primary-medium;
-      cursor: not-allowed;
-    }
-  }
+
   &Inner::after {
     padding-right: 10px;
     color: $white;
@@ -85,22 +78,7 @@
     border-radius: 20px;
     transition: all 0.3s ease-in 0s;
   }
-  &.small-switch {
-    width: 40px;
-    .switchInner {
-      &::after,
-      &::before {
-        height: 20px;
-        line-height: 20px;
-        content: '';
-      }
-    }
-    .switchSwitch {
-      right: 20px;
-      width: 16px;
-      margin: 2px;
-    }
-  }
+
   &Checkbox:checked + &Label {
     .switchInner {
       margin-left: 0;

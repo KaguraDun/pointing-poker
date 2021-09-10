@@ -1,0 +1,112 @@
+@import '@/styles/variables';
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 75px;
+  margin-right: 10px;
+  // -webkit-user-select: none;
+  // -moz-user-select: none;
+  // -ms-user-select: none;
+  text-align: left;
+  vertical-align: middle;
+  &Checkbox {
+    display: none;
+  }
+  &Label {
+    display: block;
+    margin: 0;
+    overflow: hidden;
+    border: 0 solid $color-primary-dark;
+    border-radius: 20px;
+    cursor: pointer;
+    &:focus {
+      outline: none;
+      > span {
+        box-shadow: 0 0 2px 5px $color-primary-dark;
+      }
+    }
+    > span:focus {
+      outline: none;
+    }
+  }
+  &Inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+    &::before,
+    &::after {
+      display: block;
+      float: left;
+      box-sizing: border-box;
+      width: 50%;
+      height: 34px;
+      padding: 0;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 34px;
+    }
+    &::before {
+      padding-left: 10px;
+      color: $white;
+      text-transform: uppercase;
+      background-color: $color-primary-light;
+      content: attr(data-yes);
+    }
+  }
+  &Disabled {
+    background-color: $color-primary-dark;
+    cursor: not-allowed;
+    &::before {
+      background-color: $color-primary-medium;
+      cursor: not-allowed;
+    }
+  }
+  &Inner::after {
+    padding-right: 10px;
+    color: $white;
+    text-align: right;
+    text-transform: uppercase;
+    background-color: gray;
+    content: attr(data-no);
+  }
+  &Switch {
+    position: absolute;
+    top: 0;
+    right: 40px;
+    bottom: 0;
+    display: block;
+    width: 24px;
+    margin: 5px;
+    background: $white;
+    border: 0 solid $color-primary-medium;
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+  }
+  &.small-switch {
+    width: 40px;
+    .switchInner {
+      &::after,
+      &::before {
+        height: 20px;
+        line-height: 20px;
+        content: '';
+      }
+    }
+    .switchSwitch {
+      right: 20px;
+      width: 16px;
+      margin: 2px;
+    }
+  }
+  &Checkbox:checked + &Label {
+    .switchInner {
+      margin-left: 0;
+    }
+    .switchSwitch {
+      right: 0;
+    }
+  }
+}

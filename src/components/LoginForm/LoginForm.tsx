@@ -5,7 +5,7 @@ import Member from '@/models/member';
 import Button from '../Button/Button';
 import s from './LoginForm.scss';
 
-const LoginForm = ({ handleCloseModal, saveData }: any) => {
+const LoginForm = ({ handleCloseModal }: any) => {
   const memberData: Member = {
     image: { image: '' },
     name: '',
@@ -14,12 +14,12 @@ const LoginForm = ({ handleCloseModal, saveData }: any) => {
   };
   const [formData, setFormData] = useState(memberData);
   const [image, setImage] = useState({ image: '' });
-  const [error, setError] = useState("Should't be empty");
+  const [error, setError] = useState('');
   const [fieldDirty, setFieldDirty] = useState(false);
   const [formValid, setFormValid] = useState(false);
 
   useEffect(() => {
-    if (error) {
+    if (error === '') {
       setFormValid(false);
     } else {
       setFormValid(true);
@@ -51,7 +51,8 @@ const LoginForm = ({ handleCloseModal, saveData }: any) => {
 
   const submitForm = () => {
     if (formValid) {
-      saveData(formData);
+      setImage({ image: '' });
+      handleCloseModal();
     }
   };
 

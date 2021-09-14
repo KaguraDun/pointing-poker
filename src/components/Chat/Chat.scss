@@ -1,0 +1,20 @@
+@import '@/styles/variables';
+
+.chat {
+  flex-direction: column;
+  justify-content: space-between;
+  width: 300px;
+  height: 300px;
+  border: 1px solid $color-primary-dark;
+}
+
+.messageBox {
+  flex: 1 0 auto;
+  height: 85%;
+  padding: 10px 10px 0;
+  overflow-y: scroll;
+}
+
+.controls {
+  display: flex;
+}

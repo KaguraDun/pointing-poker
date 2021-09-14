@@ -1,13 +1,13 @@
-import reducerSlice from '@features/reducerSlice';
 import { configureStore } from '@reduxjs/toolkit';
 
-// rename reducerSlice to a more suitable name
+import chatSlice from '@/features/chat';
 
 const store = configureStore({
   reducer: {
-    reducer: reducerSlice,
+    chat: chatSlice,
   },
   devTools: process.env.NODE_ENV === 'development',
 });
 
 export default store;
+export type RootState = ReturnType<typeof store.getState>;

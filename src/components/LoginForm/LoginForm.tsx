@@ -5,7 +5,12 @@ import Member from '@/models/member';
 import Button from '../Button/Button';
 import s from './LoginForm.scss';
 
-const LoginForm = ({ handleCloseModal }: any) => {
+interface LoginFormProps {
+  saveData: (data: Member) => void;
+  handleCloseModal: () => void;
+}
+
+const LoginForm = ({ handleCloseModal, saveData }: LoginFormProps) => {
   const memberData: Member = {
     image: { image: '' },
     name: '',
@@ -53,6 +58,7 @@ const LoginForm = ({ handleCloseModal }: any) => {
     if (formValid) {
       setImage({ image: '' });
       handleCloseModal();
+      saveData(formData);
     }
   };
 

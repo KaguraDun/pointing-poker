@@ -1,3 +1,5 @@
+/* eslint-disable react/button-has-type */
+import cn from 'classnames';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -14,12 +16,18 @@ enum ButtonSizes {
   big = 'big',
 }
 
+enum ButtonTypes {
+  button = 'button',
+  submit = 'submit',
+}
+
 interface Props {
   handleClick?: () => void;
   variant?: 'primary' | 'additional';
   size?: 'small' | 'medium' | 'big';
   linkTo?: string;
-  children: React.ReactNode;
+  type?: 'button' | 'submit';
+  children?: React.ReactNode;
 }
 
 function Button({
@@ -27,9 +35,10 @@ function Button({
   size = ButtonSizes.medium,
   handleClick,
   linkTo = null,
-  children,
+  type = ButtonTypes.button,
+  children = null,
 }: Props) {
-  const styles = [s.button, s[variant], s[size]].join(' ');
+  const styles = cn(s.button, s[variant], s[size]);
 
   if (linkTo) {
     return (
@@ -40,7 +49,7 @@ function Button({
   }
 
   return (
-    <button className={styles} onClick={() => handleClick()} type="button">
+    <button className={styles} onClick={() => handleClick()} type={type}>
       {children}
     </button>
   );

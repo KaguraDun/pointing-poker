@@ -1,4 +1,5 @@
 import './styles/index.scss';
+import './components/LoginForm/LoginForm.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom';

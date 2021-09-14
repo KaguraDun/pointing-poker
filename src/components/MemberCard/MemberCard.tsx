@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { Member } from '@/models/Member';
+import Member from '@/models/member';
 
 import s from './memberCard.scss';
 
 const MemberCard = ({ image, name, surname, position }: Member) => (
   <div className={s.memberCard}>
-    <img alt="avatar" className={s.image} src={image} />
+    <img alt="avatar" className={s.image} src={image.image} />
     <div>
       <h4 className={s.title}>
         {name}

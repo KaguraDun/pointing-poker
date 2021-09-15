@@ -1,0 +1,31 @@
+.card {
+  width: 500px;
+  height: 800px;
+  border: 3px solid black;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 67px;
+  padding: 20px;
+}
+.cardFront {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cardTop .cardBottom {
+  width: 100%;
+  font-size: 64px;
+  font-weight: 700;
+  color: black;
+  text-align: left;
+}
+
+.cardBottom {
+  transform: rotateX(180deg);
+}
+.cardImage {
+  width: 300px;
+  background-image: url('../../images/add.svg');
+}
+.cardBack {
+  background-image: url('../../images/back.svg');
+}

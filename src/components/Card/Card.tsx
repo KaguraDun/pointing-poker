@@ -1,21 +1,24 @@
-import s from 'Card.scss';
 import React from 'react';
+
+import s from './Card.scss';
 
 interface Props {
   value: string;
-  icon: string;
+  flip: boolean;
+  children?: React.ReactNode;
 }
 
-const Card = ({ value, icon }: Props) => (
+const Card = ({ value, flip, children }: Props) => (
   <div className={s.card}>
-    <div className={s.cardFront}>
-      <div className={s.cardTop}>{value}</div>
-      <div className={s.cardCenter}>
-        <img alt="" className={s.cardImage} src={icon} />
+    {flip ? (
+      <div className={s.cardFront}>
+        <div className={s.cardTop}>{value}</div>
+        {children}
+        <div className={s.cardBottom}>{value}</div>
       </div>
-      <div className={s.cardBottom}>{value}</div>
-    </div>
-    <div className={s.cardBack} />
+    ) : (
+      <div className={s.cardBack} />
+    )}
   </div>
 );
 

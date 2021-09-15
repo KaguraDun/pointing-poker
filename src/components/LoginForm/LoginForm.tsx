@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import Member from '@/models/member';
+import { Member, UserRoles } from '@/models/member';
 
 import Button from '../Button/Button';
 import s from './LoginForm.scss';
@@ -8,14 +8,20 @@ import s from './LoginForm.scss';
 interface LoginFormProps {
   saveData: (data: Member) => void;
   handleCloseModal: () => void;
+  userRole?: 'dealer';
 }
 
-const LoginForm = ({ handleCloseModal, saveData }: LoginFormProps) => {
+const LoginForm = ({
+  handleCloseModal,
+  saveData,
+  userRole,
+}: LoginFormProps) => {
   const memberData: Member = {
     image: { image: '' },
     name: '',
     surname: '',
     position: '',
+    role: UserRoles[userRole] || UserRoles.player,
   };
   const [formData, setFormData] = useState(memberData);
   const [image, setImage] = useState({ image: '' });

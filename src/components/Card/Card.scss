@@ -6,6 +6,7 @@
 .card {
   width: 150px;
   height: 250px;
+  margin: 15px;
 }
 .cardFront {
   display: flex;
@@ -16,6 +17,9 @@
   border: 2px solid black;
   border-radius: 25px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+.cardFront svg {
+  margin: 0 auto;
 }
 .cardBottom .cardTop {
   width: 100%;

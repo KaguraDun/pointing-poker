@@ -1,10 +1,9 @@
 import React from 'react';
 
+import s from '@/CardDeck.scss';
+import Card from '@/components/Card/Card';
 import SP from '@/images/SP.svg';
 import DECK_FIBONACCI from '@/models/deck-fibonacci';
-
-import Card from '../Card/Card';
-import s from './CardDeck.scss';
 
 const CardsDeck = () => (
   <div className={s.cardsDeck}>

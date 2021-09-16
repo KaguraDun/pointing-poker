@@ -7,12 +7,17 @@ class SocketService {
 
   socket: SocketIOClient.Socket;
 
+  userID: string;
+
   constructor() {
     this.ENDPOINT = 'http://localhost:3000/';
+    this.userID = null;
   }
 
   connect() {
     this.socket = io(this.ENDPOINT, { transports: ['websocket', 'polling'] });
+    this.userID = this.socket.id;
+
     return new Promise<void>((resolve, reject) => {
       this.socket.on('connect', () => resolve());
       this.socket.on('connect_error', (error: Error) => reject(error));

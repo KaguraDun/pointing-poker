@@ -1,6 +1,7 @@
 /* eslint-disable react-redux/useSelector-prefer-selectors */
 import {
   addRoom,
+  resetState,
   setRoomNotFound,
   toggleModalConnectRoom,
 } from '@/features/room';
@@ -45,6 +46,16 @@ const roomApi = {
     const roomID = this.getCurrentRoomID();
     socket.emit(UserEvents.ADD_USER_FROM_CLIENT, { userData, roomID });
     this.getRoomFromServer(roomID);
+  },
+  startGame() {
+    const roomID = this.getCurrentRoomID();
+    socket.emit(roomEvents.START_GAME, roomID);
+    this.getRoomFromServer(roomID);
+  },
+  close() {
+    const roomID = this.getCurrentRoomID();
+    socket.emit(roomEvents.CLOSE_ROOM, roomID);
+    store.dispatch(resetState());
   },
 };
 

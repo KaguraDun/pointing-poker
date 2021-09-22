@@ -1,7 +1,14 @@
 .linkWrapper {
   display: flex;
+  margin: 50px 0;
 }
 
 .inputWrapper {
   display: flex;
+}
+
+.gameButtons {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
 }

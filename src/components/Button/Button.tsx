@@ -49,7 +49,11 @@ function Button({
   }
 
   return (
-    <button className={styles} onClick={() => handleClick()} type={type}>
+    <button
+      className={styles}
+      onClick={() => (handleClick ? handleClick() : null)}
+      type={type}
+    >
       {children}
     </button>
   );

@@ -3,19 +3,25 @@
 import io from 'socket.io-client';
 
 class SocketService {
-  ENDPOINT: string;
+  ENDPOINT_LOCAL: string;
+
+  ENDPOINT_SERVER: string;
 
   socket: SocketIOClient.Socket;
 
   userID: string;
 
   constructor() {
-    this.ENDPOINT = 'http://localhost:3000/';
+    this.ENDPOINT_LOCAL = 'http://localhost:3000/';
+    this.ENDPOINT_SERVER =
+      'https://pointing-poker-express-server.herokuapp.com/';
     this.userID = null;
   }
 
   connect() {
-    this.socket = io(this.ENDPOINT, { transports: ['websocket', 'polling'] });
+    this.socket = io(this.ENDPOINT_SERVER, {
+      transports: ['websocket', 'polling'],
+    });
     this.userID = this.socket.id;
 
     return new Promise<void>((resolve, reject) => {

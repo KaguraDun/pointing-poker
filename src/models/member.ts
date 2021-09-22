@@ -1,3 +1,7 @@
+enum UserEvents {
+  ADD_USER_FROM_CLIENT = 'ADD_USER_FROM_CLIENT',
+}
+
 enum UserRoles {
   dealer = 'dealer',
   player = 'player',
@@ -13,5 +17,5 @@ interface Member {
   role: UserRoles;
 }
 
-export { UserRoles };
+export { UserEvents, UserRoles };
 export type { Member };

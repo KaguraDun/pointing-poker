@@ -23,6 +23,9 @@ const roomApi = {
       store.dispatch(addRoom(response));
     });
   },
+  getCurrentRoomID() {
+    return store.getState().room.room.ID;
+  },
   connect(roomID: string) {
     socket.emit(roomEvents.GET_ROOM_STATUS_FROM_CLIENT, roomID);
     socket.on(roomEvents.GET_ROOM_STATUS_FROM_SERVER, (response: boolean) => {
@@ -39,7 +42,7 @@ const roomApi = {
     });
   },
   AddUser(userData: Member) {
-    const roomID = store.getState().room.room.ID;
+    const roomID = this.getCurrentRoomID();
     socket.emit(UserEvents.ADD_USER_FROM_CLIENT, { userData, roomID });
     this.getRoomFromServer(roomID);
   },

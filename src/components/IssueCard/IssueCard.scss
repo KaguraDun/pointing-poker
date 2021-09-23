@@ -1,9 +1,38 @@
 .issueCard {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 500px;
-  height: 120px;
+  justify-content: space-evenly;
+  width: 250px;
+  height: 70px;
+  font-size: 26px;
+  font-weight: 700;
+  color: black;
   font-style: roboto;
   border: solid 1px black;
+  padding: 10px;
+  margin: 15px;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.title {
+  width: 124px;
+  font-size: 22px;
+  margin-left: 10px;
+}
+.subtitle {
+  font-size: 10px;
+  margin: 0 0 0 10px;
+}
+.remove,
+.edit {
+  width: 30px;
+  height: 30px;
+  margin-left: 20px;
+}
+svg:hover {
+  fill: red;
+  cursor: pointer;
 }

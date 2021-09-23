@@ -1,9 +1,9 @@
 const Scores = [
   {
-    value: '5',
+    value: '5SP',
   },
   {
-    value: '10',
+    value: '10SP',
   },
   {
     value: 'Unknown',

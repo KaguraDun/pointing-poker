@@ -12,6 +12,10 @@
   padding: 10px;
   margin: 15px;
 }
+.issueCard:active,
+.issueCard:focus {
+  background-color: $color-primary-light;
+}
 .wrapper {
   display: flex;
   flex-direction: column;

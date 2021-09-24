@@ -4,9 +4,8 @@ interface Deck {
 }
 
 interface Decks {
-  popular: Deck[];
-  fibonacci: Deck[];
-  powerOfTwo: Deck[];
+  name: string;
+  values: Deck[];
 }
 
 export type { Deck, Decks };

@@ -6,7 +6,7 @@ import {
   toggleModalConnectRoom,
 } from '@/features/room';
 import { Member, UserEvents } from '@/models/member';
-import { Room, roomEvents } from '@/models/room';
+import { Room, roomEvents, Settings } from '@/models/room';
 import store from '@/store';
 
 import socket from './SocketService';
@@ -56,6 +56,11 @@ const roomApi = {
     const roomID = this.getCurrentRoomID();
     socket.emit(roomEvents.CLOSE_ROOM, roomID);
     store.dispatch(resetState());
+  },
+  updateSettings(newSettings: Settings) {
+    const roomID = this.getCurrentRoomID();
+    socket.emit(roomEvents.UPDATE_SETTINGS, { roomID, newSettings });
+    this.getRoomFromServer(roomID);
   },
 };
 

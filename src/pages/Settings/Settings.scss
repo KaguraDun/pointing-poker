@@ -12,3 +12,9 @@
   justify-content: space-evenly;
   width: 100%;
 }
+
+.settingsForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}

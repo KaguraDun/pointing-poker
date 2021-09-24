@@ -1,7 +1,9 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {};
+import { Room } from '@/models/room';
+
+const initialState = {} as any as Room;
 
 const roomSlice = createSlice({
   name: 'room',

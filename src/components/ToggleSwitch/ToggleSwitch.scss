@@ -1,7 +1,6 @@
 @import '@/styles/variables';
 
 .label {
-  position: relative;
   display: flex;
   align-items: center;
 }
@@ -11,6 +10,7 @@
     display: none;
   }
   &Label {
+    position: relative;
     display: block;
     width: 75px;
     margin: 0 0 0 15px;

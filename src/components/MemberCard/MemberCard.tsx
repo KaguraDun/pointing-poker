@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Member from '@/models/member';
-
+import { Member } from '@/models/member';
+import RemoveIcon from '@/icons/remove.svg';
 import s from './memberCard.scss';
 
 const MemberCard = ({ image, name, surname, position }: Member) => (
@@ -14,7 +14,7 @@ const MemberCard = ({ image, name, surname, position }: Member) => (
       </h4>
       <p className={s.position}>{position}</p>
     </div>
-    <div className={s.remove} />
+    <RemoveIcon className={s.remove} />
   </div>
 );
 

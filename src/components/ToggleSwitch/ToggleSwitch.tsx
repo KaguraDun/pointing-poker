@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 
 import s from './ToggleSwitch.scss';
 
 interface Props {
   name: string;
   isOn: boolean;
-  handleToggle: () => void;
+  handleToggle: (e: ChangeEvent) => void;
 }
 
 const ToggleSwitch = ({ name, isOn, handleToggle }: Props) => (

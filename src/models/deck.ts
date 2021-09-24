@@ -3,4 +3,10 @@ interface Deck {
   icon?: JSX.Element;
 }
 
-export default Deck;
+interface Decks {
+  popular: Deck[];
+  fibonacci: Deck[];
+  powerOfTwo: Deck[];
+}
+
+export type { Deck, Decks };

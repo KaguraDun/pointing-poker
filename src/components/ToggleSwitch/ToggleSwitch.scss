@@ -1,18 +1,19 @@
 @import '@/styles/variables';
 
-.switch {
+.label {
   position: relative;
-  display: inline-block;
-  width: 75px;
-  margin-right: 10px;
-  text-align: left;
-  vertical-align: middle;
+  display: flex;
+  align-items: center;
+}
+
+.switch {
   &Checkbox {
     display: none;
   }
   &Label {
     display: block;
-    margin: 0;
+    width: 75px;
+    margin: 0 0 0 15px;
     overflow: hidden;
     border: 0 solid $color-primary-dark;
     border-radius: 20px;
@@ -76,12 +77,10 @@
     transition: all 0.3s ease-in 0s;
   }
 
-  &Checkbox:checked + &Label {
-    .switchInner {
-      margin-left: 0;
-    }
-    .switchSwitch {
-      right: 0;
-    }
+  &Checkbox:checked ~ &Switch {
+    right: 0;
+  }
+  &Checkbox:checked ~ &Inner {
+    margin-left: 0;
   }
 }

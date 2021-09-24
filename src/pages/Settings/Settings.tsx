@@ -131,7 +131,9 @@ const Settings = () => {
         />
         {enableTimer ? (
           <label>
+            Round duration in seconds
             <input
+              className={s.inputRoundDuration}
               onChange={(e: ChangeEvent) =>
                 handleUpdateSettings({
                   roundDurationSeconds: (e.target as HTMLInputElement).value,

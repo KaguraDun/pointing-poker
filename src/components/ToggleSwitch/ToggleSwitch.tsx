@@ -1,30 +1,27 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 
 import s from './ToggleSwitch.scss';
 
 interface Props {
-  id: string;
   name: string;
   isOn: boolean;
-  handleToggle: () => void;
+  handleToggle: (e: ChangeEvent) => void;
 }
 
-const ToggleSwitch = ({ id, name, isOn, handleToggle }: Props) => (
-  <div className={s.switch}>
-    <input
-      checked={isOn}
-      className={s.switchCheckbox}
-      id={id}
-      name={name}
-      onChange={handleToggle}
-      type="checkbox"
-    />
-
-    <label className={s.switchLabel} htmlFor={id}>
+const ToggleSwitch = ({ name, isOn, handleToggle }: Props) => (
+  <label className={s.label}>
+    {name}
+    <div className={s.switchLabel}>
+      <input
+        checked={isOn}
+        className={s.switchCheckbox}
+        onChange={handleToggle}
+        type="checkbox"
+      />
       <span className={s.switchInner} />
       <span className={s.switchSwitch} />
-    </label>
-  </div>
+    </div>
+  </label>
 );
 
 export default ToggleSwitch;

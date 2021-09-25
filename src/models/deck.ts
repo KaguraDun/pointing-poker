@@ -3,4 +3,9 @@ interface Deck {
   icon?: JSX.Element;
 }
 
-export default Deck;
+interface Decks {
+  name: string;
+  values: Deck[];
+}
+
+export type { Deck, Decks };

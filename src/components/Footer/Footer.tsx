@@ -12,25 +12,25 @@ const Footer = () => (
       <Youtube />
     </div>
     <div className={s.wrapper}>
-      <div className={s.logoRss}>
+      <a className={s.logoRss} href="https://rs.school">
         <LogoRss />
-      </div>
+      </a>
       <div className={s.divider} />
       <div className={s.year}>2021</div>
     </div>
     <div className={s.gitWrapper}>
-      <div className={s.github}>
+      <a className={s.github} href="https://github.com/KaguraDun">
         <Github />
-        <span>KaguraDan</span>
-      </div>
-      <div className={s.github}>
+        <span>KaguraDun</span>
+      </a>
+      <a className={s.github} href="https://github.com/angietune">
         <Github />
-        <span>KaguraDan</span>
-      </div>
-      <div className={s.github}>
+        <span>angietune</span>
+      </a>
+      <a className={s.github} href="https://github.com/KaguraDun">
         <Github />
-        <span>KaguraDan</span>
-      </div>
+        <span>KaguraDun</span>
+      </a>
     </div>
   </div>
 );

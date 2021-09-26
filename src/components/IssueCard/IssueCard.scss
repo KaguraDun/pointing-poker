@@ -4,13 +4,13 @@
   justify-content: space-evenly;
   width: 250px;
   height: 70px;
-  font-size: 26px;
-  font-weight: 700;
+  margin: 15px;
+  padding: 10px;
   color: black;
+  font-weight: 700;
+  font-size: 26px;
   font-style: roboto;
   border: solid 1px black;
-  padding: 10px;
-  margin: 15px;
 }
 .issueCard:active,
 .issueCard:focus {
@@ -23,12 +23,12 @@
 }
 .title {
   width: 124px;
-  font-size: 22px;
   margin-left: 10px;
+  font-size: 22px;
 }
 .subtitle {
-  font-size: 10px;
   margin: 0 0 0 10px;
+  font-size: 10px;
 }
 .remove,
 .edit {
@@ -37,6 +37,6 @@
   margin-left: 20px;
 }
 svg:hover {
-  fill: red;
   cursor: pointer;
+  fill: red;
 }

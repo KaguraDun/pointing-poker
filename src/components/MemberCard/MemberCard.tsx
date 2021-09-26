@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { Member } from '@/models/member';
 import RemoveIcon from '@/icons/remove.svg';
+import { Member } from '@/models/member';
+
 import s from './memberCard.scss';
 
 const MemberCard = ({ image, name, surname, position }: Member) => (

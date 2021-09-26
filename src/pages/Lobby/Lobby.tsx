@@ -1,5 +1,9 @@
 import React from 'react';
 
-const Lobby = () => <div>Lobby</div>;
+const Lobby = () => (
+  <div>
+    <h1>Lobby</h1>
+  </div>
+);
 
 export default Lobby;

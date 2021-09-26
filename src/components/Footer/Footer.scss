@@ -1,0 +1,49 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 98%;
+  padding: 20px;
+  color: white;
+  background-color: #2b3a67;
+}
+.divider {
+  width: 200px;
+  height: 2px;
+  margin: 5px;
+  background-color: white;
+}
+.youtube {
+  width: 50px;
+}
+.github {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.github svg {
+  width: 40px;
+  margin: 10px;
+}
+.github span {
+  margin: 0 10px;
+}
+.logoRss {
+  width: 100px;
+  margin: 0 auto;
+}
+.wrapper {
+  text-align: center;
+}
+.year {
+  font-size: 26px;
+}
+.gitWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  font-size: 16px;
+}

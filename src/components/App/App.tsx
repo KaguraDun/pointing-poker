@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import Footer from '@/components/Footer/Footer';
 import Game from '@/pages/Game/Game';
 import Home from '@/pages/Home/Home';
 import Lobby from '@/pages/Lobby/Lobby';
@@ -18,6 +19,7 @@ const App = () => (
       <Route component={Game} exact path="/game" />
       <Route component={PageNotFound} />
     </Switch>
+    <Footer />
   </div>
 );
 

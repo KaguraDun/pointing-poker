@@ -1,19 +1,26 @@
+@import 'styles/variables';
 .footer {
-  position: fixed;
-  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 98%;
+  width: 100%;
   padding: 20px;
-  color: white;
-  background-color: #2b3a67;
+  color: $white;
+  background-color: $color-primary-dark;
+}
+.footer a {
+  color: $white;
+  text-decoration: none;
+}
+.footer span {
+  color: $white;
+  text-decoration: none;
 }
 .divider {
   width: 200px;
   height: 2px;
   margin: 5px;
-  background-color: white;
+  background-color: $white;
 }
 .youtube {
   width: 50px;
@@ -32,6 +39,9 @@
   margin: 0 10px;
 }
 .logoRss {
+  margin: 0 auto;
+}
+.logoRss svg {
   width: 100px;
   margin: 0 auto;
 }

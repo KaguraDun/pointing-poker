@@ -1,5 +1,5 @@
 /* eslint-disable react-redux/useSelector-prefer-selectors */
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -12,6 +12,14 @@ import ToggleSwitch from '../../components/ToggleSwitch/ToggleSwitch';
 import s from './Settings.scss';
 
 const Settings = () => {
+  const roomData = useSelector(({ room }: RootState) => room.room);
+
+  useEffect(() => {
+    if (!Object.keys(roomData).length) {
+      roomApi.restoreDataFromServer();
+    }
+  }, [roomData]);
+
   const lobbyLink = useSelector(({ room }: RootState) => room.room.ID);
   const history = useHistory();
 

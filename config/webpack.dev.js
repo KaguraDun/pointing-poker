@@ -32,7 +32,13 @@ module.exports = merge(common, {
             options: { sourceMap: true, importLoaders: 1, modules: true },
           },
           { loader: 'postcss-loader', options: { sourceMap: true } },
-          { loader: 'sass-loader', options: { sourceMap: true } },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+              additionalData: `@import "@/styles/_variables.scss";\n@import "@/styles/_mixins.scss";`,
+            },
+          },
         ],
       },
     ],

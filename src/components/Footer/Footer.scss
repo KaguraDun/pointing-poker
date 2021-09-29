@@ -1,12 +1,17 @@
 @import 'styles/variables';
 .footer {
+  width: 100%;
+  margin-top: 60vh;
+  background-color: $color-primary-dark;
+}
+.container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
   padding: 20px;
   color: $white;
-  background-color: $color-primary-dark;
 }
 .footer a {
   color: $white;
@@ -19,7 +24,7 @@
 .divider {
   width: 200px;
   height: 2px;
-  margin: 5px;
+  margin: 5px auto;
   background-color: $white;
 }
 .youtube {
@@ -46,14 +51,21 @@
   margin: 0 auto;
 }
 .wrapper {
+  width: 300px;
   text-align: center;
 }
 .year {
   font-size: 26px;
 }
-.gitWrapper {
+.rightWrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  width: 300px;
+  font-size: 16px;
+}
+.leftWrapper {
+  display: flex;
+  justify-content: space-evenly;
   width: 300px;
   font-size: 16px;
 }

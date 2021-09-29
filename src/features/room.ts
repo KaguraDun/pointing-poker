@@ -9,6 +9,7 @@ const roomSlice = createSlice({
   name: 'room',
   initialState: {
     room: initialState,
+    chatMessages: [],
     userID: '',
     roomNotFound: false,
     showModalConnectRoom: false,
@@ -26,6 +27,10 @@ const roomSlice = createSlice({
     toggleModalConnectRoom: (state) => {
       state.showModalConnectRoom = !state.showModalConnectRoom;
     },
+    addChatMessage: (state, action) => {
+      const { ID, userID, text } = action.payload;
+      state.chatMessages.unshift({ ID, userID, text });
+    },
     resetState: (state) => {
       state.room = initialState;
       state.userID = '';
@@ -37,10 +42,11 @@ const roomSlice = createSlice({
 
 export const {
   addRoom,
+  setUserID,
   setRoomNotFound,
   toggleModalConnectRoom,
+  addChatMessage,
   resetState,
-  setUserID,
 } = roomSlice.actions;
 
 export default roomSlice.reducer;

@@ -4,9 +4,10 @@ const chatEvents = {
 };
 
 interface ChatMessage {
-  messageID: string;
-  text: string;
+  ID: string;
+  roomID: string;
   userID: string;
+  text: string;
 }
 
 export { chatEvents };

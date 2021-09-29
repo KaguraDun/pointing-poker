@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import Button from '@/components/Button/Button';
+import Chat from '@/components/Chat/Chat';
 import Dropdown from '@/components/Dropdown/Dropdowns';
 import roomApi from '@/services/roomApi';
 import { RootState } from '@/store';
@@ -153,6 +154,7 @@ const Settings = () => {
           </label>
         ) : null}
       </form>
+      <Chat />
     </>
   );
 };

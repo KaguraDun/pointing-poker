@@ -23,7 +23,7 @@ const roomEvents = {
 interface Room {
   ID: string;
   owner: string;
-  users: Member[];
+  users: Record<string, Member>;
   settings: Settings;
 }
 

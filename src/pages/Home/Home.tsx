@@ -10,6 +10,7 @@ import Modal from '@/components/Modal/Modal';
 import { toggleModalConnectRoom } from '@/features/room';
 import { Member } from '@/models/member';
 import roomApi from '@/services/roomApi';
+import saveStateApi from '@/services/saveStateApi';
 import { RootState } from '@/store';
 
 import s from './Home.scss';
@@ -18,6 +19,8 @@ const Home = () => {
   const dispatch = useDispatch();
   const [roomURL, setRoomURL] = useState('');
   const [showModalCreateRoom, setShowModalCreateRoom] = useState(false);
+
+  saveStateApi.clearStorage();
 
   const showModalConnectRoom = useSelector(
     ({ room }: RootState) => room.showModalConnectRoom

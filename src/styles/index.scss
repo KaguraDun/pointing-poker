@@ -4,3 +4,9 @@ body {
   font-size: 18px;
   font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
 }
+:global(#root) {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}

@@ -1,6 +1,8 @@
 import React from 'react';
-import EditIssue from '@/icons/edit.svg';
+
 import DeleteIcon from '@/icons/delete.svg';
+import EditIssue from '@/icons/edit.svg';
+
 import s from './IssueCard.scss';
 
 const IssueCard = (issueNumber: number) => (

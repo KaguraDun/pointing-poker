@@ -1,0 +1,71 @@
+@import 'styles/variables';
+.footer {
+  width: 100%;
+  margin: 100px auto 0 auto;
+  background-color: $color-primary-dark;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 20px;
+  color: $white;
+}
+.footer a {
+  color: $white;
+  text-decoration: none;
+}
+.footer span {
+  color: $white;
+  text-decoration: none;
+}
+.divider {
+  width: 200px;
+  height: 2px;
+  margin: 5px auto;
+  background-color: $white;
+}
+.youtube {
+  width: 50px;
+}
+.github {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.github svg {
+  width: 40px;
+  margin: 10px;
+}
+.github span {
+  margin: 0 10px;
+}
+.logoRss {
+  margin: 0 auto;
+}
+.logoRss svg {
+  width: 100px;
+  margin: 0 auto;
+}
+.wrapper {
+  width: 300px;
+  text-align: center;
+}
+.year {
+  font-size: 26px;
+}
+.rightWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  width: 300px;
+  font-size: 16px;
+}
+.leftWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  width: 300px;
+  font-size: 16px;
+}

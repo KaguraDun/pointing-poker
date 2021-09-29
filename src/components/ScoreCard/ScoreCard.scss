@@ -1,15 +1,15 @@
 .scoreCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
   width: 250px;
   height: 70px;
-  border: 1px solid black;
-  font-size: 26px;
-  font-weight: 700;
-  color: black;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 10px;
   margin: 15px;
+  padding: 10px;
+  color: black;
+  font-weight: 700;
+  font-size: 26px;
+  border: 1px solid black;
 }
 .scoreCard:active,
 .scoreCard:focus {

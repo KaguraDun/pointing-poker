@@ -15,7 +15,12 @@ const Footer = () => (
         </div>
       </div>
       <div className={s.wrapper}>
-        <a className={s.logoRss} href="https://rs.school">
+        <a
+          className={s.logoRss}
+          href="https://rs.school"
+          rel="noreferrer"
+          target="_blank"
+        >
           <LogoRss />
         </a>
         <div className={s.divider} />
@@ -24,18 +29,18 @@ const Footer = () => (
       <div className={s.rightWrapper}>
         <a
           className={s.github}
-          target="_blank"
-          rel="noreferrer"
           href="https://github.com/KaguraDun"
+          rel="noreferrer"
+          target="_blank"
         >
           <Github />
           <span>KaguraDun</span>
         </a>
         <a
           className={s.github}
-          target="_blank"
-          rel="noreferrer"
           href="https://github.com/angietune"
+          rel="noreferrer"
+          target="_blank"
         >
           <Github />
           <span>angietune</span>

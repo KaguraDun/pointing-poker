@@ -8,18 +8,18 @@ const paths = require('./paths');
 
 module.exports = {
   // Where webpack looks to start building the bundle
-  entry: [`${paths.src  }/index.tsx`],
+  entry: [`${paths.src}/index.tsx`],
   cache: {
     // 1. Set cache type to filesystem
-    type: "filesystem",
-    
+    type: 'filesystem',
+
     buildDependencies: {
       // 2. Add your config as buildDependency to get cache invalidation on config change
-      config: [__filename]
-    
+      config: [__filename],
+
       // 3. If you have other things the build depends on you can add them here
       // Note that webpack, loaders and all modules referenced from your config are automatically added
-    }
+    },
   },
   // Where webpack outputs the assets and bundles
   output: {
@@ -51,8 +51,8 @@ module.exports = {
     // Generates deprecation warning: https://github.com/jantimon/html-webpack-plugin/issues/1501
     new HtmlWebpackPlugin({
       title: 'react component',
-      favicon: `${paths.src  }/images/favicon.png`,
-      template: `${paths.src  }/template.html`, // template file
+      favicon: `${paths.src}/images/favicon.png`,
+      template: `${paths.src}/template.html`, // template file
       filename: 'index.html', // output file
     }),
 
@@ -61,10 +61,10 @@ module.exports = {
       files: ['.', 'src', 'config'],
       extensions: ['js', 'jsx', 'ts', 'tsx'],
       cache: true,
-      cacheLocation:'node_modules/.cache/eslint/.eslintcache',
+      cacheLocation: 'node_modules/.cache/eslint/.eslintcache',
     }),
 
-    new StylelintPlugin({fix:true}),
+    new StylelintPlugin({ fix: true }),
   ],
   // Determine how modules within the project are treated
   module: {
@@ -86,13 +86,13 @@ module.exports = {
       {
         test: /\.svg$/,
         issuer: /\.(ts|js)x?$/,
-        use: ['@svgr/webpack']
-    },
-    {
-       test: /\.svg$/,
+        use: ['@svgr/webpack'],
+      },
+      {
+        test: /\.svg$/,
         issuer: /\.(css|scss)$/,
-        type: 'asset/resource'
-    }
+        type: 'asset/resource',
+      },
     ],
   },
 
@@ -101,13 +101,14 @@ module.exports = {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
       '@': paths.src,
-      "@components": `${paths.src}/components`,
-      "@features": `${paths.src}/features`,
-      "@icons" :`${paths.src}/icons`,
-      "@models": `${paths.src}/models`,
-      "@pages": `${paths.src}/pages`,
-      "@services": `${paths.src}/services`,
-      "@styles": `${paths.src}/styles`
+      '@components': `${paths.src}/components`,
+      '@features': `${paths.src}/features`,
+      '@icons': `${paths.src}/icons`,
+      '@images': `${paths.src}/images`,
+      '@models': `${paths.src}/models`,
+      '@pages': `${paths.src}/pages`,
+      '@services': `${paths.src}/services`,
+      '@styles': `${paths.src}/styles`,
     },
   },
 };

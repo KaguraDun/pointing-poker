@@ -13,6 +13,7 @@ const roomEvents = {
   CLOSE_ROOM: 'CLOSE_ROOM',
   ROOM_CLOSED: 'ROOM_CLOSED',
   CONNECT_TO_ROOM: 'CONNECT_TO_ROOM',
+  USER_CONNECTED: 'USER_CONNECTED',
   DISCONNECT_FROM_ROOM: 'DISCONNECT_FROM_ROOM',
   UPDATE_SETTINGS: 'UPDATE_SETTINGS',
   GET_AVAILABLE_ROOMS: 'GET_AVAILABLE_ROOMS',
@@ -21,7 +22,7 @@ const roomEvents = {
 
 interface Room {
   ID: string;
-  owner: Member;
+  owner: string;
   users: Member[];
   settings: Settings;
 }

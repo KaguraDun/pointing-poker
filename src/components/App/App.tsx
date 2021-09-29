@@ -11,16 +11,18 @@ import Settings from '@/pages/Settings/Settings';
 import s from './App.scss';
 
 const App = () => (
-  <div className={s.container}>
-    <Switch>
-      <Route component={Home} exact path="/" />
-      <Route component={Lobby} exact path="/lobby" />
-      <Route component={Settings} exact path="/settings" />
-      <Route component={Game} exact path="/game" />
-      <Route component={PageNotFound} />
-    </Switch>
+  <>
+    <div className={s.container}>
+      <Switch>
+        <Route component={Home} exact path="/" />
+        <Route component={Lobby} exact path="/lobby" />
+        <Route component={Settings} exact path="/settings" />
+        <Route component={Game} exact path="/game" />
+        <Route component={PageNotFound} />
+      </Switch>
+    </div>
     <Footer />
-  </div>
+  </>
 );
 
 export default App;

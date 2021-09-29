@@ -1,7 +1,5 @@
 /* eslint-disable react-redux/useSelector-prefer-selectors */
 
-
-
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -19,6 +17,5 @@ const Lobby = () => {
 
   return <div>Lobby</div>;
 };
-
 
 export default Lobby;

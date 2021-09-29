@@ -14,6 +14,18 @@ import saveStateApi from './saveStateApi';
 import socket from './SocketService';
 
 const roomApi = {
+  isRoomIDKnown() {
+    return this.getCurrentRoomID() !== undefined;
+  },
+  isTheSameRoom(responseID: string) {
+    return this.getCurrentRoomID() === responseID;
+  },
+  getCurrentRoomID() {
+    return store.getState().room.room.ID;
+  },
+  getCurrentUserID() {
+    return store.getState().room.userID;
+  },
   restoreDataFromServer() {
     const data = saveStateApi.loadStateFromStorage();
     if (data) {
@@ -21,26 +33,30 @@ const roomApi = {
       store.dispatch(setUserID(data.userID));
     }
   },
+  saveDataToStorage() {
+    const roomID = this.getCurrentRoomID();
+    const userID = this.getCurrentUserID() || store.getState().room.room.owner;
+    saveStateApi.saveStateToStorage({ roomID, userID });
+  },
   createRoom(dealerData: Member) {
     socket.emit(roomEvents.CREATE_ROOM, dealerData);
     socket.on(roomEvents.GET_ROOM_FROM_SERVER, (response: Room) => {
-      store.dispatch(addRoom(response));
+      if (!this.isRoomIDKnown()) {
+        store.dispatch(addRoom(response));
+        const userID = store.getState().room.room.owner;
 
-      const roomID = this.getCurrentRoomID();
-      const userID = store.getState().room.room.owner;
-
-      store.dispatch(setUserID(userID));
-      saveStateApi.saveStateToStorage({ roomID, userID });
+        store.dispatch(setUserID(userID));
+        this.saveDataToStorage();
+      }
     });
   },
   getRoomFromServer(roomID: string) {
     socket.emit(roomEvents.GET_ROOM_FROM_CLIENT, roomID);
     socket.on(roomEvents.GET_ROOM_FROM_SERVER, (response: Room) => {
-      store.dispatch(addRoom(response));
+      if (!this.isRoomIDKnown() || this.isTheSameRoom(response.ID)) {
+        store.dispatch(addRoom(response));
+      }
     });
-  },
-  getCurrentRoomID() {
-    return store.getState().room.room.ID;
   },
   connect(roomID: string) {
     socket.emit(roomEvents.GET_ROOM_STATUS_FROM_CLIENT, roomID);

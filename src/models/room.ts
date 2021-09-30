@@ -1,6 +1,6 @@
 import { Member } from '@/models/member';
 
-import { Decks } from './deck';
+import { DecksRecord } from './deck';
 
 const roomEvents = {
   CREATE_ROOM: 'CREATE_ROOM:',
@@ -29,7 +29,7 @@ interface Room {
 
 interface Settings {
   dealerAsPlayer: boolean;
-  decks: Decks[];
+  decks: DecksRecord;
   currentDeck: string;
   newPlayersJoinWithAdmit: boolean;
   autoTurnOver: boolean;

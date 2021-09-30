@@ -1,13 +1,18 @@
 import React from 'react';
 
-import s from '@/CardDeck.scss';
 import Card from '@/components/Card/Card';
 import SP from '@/images/SP.svg';
-import DECK_FIBONACCI from '@/models/deck-fibonacci';
+import { Deck } from '@/models/deck';
 
-const CardsDeck = () => (
+import s from './CardDeck.scss';
+
+interface Props {
+  deck: Deck[];
+}
+
+const CardDeck = ({ deck }: Props) => (
   <div className={s.cardsDeck}>
-    {DECK_FIBONACCI.map((item) => (
+    {deck.map((item) => (
       <Card key={item.value} flip value={item.value}>
         <SP />
       </Card>
@@ -15,4 +20,4 @@ const CardsDeck = () => (
   </div>
 );
 
-export default CardsDeck;
+export default CardDeck;

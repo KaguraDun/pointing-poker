@@ -67,6 +67,15 @@ const Settings = () => {
   const handleUpdateSettings = (newValue: any) => {
     roomApi.updateSettings(newValue);
   };
+
+  const getDeckValues = () => {
+    if (!decks) return [];
+    return Object.entries(decks).map(([key, value]) => ({
+      value: key,
+      name: value.name,
+    }));
+  };
+
   return (
     <>
       <div className={s.linkWrapper}>
@@ -109,7 +118,7 @@ const Settings = () => {
             })
           }
           label="Select deck"
-          options={decks?.map((deck) => deck.name) || []}
+          options={getDeckValues()}
         />
         <ToggleSwitch
           handleToggle={(e: ChangeEvent) =>

@@ -1,4 +1,5 @@
 /* eslint-disable react-redux/useSelector-prefer-selectors */
+import { updateGameState } from '@/features/game';
 import {
   addRoom,
   resetState,
@@ -6,6 +7,7 @@ import {
   setUserID,
   toggleModalConnectRoom,
 } from '@/features/room';
+import Game from '@/models/game';
 import { Member, UserEvents } from '@/models/member';
 import { Room, roomEvents, Settings } from '@/models/room';
 import store from '@/store';
@@ -54,7 +56,10 @@ const roomApi = {
     socket.emit(roomEvents.GET_ROOM_FROM_CLIENT, roomID);
     socket.on(roomEvents.GET_ROOM_FROM_SERVER, (response: Room) => {
       if (!this.isRoomIDKnown() || this.isTheSameRoom(response.ID)) {
-        store.dispatch(addRoom(response));
+        const { game, ...room } = response;
+
+        store.dispatch(addRoom(room));
+        store.dispatch(updateGameState(game));
       }
     });
   },
@@ -92,6 +97,11 @@ const roomApi = {
   startGame() {
     const roomID = this.getCurrentRoomID();
     socket.emit(roomEvents.START_GAME, roomID);
+    this.getRoomFromServer(roomID);
+  },
+  updateGameState(newGameState: Game) {
+    const roomID = this.getCurrentRoomID();
+    socket.emit(roomEvents.UPDATE_GAME_STATE, { roomID, newGameState });
     this.getRoomFromServer(roomID);
   },
   close() {

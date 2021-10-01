@@ -1,3 +1,4 @@
+import Game from '@/models/game';
 import { Member } from '@/models/member';
 
 import { DecksRecord } from './deck';
@@ -9,6 +10,7 @@ const roomEvents = {
   GET_ROOM_STATUS_FROM_CLIENT: 'GET_ROOM_STATUS_FROM_CLIENT',
   GET_ROOM_STATUS_FROM_SERVER: 'GET_ROOM_STATUS_FROM_SERVER',
   START_GAME: 'START_GAME',
+  UPDATE_GAME_STATE: 'UPDATE_GAME_STATE',
   GAME_BEGUN: 'GAME_BEGUN',
   CLOSE_ROOM: 'CLOSE_ROOM',
   ROOM_CLOSED: 'ROOM_CLOSED',
@@ -25,6 +27,7 @@ interface Room {
   owner: string;
   users: Record<string, Member>;
   settings: Settings;
+  game: Game;
 }
 
 interface Settings {

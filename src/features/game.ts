@@ -12,12 +12,12 @@ const gameSlice = createSlice({
   },
 
   reducers: {
-    updateGameStatus: (state, action) => {
+    updateGameState: (state, action) => {
       state.game = action.payload;
     },
   },
 });
 
-export const { updateGameStatus } = gameSlice.actions;
+export const { updateGameState } = gameSlice.actions;
 
 export default gameSlice.reducer;

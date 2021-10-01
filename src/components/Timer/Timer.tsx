@@ -31,6 +31,12 @@ const Timer = ({ durationInSeconds, handleTimerEnd, showControls }: Props) => {
   const roundTime = useSelector(({ game }: RootState) => game.game.roundTime);
 
   useEffect(() => {
+    if (!isTimerStart && isTimerStart !== undefined) {
+      gameApi.setRoundTime(durationInSeconds);
+    }
+  }, [durationInSeconds, isTimerStart]);
+
+  useEffect(() => {
     if (!isTimerStart) return null;
 
     const countDown = () => {

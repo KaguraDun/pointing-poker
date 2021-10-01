@@ -16,7 +16,7 @@ const SessionData = () => {
 
   return (
     <div className={s.session}>
-      <p className={s.sessianId}>Session ID: {sessionId}</p>
+      <p className={s.sessionId}>Session ID: {sessionId}</p>
       <Button handleClick={() => handleQuit()} variant="additional">
         Quit
       </Button>

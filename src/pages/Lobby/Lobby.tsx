@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
+import UsersList from '@/components/UsersList/UsersList';
 import roomApi from '@/services/roomApi';
 import { RootState } from '@/store';
 
@@ -15,7 +16,12 @@ const Lobby = () => {
     }
   }, [roomData]);
 
-  return <div>Lobby</div>;
+  return (
+    <div>
+      Lobby
+      <UsersList />
+    </div>
+  );
 };
 
 export default Lobby;

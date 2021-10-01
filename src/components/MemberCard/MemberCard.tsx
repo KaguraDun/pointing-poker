@@ -5,8 +5,8 @@ import { Member } from '@/models/member';
 
 import s from './memberCard.scss';
 
-const MemberCard = ({ image, name, surname, position }: Member) => (
-  <div className={s.memberCard}>
+const MemberCard = ({ image, name, surname, position, ID }: Member) => (
+  <div className={s.memberCard} key={ID}>
     <img alt="avatar" className={s.image} src={image.image} />
     <div>
       <h4 className={s.title}>

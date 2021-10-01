@@ -89,6 +89,13 @@ const roomApi = {
 
     this.getRoomFromServer(roomID);
   },
+  RemoveUser() {
+    const roomID = this.getCurrentRoomID();
+    const userID = this.getCurrentUserID();
+
+    socket.emit(roomEvents.DISCONNECT_FROM_ROOM, { roomID, userID });
+    this.getRoomFromServer(roomID);
+  },
   startGame() {
     const roomID = this.getCurrentRoomID();
     socket.emit(roomEvents.START_GAME, roomID);

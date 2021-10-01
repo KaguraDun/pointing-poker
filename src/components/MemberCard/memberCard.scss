@@ -1,10 +1,11 @@
 .memberCard {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   width: 250px;
-  height: 70px;
-  margin: 15px;
+  height: 50px;
+  margin: 10px;
   padding: 10px;
   color: black;
   font-weight: 700;
@@ -16,31 +17,42 @@
 .memberCard:focus {
   background-color: $color-primary-light;
 }
+.dealer {
+  position: absolute;
+  top: -16px;
+  left: -9px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 25px;
+}
 .image {
-  width: 40px;
-  height: 40px;
-  margin-left: 10px;
+  width: 48px;
+  height: 48px;
+  font-size: 10px;
+  background-color: rgb(random(255), random(255), random(255));
   border-radius: 50%;
   box-shadow: 0 4px 4px 0 #00000040 inset;
 }
+.remove svg {
+  width: 48px;
+}
 .title {
   width: 124px;
+  margin: 15px 0 0 0;
   margin-left: 10px;
   font-size: 22px;
+  line-height: 18px;
 }
 
 .position {
   margin-top: -2px;
   margin-left: 10px;
+  color: $color-primary-light;
   font-weight: 400;
   font-size: 16px;
 }
 
-.remove {
-  width: 30px;
-  height: 30px;
-  margin-left: 20px;
-}
 svg:hover {
   cursor: pointer;
   fill: red;

@@ -58,14 +58,6 @@ const roomApi = {
       }
     });
   },
-  getUserFromServer(userID: string) {
-    const roomID = this.getCurrentRoomID();
-
-    socket.emit(roomEvents.DISCONNECT_FROM_ROOM, userID);
-    socket.on(roomEvents.GET_ROOM_FROM_SERVER, () => {
-      this.getRoomFromServer(roomID);
-    });
-  },
   connect(roomID: string) {
     socket.emit(roomEvents.GET_ROOM_STATUS_FROM_CLIENT, roomID);
     socket.on(roomEvents.GET_ROOM_STATUS_FROM_SERVER, (response: boolean) => {
@@ -102,8 +94,7 @@ const roomApi = {
     const userID = this.getCurrentUserID();
 
     socket.emit(roomEvents.DISCONNECT_FROM_ROOM, { roomID, userID });
-    socket.on(roomEvents.GET_USER_FROM_SERVER, { userID });
-    this.getUserFromServer(roomID);
+    this.getRoomFromServer(roomID);
   },
   startGame() {
     const roomID = this.getCurrentRoomID();

@@ -1,8 +1,24 @@
-interface Game {
-  isStarted: boolean;
-  currentIssueID: string;
-  roundTime: number;
-  isTimerStart: boolean;
+interface Round {
+  score: string;
+  isCardSelected: boolean;
 }
 
-export default Game;
+interface IssueData {
+  averageScore: number;
+  roundData: Record<UserID, Round>;
+}
+
+type IssueID = string;
+type UserID = string;
+type RoundHistory = Record<IssueID, IssueData>;
+
+interface Game {
+  isStarted: boolean;
+  isTimerStart: boolean;
+  isCardSelected: boolean;
+  currentIssueID: string;
+  roundHistory: RoundHistory;
+  roundTime: number;
+}
+
+export type { Game, Round, RoundHistory };

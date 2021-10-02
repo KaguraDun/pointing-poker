@@ -7,7 +7,7 @@ import {
   setUserID,
   toggleModalConnectRoom,
 } from '@/features/room';
-import Game from '@/models/game';
+import { Game } from '@/models/game';
 import { Member, UserEvents } from '@/models/member';
 import { Room, roomEvents, Settings } from '@/models/room';
 import store from '@/store';

@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
-import Game from '@/models/game';
+import { Game } from '@/models/game';
 
 const initialState = {} as any as Game;
 

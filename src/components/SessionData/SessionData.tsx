@@ -10,7 +10,7 @@ const SessionData = () => {
   const history = useHistory();
   const sessionId = roomApi.getCurrentRoomID();
   const handleQuit = () => {
-    roomApi.RemoveUser();
+    roomApi.SubscribeRoomClose(sessionId);
     history.push('/');
   };
 

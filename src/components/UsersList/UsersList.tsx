@@ -23,7 +23,7 @@ const UsersList = () => {
     ));
     return <ul className={s.userslist}>{usersList}</ul>;
   }
-  return 'Error';
+  return <h3>No users</h3>;
 };
 
 export default UsersList;

@@ -23,7 +23,7 @@ const UsersList = () => {
     ));
     return <ul className={s.userslist}>{usersList}</ul>;
   }
-  return <h3>No users</h3>;
+  return <p>No users</p>;
 };
 
 export default UsersList;

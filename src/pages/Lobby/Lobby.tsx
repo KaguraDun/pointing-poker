@@ -19,7 +19,7 @@ const Lobby = () => {
 
   useEffect(() => {
     roomApi.SubscribeRoomClose();
-  });
+  }, []);
 
   return (
     <div>

@@ -1,6 +1,8 @@
+import Game from '@/models/game';
 import { Member } from '@/models/member';
 
-import { Decks } from './deck';
+import { DecksRecord } from './deck';
+import { IssuesRecord } from './issue';
 
 const roomEvents = {
   CREATE_ROOM: 'CREATE_ROOM:',
@@ -9,6 +11,7 @@ const roomEvents = {
   GET_ROOM_STATUS_FROM_CLIENT: 'GET_ROOM_STATUS_FROM_CLIENT',
   GET_ROOM_STATUS_FROM_SERVER: 'GET_ROOM_STATUS_FROM_SERVER',
   START_GAME: 'START_GAME',
+  UPDATE_GAME_STATE: 'UPDATE_GAME_STATE',
   GAME_BEGUN: 'GAME_BEGUN',
   CLOSE_ROOM: 'CLOSE_ROOM',
   ROOM_CLOSED: 'ROOM_CLOSED',
@@ -24,12 +27,14 @@ interface Room {
   ID: string;
   owner: string;
   users: Record<string, Member>;
+  issues: IssuesRecord;
   settings: Settings;
+  game: Game;
 }
 
 interface Settings {
   dealerAsPlayer: boolean;
-  decks: Decks[];
+  decks: DecksRecord;
   currentDeck: string;
   newPlayersJoinWithAdmit: boolean;
   autoTurnOver: boolean;

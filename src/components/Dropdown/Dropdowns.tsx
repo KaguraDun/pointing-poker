@@ -9,6 +9,11 @@ interface DropdownProps {
   defaultValue?: any;
 }
 
+interface Option {
+  value: string;
+  name: string;
+}
+
 const Dropdown = ({
   options,
   label,
@@ -23,9 +28,9 @@ const Dropdown = ({
       onChange={handleOnChange}
       value={defaultValue}
     >
-      {Object.values(options).map((option) => (
-        <option key={`${label}-${option}`} value={String(option)}>
-          {option}
+      {options.map((option: Option) => (
+        <option key={`${label}-${option.value}`} value={String(option.value)}>
+          {option.name}
         </option>
       ))}
     </select>

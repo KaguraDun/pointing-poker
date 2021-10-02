@@ -2,6 +2,7 @@ import Game from '@/models/game';
 import { Member } from '@/models/member';
 
 import { DecksRecord } from './deck';
+import { IssuesRecord } from './issue';
 
 const roomEvents = {
   CREATE_ROOM: 'CREATE_ROOM:',
@@ -26,6 +27,7 @@ interface Room {
   ID: string;
   owner: string;
   users: Record<string, Member>;
+  issues: IssuesRecord;
   settings: Settings;
   game: Game;
 }

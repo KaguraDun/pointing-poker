@@ -17,6 +17,10 @@ const Lobby = () => {
     }
   }, [roomData]);
 
+  useEffect(() => {
+    roomApi.SubscribeRoomClose();
+  }, []);
+
   return (
     <div>
       Lobby

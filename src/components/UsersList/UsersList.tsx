@@ -23,11 +23,7 @@ const UsersList = () => {
     ));
     return <ul className={s.userslist}>{usersList}</ul>;
   }
-<<<<<<< Updated upstream
-  return 'Error';
-=======
   return <p>No users</p>;
->>>>>>> Stashed changes
 };
 
 export default UsersList;

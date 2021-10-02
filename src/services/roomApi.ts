@@ -89,6 +89,15 @@ const roomApi = {
 
     this.getRoomFromServer(roomID);
   },
+  SubscribeRoomClose() {
+    socket.on(roomEvents.ROOM_CLOSED, (responseID: string) => {
+      if (roomApi.isTheSameRoom(responseID)) {
+        store.dispatch(resetState());
+        saveStateApi.clearStorage();
+        window.location = '/';
+      }
+    });
+  },
   startGame() {
     const roomID = this.getCurrentRoomID();
     socket.emit(roomEvents.START_GAME, roomID);
@@ -100,6 +109,7 @@ const roomApi = {
     store.dispatch(resetState());
     saveStateApi.clearStorage();
   },
+
   updateSettings(newSettings: Settings) {
     const roomID = this.getCurrentRoomID();
     socket.emit(roomEvents.UPDATE_SETTINGS, { roomID, newSettings });

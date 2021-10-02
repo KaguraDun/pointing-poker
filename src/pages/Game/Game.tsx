@@ -46,9 +46,26 @@ const Game = () => {
   };
 
   const issues = useSelector(({ room }: RootState) => room.room.issues);
+
   const currentIssueID = useSelector(
     ({ game }: RootState) => game.game.currentIssueID
   );
+
+  const roundHistory = useSelector(({ game }: RootState) => {
+    if (currentIssueID) {
+      return game.game?.roundHistory?.[currentIssueID];
+    }
+
+    return null;
+  });
+
+  const gameHistory = useSelector(({ game }: RootState) => {
+    if (currentIssueID) {
+      return game.game?.roundHistory;
+    }
+
+    return null;
+  });
 
   const getIssuesList = () => {
     if (issues) {
@@ -57,7 +74,7 @@ const Game = () => {
           {/* replace when user list component will be complete */}
           {`${String(index + 1) === currentIssueID ? '->' : ''}${index + 1} ${
             value.title
-          }`}
+          } - ${gameHistory?.[String(index + 1)]?.averageScore || '...'}`}
         </div>
       ));
     }
@@ -70,14 +87,6 @@ const Game = () => {
       gameApi.runNextRound(firstIssueID);
     }
   }, [currentIssueID, issues]);
-
-  const roundHistory = useSelector(({ game }: RootState) => {
-    if (currentIssueID) {
-      return game.game?.roundHistory?.[currentIssueID];
-    }
-
-    return null;
-  });
 
   const users = useSelector(({ room }: RootState) => room.room.users);
 
@@ -97,20 +106,32 @@ const Game = () => {
   };
 
   const calculateAverageScore = () => {
-    const userCount = Object.keys(users).length;
+    let userCount = Object.keys(users).length;
+    let userScoreSum = 0;
+
     if (roundHistory) {
-      Object.entries(roundHistory.roundData).map(([key, value]) => {
-        console.log(key, value);
+      Object.values(roundHistory.roundData).forEach((value) => {
+        const score = Number(value.score);
+
+        if (Number.isNaN(score)) {
+          userCount -= 1;
+        } else {
+          userScoreSum += score;
+        }
       });
     }
-
-    console.log(userCount);
-    // const averageScore =
+    return userScoreSum / userCount;
   };
 
   const handleTimerEnd = () => {
-    calculateAverageScore();
-    // gameApi.runNextRound();
+    gameApi.updateRoundAverageScore(currentIssueID, calculateAverageScore());
+    const issuesArr = Object.keys(issues);
+    const nextIssue = issuesArr.indexOf(currentIssueID) + 1;
+    if (issuesArr[nextIssue]) {
+      gameApi.runNextRound(issuesArr[nextIssue]);
+    } else {
+      console.log('game ended');
+    }
   };
 
   const handleSelectCard = (cardValue: string) => {

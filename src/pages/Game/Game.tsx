@@ -82,7 +82,7 @@ const Game = () => {
   };
 
   useEffect(() => {
-    if (!currentIssueID && issues) {
+    if (currentIssueID === null) {
       const firstIssueID = Object.keys(issues)[0];
       gameApi.runNextRound(firstIssueID);
     }

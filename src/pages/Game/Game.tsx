@@ -11,6 +11,7 @@ import { RootState } from '@/store';
 
 import gameApi from '../../services/gameApi';
 import s from './Game.scss';
+import IssueList from '@/components/IssueList/IssueList';
 
 const Game = () => {
   const userID = roomApi.getCurrentUserID();
@@ -54,6 +55,7 @@ const Game = () => {
     if (issues) {
       return Object.values(issues).map((value, index) => (
         <div>
+          <IssueList />
           {/* replace when user list component will be complete */}
           {`${String(index + 1) === currentIssueID ? '->' : ''}${index + 1} ${
             value.title

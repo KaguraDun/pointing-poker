@@ -44,6 +44,7 @@ const Timer = ({ durationInSeconds, handleTimerEnd, showControls }: Props) => {
         gameApi.setRoundTime(roundTime - 1);
       } else {
         handleTimerEnd();
+        gameApi.setTimerStart(false);
       }
     };
 

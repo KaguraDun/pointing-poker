@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 import CardDeck from '@/components/CardDeck/CardDeck';
 import Chat from '@/components/Chat/Chat';
+import IssueList from '@/components/IssueList/IssueList';
 import ScoreCard from '@/components/ScoreCard/ScoreCard';
 import Timer from '@/components/Timer/Timer';
 import roomApi from '@/services/roomApi';
@@ -11,7 +12,6 @@ import { RootState } from '@/store';
 
 import gameApi from '../../services/gameApi';
 import s from './Game.scss';
-import IssueList from '@/components/IssueList/IssueList';
 
 const Game = () => {
   const userID = roomApi.getCurrentUserID();

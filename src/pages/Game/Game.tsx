@@ -15,42 +15,22 @@ import s from './Game.scss';
 const Game = () => {
   const userID = roomApi.getCurrentUserID();
   const roomData = useSelector(({ room }: RootState) => room?.room);
-
-  useEffect(() => {
-    if (!Object.keys(roomData).length) {
-      roomApi.restoreDataFromServer();
-    }
-  }, [roomData]);
-
-  const isTimerActive = useSelector(
     ({ room }: RootState) => room.room?.settings?.enableTimer
   );
-
   const roundDuration = useSelector(
     ({ room }: RootState) => room.room?.settings?.roundDurationSeconds
   );
-
   const currentDeck = useSelector(
     ({ room }: RootState) => room.room?.settings?.currentDeck
   );
-
   const decks = useSelector(
     ({ room }: RootState) => room.room?.settings?.decks
   );
-
-  const getCurrentDeck = () => {
-    if (decks && currentDeck) {
-      return decks[currentDeck].values;
-    }
-    return [];
-  };
-
   const issues = useSelector(({ room }: RootState) => room.room.issues);
-
+  const users = useSelector(({ room }: RootState) => room.room.users);
   const currentIssueID = useSelector(
     ({ game }: RootState) => game.game.currentIssueID
   );
-
   const roundHistory = useSelector(({ game }: RootState) => {
     if (currentIssueID) {
       return game.game?.roundHistory?.[currentIssueID];
@@ -58,7 +38,6 @@ const Game = () => {
 
     return null;
   });
-
   const gameHistory = useSelector(({ game }: RootState) => {
     if (currentIssueID) {
       return game.game?.roundHistory;
@@ -66,6 +45,29 @@ const Game = () => {
 
     return null;
   });
+  const isTimerStart = useSelector(
+    ({ game }: RootState) => game.game.isTimerStart
+  );
+
+  useEffect(() => {
+    if (!Object.keys(roomData).length) {
+      roomApi.restoreDataFromServer();
+    }
+  }, [roomData]);
+
+  useEffect(() => {
+    if (currentIssueID === null) {
+      const firstIssueID = Object.keys(issues)[0];
+      gameApi.runNextRound(firstIssueID);
+    }
+  }, [currentIssueID, issues]);
+
+  const getCurrentDeck = () => {
+    if (decks && currentDeck) {
+      return decks[currentDeck].values;
+    }
+    return [];
+  };
 
   const getIssuesList = () => {
     if (issues) {
@@ -80,15 +82,6 @@ const Game = () => {
     }
     return 'Error';
   };
-
-  useEffect(() => {
-    if (currentIssueID === null) {
-      const firstIssueID = Object.keys(issues)[0];
-      gameApi.runNextRound(firstIssueID);
-    }
-  }, [currentIssueID, issues]);
-
-  const users = useSelector(({ room }: RootState) => room.room.users);
 
   const getUserList = () => {
     if (users) {
@@ -143,7 +136,7 @@ const Game = () => {
       <div className={s.dealer}>SCRAM_MASTER</div>
       <div className={s.issues}>{getIssuesList()}</div>
       <div className={s.timer}>
-        {isTimerActive ? (
+        {isTimerEnabled ? (
           <Timer
             durationInSeconds={roundDuration}
             handleTimerEnd={handleTimerEnd}

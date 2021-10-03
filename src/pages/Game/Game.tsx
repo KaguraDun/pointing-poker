@@ -132,7 +132,7 @@ const Game = () => {
   };
 
   const handleSelectCard = (cardValue: string) => {
-    if (isTimerStart) {
+    if (isTimerStart || !isTimerEnabled) {
       gameApi.selectCard(currentIssueID, cardValue);
     }
   };

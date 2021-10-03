@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import Plus from '@/icons/plus.svg';
 
 import CreateIssueForm from '../CreateIssueForm/CreateIssueForm';
-import s from './IssueCard.scss';
 import Modal from '../Modal/Modal';
+import s from './IssueCard.scss';
+import gameApi from '../../services/gameApi';
 import { Issue } from '@/models/issue';
 
 const IssueCardNew = () => {
@@ -12,21 +13,28 @@ const IssueCardNew = () => {
   const handleClick = () => {
     setShowModalCreateIssue(true);
   };
-  const closeModal = () => {
+  const handleCloseModal = () => {
     setShowModalCreateIssue(false);
   };
-  const saveData = () => {
+  const createIssue = (issueData: Issue) => {
     setShowModalCreateIssue(false);
+    gameApi.createIssue(issueData);
   };
 
   return (
-    <div className={s.issueCard} onClick={handleClick}>
+    <div className={s.issueCard}>
       <div className={s.wrapperNew}>
         <h4 className={s.titleNew}>Create new issue</h4>
-        <Plus />
+        <Plus className={s.plus} onClick={handleClick} />
       </div>
-      <Modal handleCloseModal={closeModal} showModal={showModalCreateIssue}>
-        <CreateIssueForm handleCloseModal={closeModal} saveData={saveData} />
+      <Modal
+        showModal={showModalCreateIssue}
+        handleCloseModal={handleCloseModal}
+      >
+        <CreateIssueForm
+          handleCloseModal={handleCloseModal}
+          saveData={(issueData) => createIssue(issueData)}
+        />
       </Modal>
     </div>
   );

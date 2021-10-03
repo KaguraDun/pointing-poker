@@ -4,7 +4,6 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import IssueList from '@/components/IssueList/IssueList';
 import SessionData from '@/components/SessionData/SessionData';
 import UsersList from '@/components/UsersList/UsersList';
 import roomApi from '@/services/roomApi';
@@ -38,7 +37,6 @@ const Lobby = () => {
       Lobby
       <SessionData />
       <UsersList />
-      <IssueList />
     </div>
   );
 };

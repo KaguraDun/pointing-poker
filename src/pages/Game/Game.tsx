@@ -7,6 +7,7 @@ import CardDeck from '@/components/CardDeck/CardDeck';
 import Chat from '@/components/Chat/Chat';
 import ScoreCard from '@/components/ScoreCard/ScoreCard';
 import Timer from '@/components/Timer/Timer';
+import { UserRoles } from '@/models/member';
 import roomApi from '@/services/roomApi';
 import { RootState } from '@/store';
 
@@ -15,8 +16,11 @@ import s from './Game.scss';
 
 const Game = () => {
   const history = useHistory();
-  const userID = roomApi.getCurrentUserID();
+  const currentUserID = roomApi.getCurrentUserID();
   const roomData = useSelector(({ room }: RootState) => room?.room);
+  const dealerAsPlayer = useSelector(
+    ({ room }: RootState) => room.room?.settings?.dealerAsPlayer
+  );
   const isTimerEnabled = useSelector(
     ({ room }: RootState) => room.room?.settings?.enableTimer
   );
@@ -65,6 +69,9 @@ const Game = () => {
     }
   }, [currentIssueID, issues]);
 
+  const isUserRolePlayer = (userID: string) =>
+    users?.[userID]?.role === UserRoles.player;
+
   const getCurrentDeck = () => {
     if (decks && currentDeck) {
       return decks[currentDeck].values;
@@ -89,13 +96,17 @@ const Game = () => {
   const getUserList = () => {
     if (users) {
       return Object.values(users).map((value) => {
-        const score = roundHistory?.roundData?.[value.ID].score;
-        return (
-          <div className={s.userScore}>
-            <ScoreCard score={score || '...'} />
-            <div>{`${value.ID}: ${value.name} ${value.surname}`}</div>
-          </div>
-        );
+        const score = roundHistory?.roundData?.[value.ID]?.score;
+        const showUserScore = dealerAsPlayer || isUserRolePlayer(value.ID);
+        if (showUserScore) {
+          return (
+            <div className={s.userScore}>
+              <ScoreCard score={score || '...'} />
+              <div>{`${value.ID}: ${value.name} ${value.surname}`}</div>
+            </div>
+          );
+        }
+        return null;
       });
     }
     return 'Error';
@@ -104,6 +115,8 @@ const Game = () => {
   const calculateAverageScore = () => {
     let userCount = Object.keys(users).length;
     let userScoreSum = 0;
+
+    if (!dealerAsPlayer) userCount -= 1;
 
     if (roundHistory) {
       Object.values(roundHistory.roundData).forEach((value) => {
@@ -137,6 +150,8 @@ const Game = () => {
     }
   };
 
+  const showCardDeck = dealerAsPlayer || isUserRolePlayer(currentUserID);
+
   return (
     <div className={s.game}>
       <div className={s.dealer}>SCRAM_MASTER</div>
@@ -152,12 +167,16 @@ const Game = () => {
       </div>
       <div className={s.userScores}>{getUserList()}</div>
       <div className={s.deck}>
-        <CardDeck
-          deck={getCurrentDeck()}
-          handleSelectCard={handleSelectCard}
-          isCardSelected={roundHistory?.roundData?.[userID]?.isCardSelected}
-          selectedValue={roundHistory?.roundData?.[userID]?.score}
-        />
+        {showCardDeck ? (
+          <CardDeck
+            deck={getCurrentDeck()}
+            handleSelectCard={handleSelectCard}
+            isCardSelected={
+              roundHistory?.roundData?.[currentUserID]?.isCardSelected
+            }
+            selectedValue={roundHistory?.roundData?.[currentUserID]?.score}
+          />
+        ) : null}
       </div>
       <div className={s.chat}>
         <Chat />

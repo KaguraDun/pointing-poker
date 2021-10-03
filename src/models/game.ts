@@ -14,6 +14,7 @@ type RoundHistory = Record<IssueID, IssueData>;
 
 interface Game {
   isStarted: boolean;
+  isEnded: boolean;
   isTimerStart: boolean;
   isCardSelected: boolean;
   currentIssueID: string;

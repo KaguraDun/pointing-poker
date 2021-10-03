@@ -22,15 +22,15 @@
 .connectWrapper {
   display: flex;
   width: 100%;
-  input {
-    height: 36px;
-  }
-  form {
-    display: flex;
-    button {
-      height: 37px;
-    }
-  }
+}
+.connectInput {
+  height: 37px;
+}
+.connectWrapper button {
+  height: 37px;
+}
+.connectForm {
+  display: flex;
 }
 .logo {
   width: 70%;

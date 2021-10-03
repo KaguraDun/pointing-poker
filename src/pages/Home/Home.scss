@@ -3,9 +3,37 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  max-width: 60%;
   height: 100%;
+  margin: 0 auto;
 }
-
+.buttonsWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 auto;
+}
+.connectWrapper,
+.createRoomWrapper {
+  width: 100%;
+  height: 70px;
+  padding: 10px;
+}
 .connectWrapper {
   display: flex;
+  width: 100%;
+}
+.connectInput {
+  height: 37px;
+}
+.connectWrapper button {
+  height: 37px;
+}
+.connectForm {
+  display: flex;
+}
+.logo {
+  width: 70%;
+  height: 100px;
+  margin: 100px auto 100px auto;
 }

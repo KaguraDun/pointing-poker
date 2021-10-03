@@ -21,10 +21,20 @@
   flex-direction: column;
   justify-content: space-between;
 }
+.wrapperNew {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+}
 .title {
   width: 124px;
   margin-left: 10px;
   font-size: 22px;
+}
+.titleNew {
+  font-size: 18px;
 }
 .subtitle {
   margin: 0 0 0 10px;

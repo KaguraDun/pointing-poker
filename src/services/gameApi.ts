@@ -1,5 +1,9 @@
 import { Game, Round } from '@/models/game';
+import { Issue } from '@/models/issue';
+import { roomEvents } from '@/models/room';
 import roomApi from '@/services/roomApi';
+
+import socket from './SocketService';
 
 const gameApi = {
   runNextRound(issueID: string) {
@@ -43,6 +47,12 @@ const gameApi = {
       },
     } as Game;
     roomApi.updateGameState(roundHistory);
+  },
+  createIssue(issueData: Issue) {
+    const roomID = roomApi.getCurrentRoomID();
+    socket.emit(roomEvents.ADD_ISSUE, { roomID, issueData });
+    roomApi.getRoomFromServer(roomID);
+    console.log(issueData);
   },
 };
 

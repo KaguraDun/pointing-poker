@@ -10,5 +10,7 @@ interface Issue {
   priority: IssuePriorities;
 }
 
+type IssuesRecord = Record<string, Issue>;
+
 export { IssuePriorities };
-export type { Issue };
+export type { Issue, IssuesRecord };

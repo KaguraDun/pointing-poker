@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import Button from '@/components/Button/Button';
+import Chat from '@/components/Chat/Chat';
 import Dropdown from '@/components/Dropdown/Dropdowns';
 import roomApi from '@/services/roomApi';
 import { RootState } from '@/store';
@@ -66,6 +67,15 @@ const Settings = () => {
   const handleUpdateSettings = (newValue: any) => {
     roomApi.updateSettings(newValue);
   };
+
+  const getDeckValues = () => {
+    if (!decks) return [];
+    return Object.entries(decks).map(([key, value]) => ({
+      value: key,
+      name: value.name,
+    }));
+  };
+
   return (
     <>
       <div className={s.linkWrapper}>
@@ -108,7 +118,7 @@ const Settings = () => {
             })
           }
           label="Select deck"
-          options={decks?.map((deck) => deck.name) || []}
+          options={getDeckValues()}
         />
         <ToggleSwitch
           handleToggle={(e: ChangeEvent) =>
@@ -153,6 +163,7 @@ const Settings = () => {
           </label>
         ) : null}
       </form>
+      <Chat />
     </>
   );
 };

@@ -3,15 +3,16 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { ChatMessage } from '@/models/chat';
-import chatApi from '@/services/ChatApi';
+import chatApi from '@/services/chatApi';
 import { RootState } from '@/store';
 
 import Button from '../Button/Button';
 import s from './Chat.scss';
 
 const Chat = () => {
-  const [messageText, setMessageText] = useState('');
-  const messageList = useSelector(({ chat }: RootState) => chat.messages);
+  const [message, setMessage] = useState('');
+  const messageList = useSelector(({ room }: RootState) => room.chatMessages);
+  const userList = useSelector(({ room }: RootState) => room.room.users);
 
   useEffect(() => {
     chatApi.updateMessageList();
@@ -20,9 +21,9 @@ const Chat = () => {
   const submitMessage = (e: SubmitEvent) => {
     e.preventDefault();
 
-    if (messageText) {
-      chatApi.sendMessage(messageText);
-      setMessageText('');
+    if (message) {
+      chatApi.sendMessage(message);
+      setMessage('');
     }
   };
 
@@ -30,11 +31,14 @@ const Chat = () => {
     messages: ChatMessage[];
   }
 
+  const getUserName = (userID: string) =>
+    userList ? userList[userID]?.name : 'error';
+
   const MessageBox = ({ messages }: MessageBoxProps) => (
     <div className={s.messageBox}>
-      {messages.map(({ messageID, text, userID }) => (
-        <div key={userID + messageID} className={s.message}>
-          <span>{`${userID}: ${text}`}</span>
+      {messages.map(({ ID, userID, text }) => (
+        <div key={ID} className={s.message}>
+          <span>{`${getUserName(userID)}: ${text}`}</span>
         </div>
       ))}
     </div>
@@ -46,9 +50,9 @@ const Chat = () => {
       <form className={s.controls} onSubmit={(e) => submitMessage(e)}>
         <input
           className={s.input}
-          onChange={({ target }) => setMessageText(target.value)}
+          onChange={({ target }) => setMessage(target.value)}
           type="text"
-          value={messageText}
+          value={message}
         />
         <Button type="submit">Submit</Button>
       </form>

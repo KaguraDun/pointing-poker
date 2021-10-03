@@ -18,7 +18,7 @@ const CreateIssueForm = ({
   const issueData: Issue = {
     title: '',
     link: '',
-    priority: null,
+    priority: IssuePriorities.medium,
   };
   type ErrorType = Record<string, boolean>;
 
@@ -71,7 +71,6 @@ const CreateIssueForm = ({
       name: value.name,
     }));
   };
-
   return (
     <div className={s.formWrapper}>
       <div className={s.formTitle}>Create Issue</div>
@@ -93,7 +92,7 @@ const CreateIssueForm = ({
           value={formData.link}
         />
         <Dropdown
-          defaultValue={formData.priority || IssuePriorities.medium}
+          defaultValue={formData.priority}
           handleOnChange={inputHandler('priority')}
           label="Priority"
           options={getIssueValues()}

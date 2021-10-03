@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { IssuePriorities } from '@/models/issue';
 import { RootState } from '@/store';
 
 import IssueCard from '../IssueCard/IssueCard';
@@ -12,14 +11,15 @@ const IssueList = () => {
   const selector = ({ room }: RootState) => room.room.issues;
   const issues = useSelector(selector);
   if (issues) {
-    const issuesList = Object.values(issues).map((value) => {
+    const issuesList = Object.values(issues).map((value) => (
       <IssueCard
         key={value.title}
-        link="current"
-        priority={IssuePriorities.low}
+        link={value.link}
+        priority={value.priority}
         title={value.title}
-      />;
-    });
+      />
+    ));
+
     return (
       <div className={s.issueList}>
         {issuesList}

@@ -1,6 +1,7 @@
 /* eslint-disable react-redux/useSelector-prefer-selectors */
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import CardDeck from '@/components/CardDeck/CardDeck';
 import Chat from '@/components/Chat/Chat';
@@ -13,6 +14,7 @@ import gameApi from '../../services/gameApi';
 import s from './Game.scss';
 
 const Game = () => {
+  const history = useHistory();
   const userID = roomApi.getCurrentUserID();
   const roomData = useSelector(({ room }: RootState) => room?.room);
   const isTimerEnabled = useSelector(
@@ -124,7 +126,8 @@ const Game = () => {
     if (issuesArr[nextIssue]) {
       gameApi.runNextRound(issuesArr[nextIssue]);
     } else {
-      console.log('game ended');
+      gameApi.gameEnd();
+      history.push('./game-results');
     }
   };
 

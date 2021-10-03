@@ -18,6 +18,9 @@ const gameApi = {
       score: cardValue,
     });
   },
+  gameEnd() {
+    roomApi.updateGameState({ isEnded: true } as Game);
+  },
   updateRoundAverageScore(issueID: string, score: number) {
     const roundHistory = {
       roundHistory: {

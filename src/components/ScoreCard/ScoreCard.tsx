@@ -4,10 +4,11 @@ import s from './ScoreCard.scss';
 
 interface Props {
   score: string;
+  key: number;
 }
 
-const ScoreCard = ({ score }: Props) => (
-  <div className={s.scoreCard}>
+const ScoreCard = ({ score, key }: Props) => (
+  <div key={key} className={s.scoreCard}>
     <h4 className={s.score}>{score}</h4>
   </div>
 );

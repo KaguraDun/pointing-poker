@@ -15,6 +15,7 @@ import s from './Game.scss';
 const Game = () => {
   const userID = roomApi.getCurrentUserID();
   const roomData = useSelector(({ room }: RootState) => room?.room);
+  const isTimerEnabled = useSelector(
     ({ room }: RootState) => room.room?.settings?.enableTimer
   );
   const roundDuration = useSelector(
@@ -128,7 +129,9 @@ const Game = () => {
   };
 
   const handleSelectCard = (cardValue: string) => {
-    gameApi.selectCard(currentIssueID, cardValue);
+    if (isTimerStart) {
+      gameApi.selectCard(currentIssueID, cardValue);
+    }
   };
 
   return (

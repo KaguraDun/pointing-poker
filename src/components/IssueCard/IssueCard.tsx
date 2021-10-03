@@ -7,7 +7,7 @@ import { Issue } from '@/models/issue';
 import s from './IssueCard.scss';
 
 const IssueCard = ({ title, link, priority }: Issue) => (
-  <div className={s.issueCard}>
+  <div className={s.issueCard} key={link}>
     <div className={s.wrapper}>
       <strong className={s.subtitle}>{link}</strong>
       <h4 className={s.title}>Issue{title}</h4>

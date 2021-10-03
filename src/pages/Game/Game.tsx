@@ -72,6 +72,8 @@ const Game = () => {
   const isUserRolePlayer = (userID: string) =>
     users?.[userID]?.role === UserRoles.player;
 
+  const isUserRoleDealer = users?.[currentUserID]?.role === UserRoles.dealer;
+
   const getCurrentDeck = () => {
     if (decks && currentDeck) {
       return decks[currentDeck].values;
@@ -161,7 +163,7 @@ const Game = () => {
           <Timer
             durationInSeconds={roundDuration}
             handleTimerEnd={handleTimerEnd}
-            showControls
+            showControls={isUserRoleDealer}
           />
         ) : null}
       </div>

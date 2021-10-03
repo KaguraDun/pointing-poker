@@ -105,7 +105,7 @@ const Game = () => {
         if (showUserScore) {
           return (
             <div className={s.userScore}>
-              <ScoreCard score={score || '...'} />
+              <ScoreCard score={score || '...'} key={+value.ID} />
               <div>{`${value.ID}: ${value.name} ${value.surname}`}</div>
             </div>
           );

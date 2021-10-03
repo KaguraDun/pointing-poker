@@ -12,6 +12,7 @@ import { Member } from '@/models/member';
 import roomApi from '@/services/roomApi';
 import saveStateApi from '@/services/saveStateApi';
 import { RootState } from '@/store';
+import Logo from '@/images/Logo.svg';
 
 import s from './Home.scss';
 
@@ -50,32 +51,37 @@ const Home = () => {
 
   return (
     <div className={s.home}>
-      <div className={s.createRoomWrapper}>
-        <Button handleClick={() => setShowModalCreateRoom(true)}>
-          Create room
-        </Button>
-        <Modal handleCloseModal={closeModal} showModal={showModalCreateRoom}>
-          <LoginForm
-            handleCloseModal={closeModal}
-            saveData={(dealerData) => createRoom(dealerData)}
-            userRole="dealer"
-          />
-        </Modal>
+      <div className={s.logo}>
+        <Logo />
       </div>
+      <div className={s.buttonsWrapper}>
+        <div className={s.createRoomWrapper}>
+          <Button handleClick={() => setShowModalCreateRoom(true)}>
+            Create room
+          </Button>
+          <Modal handleCloseModal={closeModal} showModal={showModalCreateRoom}>
+            <LoginForm
+              handleCloseModal={closeModal}
+              saveData={(dealerData) => createRoom(dealerData)}
+              userRole="dealer"
+            />
+          </Modal>
+        </div>
 
-      <div className={s.connectWrapper}>
-        <form onSubmit={(e) => ConnectToRoom(e)}>
-          {roomNotFound ? <ErrorMessage text="Room not found!" /> : null}
-          <input onChange={(e) => setRoomURL(e.target.value)} type="text" />
-          <Button type="submit">Connect to lobby</Button>
-        </form>
+        <div className={s.connectWrapper}>
+          <form onSubmit={(e) => ConnectToRoom(e)}>
+            {roomNotFound ? <ErrorMessage text="Room not found!" /> : null}
+            <input onChange={(e) => setRoomURL(e.target.value)} type="text" />
+            <Button type="submit">Connect to lobby</Button>
+          </form>
 
-        <Modal handleCloseModal={closeModal} showModal={showModalConnectRoom}>
-          <LoginForm
-            handleCloseModal={closeModal}
-            saveData={(userData) => AddUser(userData)}
-          />
-        </Modal>
+          <Modal handleCloseModal={closeModal} showModal={showModalConnectRoom}>
+            <LoginForm
+              handleCloseModal={closeModal}
+              saveData={(userData) => AddUser(userData)}
+            />
+          </Modal>
+        </div>
       </div>
     </div>
   );

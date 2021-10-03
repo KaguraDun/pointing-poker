@@ -2,6 +2,8 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Footer from '@/components/Footer/Footer';
+import Header from '@/components/Footer/header';
+
 import Game from '@/pages/Game/Game';
 import Home from '@/pages/Home/Home';
 import Lobby from '@/pages/Lobby/Lobby';
@@ -12,6 +14,7 @@ import s from './App.scss';
 
 const App = () => (
   <>
+    <Header />
     <div className={s.container}>
       <Switch>
         <Route component={Home} exact path="/" />

@@ -1,4 +1,4 @@
-import Game from '@/models/game';
+import { Game } from '@/models/game';
 import { Member } from '@/models/member';
 
 import { DecksRecord } from './deck';

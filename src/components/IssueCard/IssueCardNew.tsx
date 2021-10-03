@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
 import Plus from '@/icons/plus.svg';
+import { Issue } from '@/models/issue';
 
+import gameApi from '../../services/gameApi';
 import CreateIssueForm from '../CreateIssueForm/CreateIssueForm';
 import Modal from '../Modal/Modal';
 import s from './IssueCard.scss';
-import gameApi from '../../services/gameApi';
-import { Issue } from '@/models/issue';
 
 const IssueCardNew = () => {
   const [showModalCreateIssue, setShowModalCreateIssue] = useState(false);
@@ -28,8 +28,8 @@ const IssueCardNew = () => {
         <Plus className={s.plus} onClick={handleClick} />
       </div>
       <Modal
-        showModal={showModalCreateIssue}
         handleCloseModal={handleCloseModal}
+        showModal={showModalCreateIssue}
       >
         <CreateIssueForm
           handleCloseModal={handleCloseModal}

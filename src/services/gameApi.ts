@@ -1,6 +1,10 @@
 import { Game, Round } from '@/models/game';
+import { Issue } from '@/models/issue';
+import { roomEvents } from '@/models/room';
 import roomApi from '@/services/roomApi';
 import store from '@/store';
+
+import socket from './SocketService';
 
 const gameApi = {
   runNextRound(issueID: string) {
@@ -44,6 +48,21 @@ const gameApi = {
       },
     } as Game;
     roomApi.updateGameState(roundHistory);
+  },
+  createIssue(issueData: Issue) {
+    const roomID = roomApi.getCurrentRoomID();
+    socket.emit(roomEvents.ADD_ISSUE, { roomID, issueData });
+    roomApi.getRoomFromServer(roomID);
+  },
+  deleteIssue(issueID: string) {
+    const roomID = roomApi.getCurrentRoomID();
+    socket.emit(roomEvents.DELETE_ISSUE, { roomID, issueID });
+    roomApi.getRoomFromServer(roomID);
+  },
+  editIssue(issueID: string, issueData: Issue) {
+    const roomID = roomApi.getCurrentRoomID();
+    socket.emit(roomEvents.EDIT_ISSUE, { roomID, issueID, issueData });
+    roomApi.getRoomFromServer(roomID);
   },
   prepareDataToSave() {
     const { roundHistory } = store.getState().game.game;

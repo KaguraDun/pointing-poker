@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 import CardDeck from '@/components/CardDeck/CardDeck';
 import Chat from '@/components/Chat/Chat';
+import IssueList from '@/components/IssueList/IssueList';
 import ScoreCard from '@/components/ScoreCard/ScoreCard';
 import Timer from '@/components/Timer/Timer';
 import { UserRoles } from '@/models/member';
@@ -85,6 +86,7 @@ const Game = () => {
     if (issues) {
       return Object.values(issues).map((value, index) => (
         <div>
+          <IssueList />
           {/* replace when user list component will be complete */}
           {`${String(index + 1) === currentIssueID ? '->' : ''}${index + 1} ${
             value.title
@@ -103,7 +105,7 @@ const Game = () => {
         if (showUserScore) {
           return (
             <div className={s.userScore}>
-              <ScoreCard score={score || '...'} />
+              <ScoreCard key={+value.ID} score={score || '...'} />
               <div>{`${value.ID}: ${value.name} ${value.surname}`}</div>
             </div>
           );

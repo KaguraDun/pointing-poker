@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import Button from '@/components/Button/Button';
 import Chat from '@/components/Chat/Chat';
 import Dropdown from '@/components/Dropdown/Dropdowns';
+import IssueList from '@/components/IssueList/IssueList';
 import roomApi from '@/services/roomApi';
 import { RootState } from '@/store';
 
@@ -163,6 +164,7 @@ const Settings = () => {
           </label>
         ) : null}
       </form>
+      <IssueList />
       <Chat />
     </>
   );

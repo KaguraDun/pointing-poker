@@ -1,0 +1,47 @@
+@import '@/styles/variables.scss';
+
+.formWrapper {
+  max-width: 550px;
+  padding: 20px;
+  background-color: $white;
+}
+
+.form {
+  width: 100%;
+}
+
+.imageWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.formTitle {
+  padding: 20px 0;
+  font-size: 30px;
+  line-height: 40px;
+}
+
+.formInput {
+  width: 100%;
+  height: 30px;
+  margin-bottom: 20px;
+  padding: 0;
+  font-size: 18px;
+  border: none;
+  border-bottom: solid 1px $color-primary-dark;
+}
+
+.formInputImage {
+  padding: 20px 0;
+  border: none;
+}
+
+.submitButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.error {
+  color: red;
+}

@@ -4,22 +4,29 @@ import { Issue, issueList, IssuePriorities } from '@/models/issue';
 
 import Button from '../Button/Button';
 import Dropdown from '../Dropdown/Dropdowns';
-import s from './CreateIssueForm.scss';
+import s from './EditIssueForm.scss';
 
 interface CreateIssueFormProps {
   saveData: (data: Issue) => void;
   handleCloseModal: () => void;
+  Issue: {
+    ID: string;
+    title: string;
+    link: string;
+    priority: IssuePriorities;
+  };
 }
 
-const CreateIssueForm = ({
+const EditIssueForm = ({
+  Issue,
   handleCloseModal,
   saveData,
 }: CreateIssueFormProps) => {
   const issueData: Issue = {
-    ID: '',
-    title: '',
-    link: '',
-    priority: IssuePriorities.medium,
+    ID: Issue.ID,
+    title: Issue.title,
+    link: Issue.link,
+    priority: Issue.priority,
   };
   type ErrorType = Record<string, boolean>;
 
@@ -74,7 +81,7 @@ const CreateIssueForm = ({
   };
   return (
     <div className={s.formWrapper}>
-      <div className={s.formTitle}>Create Issue</div>
+      <div className={s.formTitle}>Edit Issue</div>
       <form className={s.form}>
         {errorList.title ? <Error text="Enter issue title" /> : null}
         <input
@@ -99,7 +106,7 @@ const CreateIssueForm = ({
           options={getIssueValues()}
         />
         <div className={s.submitButtons}>
-          <Button handleClick={() => submitForm()}>Create</Button>
+          <Button handleClick={() => submitForm()}>Edit</Button>
           <Button handleClick={() => handleCloseModal()} variant="additional">
             Cancel
           </Button>
@@ -109,4 +116,4 @@ const CreateIssueForm = ({
   );
 };
 
-export default CreateIssueForm;
+export default EditIssueForm;

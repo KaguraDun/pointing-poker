@@ -2,6 +2,7 @@ import { Game, Round } from '@/models/game';
 import { Issue } from '@/models/issue';
 import { roomEvents } from '@/models/room';
 import roomApi from '@/services/roomApi';
+import store from '@/store';
 
 import socket from './SocketService';
 
@@ -62,6 +63,30 @@ const gameApi = {
     const roomID = roomApi.getCurrentRoomID();
     socket.emit(roomEvents.EDIT_ISSUE, { roomID, issueID, issueData });
     roomApi.getRoomFromServer(roomID);
+  },
+  prepareDataToSave() {
+    const { roundHistory } = store.getState().game.game;
+    const roomData = store.getState().room.room;
+    if (roundHistory) {
+      const users = Object.values(roomData.users).map(
+        (user) => `${user.name} ${user.surname}`
+      );
+
+      const data = Object.entries(roundHistory).map(([key, values]) => {
+        const { title } = roomData.issues[key];
+        const score = roundHistory[key].averageScore;
+        const userScores = {};
+
+        Object.values(values.roundData).forEach((user, index) => {
+          userScores[users[index]] = user.score;
+        });
+
+        return { title, average: score, ...userScores };
+      });
+
+      return data;
+    }
+    return [];
   },
 };
 

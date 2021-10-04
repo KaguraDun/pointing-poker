@@ -52,7 +52,16 @@ const gameApi = {
     const roomID = roomApi.getCurrentRoomID();
     socket.emit(roomEvents.ADD_ISSUE, { roomID, issueData });
     roomApi.getRoomFromServer(roomID);
-    console.log(issueData);
+  },
+  deleteIssue(issueID: string) {
+    const roomID = roomApi.getCurrentRoomID();
+    socket.emit(roomEvents.DELETE_ISSUE, { roomID, issueID });
+    roomApi.getRoomFromServer(roomID);
+  },
+  editIssue(issueID: string, issueData: Issue) {
+    const roomID = roomApi.getCurrentRoomID();
+    socket.emit(roomEvents.EDIT_ISSUE, { roomID, issueID, issueData });
+    roomApi.getRoomFromServer(roomID);
   },
 };
 

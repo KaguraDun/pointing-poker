@@ -23,6 +23,7 @@ const roomEvents = {
   GET_USERS_FROM_ROOM: 'GET_USERS_FROM_ROOM',
   ADD_ISSUE: 'ADD_ISSUE',
   DELETE_ISSUE: 'DELETE_ISSUE',
+  EDIT_ISSUE: 'EDIT_ISSUE',
 };
 
 interface Room {

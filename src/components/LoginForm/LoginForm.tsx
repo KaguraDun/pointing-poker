@@ -17,14 +17,14 @@ const LoginForm = ({
   userRole,
 }: LoginFormProps) => {
   const memberData: Member = {
-    image: { image: '' },
+    image: '',
     name: '',
     surname: '',
     position: '',
     role: UserRoles[userRole] || UserRoles.player,
   };
   const [formData, setFormData] = useState(memberData);
-  const [image, setImage] = useState({ image: '' });
+  const [image, setImage] = useState(null as File);
   const [error, setError] = useState('');
   const [fieldDirty, setFieldDirty] = useState(false);
   const [formValid, setFormValid] = useState(false);
@@ -48,11 +48,16 @@ const LoginForm = ({
 
   const imageHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const img = e.target.files[0];
-    setImage({ image: URL.createObjectURL(img) });
-    setFormData({
-      ...formData,
-      image: { image: e.target.value },
-    });
+    const reader = new FileReader();
+    reader.onload = function () {
+      const base64 = this.result.replace(/.*base64,/, '');
+      setImage(img);
+      setFormData({
+        ...formData,
+        image: base64,
+      });
+    };
+    reader.readAsDataURL(img);
   };
 
   const blurHandler = () => {
@@ -62,7 +67,6 @@ const LoginForm = ({
 
   const submitForm = () => {
     if (formValid) {
-      setImage({ image: '' });
       handleCloseModal();
       saveData(formData);
     }
@@ -102,10 +106,15 @@ const LoginForm = ({
           className={[s.formInput, s.formInputImage].join('')}
           onChange={imageHandler}
           type="file"
-          value={formData.image.image}
         />
-        {image.image !== '' ? (
-          <img alt="avatar" className={s.image} src={image.image || ''} />
+        {formData.image ? (
+          <img
+            alt="avatar"
+            className={s.image}
+            src={
+              formData.image ? `data:image/png;base64, ${formData.image}` : null
+            }
+          />
         ) : null}
         <div className={s.submitButtons}>
           <Button handleClick={() => submitForm()}>Submit</Button>

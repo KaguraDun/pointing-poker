@@ -8,15 +8,16 @@ import IssueCardNew from '../IssueCard/IssueCardNew';
 import s from './IssueList.scss';
 
 const IssueList = () => {
-  const selector = ({ room }: RootState) => room.room.issues;
+  const selector = ({ room }: RootState) => room.room.issues || {};
   const issues = useSelector(selector);
   if (issues) {
-    const issuesList = Object.values(issues).map((value) => (
+    const issuesList = Object.values(issues).map((issue) => (
       <IssueCard
-        key={value.title}
-        link={value.link}
-        priority={value.priority}
-        title={value.title}
+        key={issue.ID}
+        ID={issue.ID}
+        link={issue.link}
+        priority={issue.priority}
+        title={issue.title}
       />
     ));
 

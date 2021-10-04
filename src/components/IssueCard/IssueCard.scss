@@ -12,10 +12,10 @@
   font-style: roboto;
   border: solid 1px black;
 }
-.issueCard:active,
-.issueCard:focus {
-  background-color: $color-primary-light;
-}
+// .issueCard:active,
+// .issueCard:focus {
+//   background-color: $color-primary-light;
+// }
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -47,7 +47,27 @@
   height: 30px;
   margin-left: 20px;
 }
-svg:hover {
+.iconBtn {
+  background: none;
+  border: none;
   cursor: pointer;
-  fill: red;
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &:focus {
+    outline: none;
+  }
+  svg {
+    margin-bottom: 13px;
+    outline: none;
+    transition: transform 0.15s linear;
+  }
+
+  &:hover {
+    svg {
+      cursor: pointer;
+      fill: red;
+    }
+  }
 }

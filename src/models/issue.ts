@@ -21,12 +21,14 @@ const issueList = {
 };
 
 interface Issue {
+  ID: string;
   title: string;
   link: string;
   priority: IssuePriorities;
 }
+type IssueID = string;
 
-type IssuesRecord = Record<string, Issue>;
+type IssuesRecord = Record<IssueID, Issue>;
 
 export { issueList, IssuePriorities };
-export type { Issue, IssuesRecord };
+export type { Issue, IssueID, IssuesRecord };

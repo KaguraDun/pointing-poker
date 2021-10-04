@@ -73,7 +73,7 @@ const gameApi = {
       );
 
       const data = Object.entries(roundHistory).map(([key, values]) => {
-        const { title } = roomData.issues[key];
+        const { title, link, priority } = roomData.issues[key];
         const score = roundHistory[key].averageScore;
         const userScores = {};
 
@@ -81,7 +81,7 @@ const gameApi = {
           userScores[users[index]] = user.score;
         });
 
-        return { title, average: score, ...userScores };
+        return { link, title, priority, average: score, ...userScores };
       });
 
       return data;

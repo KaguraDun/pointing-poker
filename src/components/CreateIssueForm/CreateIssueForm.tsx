@@ -16,6 +16,7 @@ const CreateIssueForm = ({
   saveData,
 }: CreateIssueFormProps) => {
   const issueData: Issue = {
+    ID: '',
     title: '',
     link: '',
     priority: IssuePriorities.medium,

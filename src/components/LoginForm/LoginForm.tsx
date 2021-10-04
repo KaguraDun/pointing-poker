@@ -24,7 +24,6 @@ const LoginForm = ({
     role: UserRoles[userRole] || UserRoles.player,
   };
   const [formData, setFormData] = useState(memberData);
-  const [image, setImage] = useState(null as File);
   const [error, setError] = useState('');
   const [fieldDirty, setFieldDirty] = useState(false);
   const [formValid, setFormValid] = useState(false);
@@ -50,8 +49,8 @@ const LoginForm = ({
     const img = e.target.files[0];
     const reader = new FileReader();
     reader.onload = function () {
+      // eslint-disable-next-line react/no-this-in-sfc
       const base64 = this.result.replace(/.*base64,/, '');
-      setImage(img);
       setFormData({
         ...formData,
         image: base64,

@@ -3,11 +3,27 @@ import React from 'react';
 import Crown from '@/icons/crown.svg';
 import RemoveIcon from '@/icons/remove.svg';
 import { ENDPOINT_SERVER } from '@/models/constants';
-import { Member, UserRoles } from '@/models/member';
+import { UserRoles } from '@/models/member';
 
 import s from './MemberCard.scss';
 
-const MemberCard = ({ image, name, surname, position, role }: Member) => (
+interface Props {
+  image: string;
+  name: string;
+  surname: string;
+  position: string;
+  role: string;
+  showControls: boolean;
+}
+
+const MemberCard = ({
+  image,
+  name,
+  surname,
+  position,
+  role,
+  showControls,
+}: Props) => (
   <div className={s.memberCard}>
     {role === UserRoles.dealer ? <Crown className={s.dealer} /> : null}
 
@@ -20,7 +36,9 @@ const MemberCard = ({ image, name, surname, position, role }: Member) => (
       <h4 className={s.title}>{`${name} ${surname}`}</h4>
       <p className={s.position}>{position}</p>
     </div>
-    {role !== UserRoles.dealer ? <RemoveIcon className={s.remove} /> : null}
+    {role !== UserRoles.dealer && showControls ? (
+      <RemoveIcon className={s.remove} />
+    ) : null}
   </div>
 );
 

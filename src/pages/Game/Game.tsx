@@ -93,6 +93,7 @@ const Game = () => {
             ID={value.ID}
             link={value.link}
             priority={value.priority}
+            showControls={isUserRoleDealer}
             title={value.title}
           />
           <ScoreCard score={gameHistory?.[value.ID]?.averageScore || '...'} />
@@ -118,6 +119,7 @@ const Game = () => {
                 name={value.name}
                 position={value.position}
                 role={value.role}
+                showControls={isUserRoleDealer}
                 surname={value.surname}
               />
             </li>

@@ -5,9 +5,9 @@ import EditIssue from '@/icons/edit.svg';
 import { Issue } from '@/models/issue';
 
 import gameApi from '../../services/gameApi';
+import EditIssueForm from '../EditIssueForm/EdirIssueForm';
 import Modal from '../Modal/Modal';
 import s from './IssueCard.scss';
-import EditIssueForm from '../EditIssueForm/EdirIssueForm';
 
 const IssueCard = ({ link, title, priority, ID }: Issue) => {
   const [showModalEditIssue, setShowModalEditIssue] = useState(false);
@@ -40,8 +40,8 @@ const IssueCard = ({ link, title, priority, ID }: Issue) => {
       <Modal handleCloseModal={handleCloseModal} showModal={showModalEditIssue}>
         <EditIssueForm
           handleCloseModal={handleCloseModal}
-          saveData={(issueData) => editIssue(issueData)}
           Issue={{ title, link, priority, ID }}
+          saveData={(issueData) => editIssue(issueData)}
         />
       </Modal>
     </div>

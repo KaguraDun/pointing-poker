@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import CardDeck from '@/components/CardDeck/CardDeck';
 import Chat from '@/components/Chat/Chat';
 import IssueCard from '@/components/IssueCard/IssueCard';
+import IssueCardNew from '@/components/IssueCard/IssueCardNew';
 import MemberCard from '@/components/MemberCard/MemberCard';
 import ScoreCard from '@/components/ScoreCard/ScoreCard';
 import Timer from '@/components/Timer/Timer';
@@ -86,7 +87,7 @@ const Game = () => {
 
   const getIssuesList = () => {
     if (issues) {
-      return Object.values(issues).map((value) => (
+      const issueList = Object.values(issues).map((value) => (
         <li key={`issue-list${value.ID}`} className={s.issueWrapper}>
           <IssueCard
             ID={value.ID}
@@ -97,6 +98,8 @@ const Game = () => {
           <ScoreCard score={gameHistory?.[value.ID]?.averageScore || '...'} />
         </li>
       ));
+      issueList.push(<IssueCardNew />);
+      return issueList;
     }
     return 'Error';
   };

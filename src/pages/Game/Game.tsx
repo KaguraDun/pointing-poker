@@ -106,10 +106,16 @@ const Game = () => {
         const showUserScore = dealerAsPlayer || isUserRolePlayer(value.ID);
         if (showUserScore) {
           return (
-            <div className={s.userScore}>
-              <ScoreCard key={+value.ID} score={score || '...'} />
-              <div>{`${value.ID}: ${value.name} ${value.surname}`}</div>
-            </div>
+            <li key={`user-score${value.ID}`} className={s.userScore}>
+              <ScoreCard key={Number(value.ID)} score={score || '...'} />
+              <MemberCard
+                image={value.image}
+                name={value.name}
+                position={value.position}
+                role={value.role}
+                surname={value.surname}
+              />
+            </li>
           );
         }
         return null;
@@ -162,7 +168,6 @@ const Game = () => {
     <div className={s.game}>
       <div className={s.dealer}>
         <MemberCard
-          ID={users?.[roomData.owner]?.ID}
           image={users?.[roomData.owner]?.image}
           name={users?.[roomData.owner]?.name}
           position={users?.[roomData.owner]?.position}
@@ -180,7 +185,7 @@ const Game = () => {
           />
         ) : null}
       </div>
-      <div className={s.userScores}>{getUserList()}</div>
+      <ul className={s.userScores}>{getUserList()}</ul>
       <div className={s.deck}>
         {showCardDeck ? (
           <CardDeck

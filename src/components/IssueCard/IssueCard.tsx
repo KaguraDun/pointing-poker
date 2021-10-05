@@ -27,7 +27,9 @@ const IssueCard = ({ link, title, priority, ID }: Issue) => {
   return (
     <div key={ID} className={s.issueCard}>
       <div className={s.wrapper}>
-        <strong className={s.subtitle}>{link}</strong>
+        <a className={s.link} href={link} target="_blank" rel="noreferrer">
+          {link}
+        </a>
         <h4 className={s.title}>{title}</h4>
         <em className={s.subtitle}>{priority}</em>
       </div>

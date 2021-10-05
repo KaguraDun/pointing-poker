@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+import Button from '@/components/Button/Button';
 import CardDeck from '@/components/CardDeck/CardDeck';
 import Chat from '@/components/Chat/Chat';
 import IssueCard from '@/components/IssueCard/IssueCard';
@@ -59,6 +60,8 @@ const Game = () => {
   const isTimerStart = useSelector(
     ({ game }: RootState) => game.game.isTimerStart
   );
+
+  const isGameEnded = useSelector(({ game }: RootState) => game.game.isEnded);
 
   useEffect(() => {
     if (!Object.keys(roomData).length) {
@@ -159,8 +162,11 @@ const Game = () => {
       gameApi.runNextRound(issuesArr[nextIssue]);
     } else {
       gameApi.gameEnd();
-      history.push('./game-results');
     }
+  };
+
+  const handleViewGameResult = () => {
+    history.push('./game-results');
   };
 
   const handleSelectCard = (cardValue: string) => {
@@ -190,6 +196,11 @@ const Game = () => {
             handleTimerEnd={handleTimerEnd}
             showControls={isUserRoleDealer}
           />
+        ) : null}
+      </div>
+      <div className={s.viewGameResults}>
+        {isGameEnded ? (
+          <Button handleClick={handleViewGameResult}>View game Results</Button>
         ) : null}
       </div>
       <ul className={s.userScores}>{getUserList()}</ul>

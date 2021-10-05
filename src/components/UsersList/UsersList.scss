@@ -1,7 +1,9 @@
-.userslist {
+.usersList {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   min-width: 500px;
   padding: 10px;
+
+  @include clear-list-style;
 }

@@ -22,7 +22,7 @@ const UsersList = () => {
         />
       </li>
     ));
-    return <ul className={s.userslist}>{usersList}</ul>;
+    return <ul className={s.usersList}>{usersList}</ul>;
   }
   return <p>No users</p>;
 };

@@ -4,7 +4,7 @@
     'dealer timer timer userScores'
     'issues . . userScores'
     'deck deck deck chat';
-  grid-template-rows: 0.2fr 0.2fr 1fr 2fr;
+  grid-template-rows: 0.1fr 0.2fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr 2fr;
   gap: 0 0;
 }
@@ -15,6 +15,13 @@
 
 .issues {
   grid-area: issues;
+  @include clear-list-style;
+}
+.issueWrapper {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  margin-bottom: 10px;
 }
 
 .timer {
@@ -28,12 +35,16 @@
 .userScore {
   display: flex;
   align-items: center;
+  height: 50px;
+  margin-bottom: 10px;
 }
 
 .userScores {
   display: flex;
   flex-direction: column;
   grid-area: userScores;
+
+  @include clear-list-style;
 }
 
 .chat {

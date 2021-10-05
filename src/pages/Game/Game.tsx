@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/aria-role */
 /* eslint-disable react-redux/useSelector-prefer-selectors */
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -6,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import CardDeck from '@/components/CardDeck/CardDeck';
 import Chat from '@/components/Chat/Chat';
 import IssueList from '@/components/IssueList/IssueList';
+import MemberCard from '@/components/MemberCard/MemberCard';
 import ScoreCard from '@/components/ScoreCard/ScoreCard';
 import Timer from '@/components/Timer/Timer';
 import { UserRoles } from '@/models/member';
@@ -158,7 +160,16 @@ const Game = () => {
 
   return (
     <div className={s.game}>
-      <div className={s.dealer}>SCRAM_MASTER</div>
+      <div className={s.dealer}>
+        <MemberCard
+          ID={users?.[roomData.owner]?.ID}
+          image={users?.[roomData.owner]?.image}
+          name={users?.[roomData.owner]?.name}
+          position={users?.[roomData.owner]?.position}
+          role={users?.[roomData.owner]?.role}
+          surname={users?.[roomData.owner]?.surname}
+        />
+      </div>
       <div className={s.issues}>{getIssuesList()}</div>
       <div className={s.timer}>
         {isTimerEnabled ? (

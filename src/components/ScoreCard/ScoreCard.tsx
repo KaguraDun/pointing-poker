@@ -9,7 +9,7 @@ interface Props {
 
 const ScoreCard = ({ score, key }: Props) => (
   <div key={key} className={s.scoreCard}>
-    <h4 className={s.score}>{score}</h4>
+    <p className={s.score}>{score}</p>
   </div>
 );
 

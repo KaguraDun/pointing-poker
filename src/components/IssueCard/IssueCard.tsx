@@ -2,14 +2,22 @@ import React, { useState } from 'react';
 
 import DeleteIcon from '@/icons/delete.svg';
 import EditIssue from '@/icons/edit.svg';
-import { Issue } from '@/models/issue';
+import { Issue, IssuePriorities } from '@/models/issue';
 
 import gameApi from '../../services/gameApi';
+import EditIssueForm from '../EditIssueForm/EdirIssueForm';
 import Modal from '../Modal/Modal';
 import s from './IssueCard.scss';
-import EditIssueForm from '../EditIssueForm/EdirIssueForm';
 
-const IssueCard = ({ link, title, priority, ID }: Issue) => {
+interface Props {
+  link: string;
+  title: string;
+  priority: IssuePriorities;
+  ID: string;
+  showControls: boolean;
+}
+
+const IssueCard = ({ link, title, priority, ID, showControls }: Props) => {
   const [showModalEditIssue, setShowModalEditIssue] = useState(false);
   const handleClick = () => {
     setShowModalEditIssue(true);
@@ -27,25 +35,36 @@ const IssueCard = ({ link, title, priority, ID }: Issue) => {
   return (
     <div key={ID} className={s.issueCard}>
       <div className={s.wrapper}>
-        <a className={s.link} href={link} target="_blank" rel="noreferrer">
+        <a className={s.link} href={link} rel="noreferrer" target="_blank">
           {link}
         </a>
         <h4 className={s.title}>{title}</h4>
         <em className={s.subtitle}>{priority}</em>
       </div>
-      <button className={s.iconBtn} onClick={handleClick} type="button">
-        <EditIssue className={s.edit} />
-      </button>
-      <button className={s.iconBtn} onClick={handleDeleteIssue} type="button">
-        <DeleteIcon className={s.remove} />
-      </button>
-      <Modal handleCloseModal={handleCloseModal} showModal={showModalEditIssue}>
-        <EditIssueForm
-          handleCloseModal={handleCloseModal}
-          saveData={(issueData) => editIssue(issueData)}
-          Issue={{ title, link, priority, ID }}
-        />
-      </Modal>
+      {showControls ? (
+        <>
+          <button className={s.iconBtn} onClick={handleClick} type="button">
+            <EditIssue className={s.edit} />
+          </button>
+          <button
+            className={s.iconBtn}
+            onClick={handleDeleteIssue}
+            type="button"
+          >
+            <DeleteIcon className={s.remove} />
+          </button>
+          <Modal
+            handleCloseModal={handleCloseModal}
+            showModal={showModalEditIssue}
+          >
+            <EditIssueForm
+              handleCloseModal={handleCloseModal}
+              Issue={{ title, link, priority, ID }}
+              saveData={(issueData) => editIssue(issueData)}
+            />
+          </Modal>
+        </>
+      ) : null}
     </div>
   );
 };

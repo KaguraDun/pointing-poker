@@ -12,16 +12,17 @@ const UsersList = () => {
   const users = useSelector(({ room }: RootState) => room.room.users);
   if (users) {
     const usersList = Object.values(users).map((values) => (
-      <MemberCard
-        key={values.ID}
-        image={values.image}
-        name={values.name}
-        position={values.position}
-        role={values.role}
-        surname={values.surname}
-      />
+      <li key={values.ID}>
+        <MemberCard
+          image={values.image}
+          name={values.name}
+          position={values.position}
+          role={values.role}
+          surname={values.surname}
+        />
+      </li>
     ));
-    return <ul className={s.userslist}>{usersList}</ul>;
+    return <ul className={s.usersList}>{usersList}</ul>;
   }
   return <p>No users</p>;
 };

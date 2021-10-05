@@ -10,7 +10,7 @@ enum UserRoles {
 
 interface Member {
   ID?: string;
-  image: { image: string };
+  image: string;
   name: string;
   surname: string;
   position: string;

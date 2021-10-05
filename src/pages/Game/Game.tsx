@@ -1,18 +1,22 @@
+/* eslint-disable jsx-a11y/aria-role */
 /* eslint-disable react-redux/useSelector-prefer-selectors */
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+import Button from '@/components/Button/Button';
 import CardDeck from '@/components/CardDeck/CardDeck';
 import Chat from '@/components/Chat/Chat';
-import IssueList from '@/components/IssueList/IssueList';
+import IssueCard from '@/components/IssueCard/IssueCard';
+import IssueCardNew from '@/components/IssueCard/IssueCardNew';
+import MemberCard from '@/components/MemberCard/MemberCard';
 import ScoreCard from '@/components/ScoreCard/ScoreCard';
 import Timer from '@/components/Timer/Timer';
 import { UserRoles } from '@/models/member';
+import gameApi from '@/services/gameApi';
 import roomApi from '@/services/roomApi';
 import { RootState } from '@/store';
 
-import gameApi from '../../services/gameApi';
 import s from './Game.scss';
 
 const Game = () => {
@@ -57,6 +61,8 @@ const Game = () => {
     ({ game }: RootState) => game.game.isTimerStart
   );
 
+  const isGameEnded = useSelector(({ game }: RootState) => game.game.isEnded);
+
   useEffect(() => {
     if (!Object.keys(roomData).length) {
       roomApi.restoreDataFromServer();
@@ -84,15 +90,20 @@ const Game = () => {
 
   const getIssuesList = () => {
     if (issues) {
-      return Object.values(issues).map((value, index) => (
-        <div>
-          <IssueList />
-          {/* replace when user list component will be complete */}
-          {`${String(index + 1) === currentIssueID ? '->' : ''}${index + 1} ${
-            value.title
-          } - ${gameHistory?.[String(index + 1)]?.averageScore || '...'}`}
-        </div>
+      const issueList = Object.values(issues).map((value) => (
+        <li key={`issue-list${value.ID}`} className={s.issueWrapper}>
+          <IssueCard
+            ID={value.ID}
+            link={value.link}
+            priority={value.priority}
+            showControls={isUserRoleDealer}
+            title={value.title}
+          />
+          <ScoreCard score={gameHistory?.[value.ID]?.averageScore || '...'} />
+        </li>
       ));
+      issueList.push(<IssueCardNew />);
+      return issueList;
     }
     return 'Error';
   };
@@ -104,10 +115,17 @@ const Game = () => {
         const showUserScore = dealerAsPlayer || isUserRolePlayer(value.ID);
         if (showUserScore) {
           return (
-            <div className={s.userScore}>
-              <ScoreCard key={+value.ID} score={score || '...'} />
-              <div>{`${value.ID}: ${value.name} ${value.surname}`}</div>
-            </div>
+            <li key={`user-score${value.ID}`} className={s.userScore}>
+              <ScoreCard key={Number(value.ID)} score={score || '...'} />
+              <MemberCard
+                image={value.image}
+                name={value.name}
+                position={value.position}
+                role={value.role}
+                showControls={isUserRoleDealer}
+                surname={value.surname}
+              />
+            </li>
           );
         }
         return null;
@@ -144,8 +162,11 @@ const Game = () => {
       gameApi.runNextRound(issuesArr[nextIssue]);
     } else {
       gameApi.gameEnd();
-      history.push('./game-results');
     }
+  };
+
+  const handleViewGameResult = () => {
+    history.push('./game-results');
   };
 
   const handleSelectCard = (cardValue: string) => {
@@ -158,8 +179,16 @@ const Game = () => {
 
   return (
     <div className={s.game}>
-      <div className={s.dealer}>SCRAM_MASTER</div>
-      <div className={s.issues}>{getIssuesList()}</div>
+      <div className={s.dealer}>
+        <MemberCard
+          image={users?.[roomData.owner]?.image}
+          name={users?.[roomData.owner]?.name}
+          position={users?.[roomData.owner]?.position}
+          role={users?.[roomData.owner]?.role}
+          surname={users?.[roomData.owner]?.surname}
+        />
+      </div>
+      <ul className={s.issues}>{getIssuesList()}</ul>
       <div className={s.timer}>
         {isTimerEnabled ? (
           <Timer
@@ -169,7 +198,12 @@ const Game = () => {
           />
         ) : null}
       </div>
-      <div className={s.userScores}>{getUserList()}</div>
+      <div className={s.viewGameResults}>
+        {isGameEnded ? (
+          <Button handleClick={handleViewGameResult}>View game Results</Button>
+        ) : null}
+      </div>
+      <ul className={s.userScores}>{getUserList()}</ul>
       <div className={s.deck}>
         {showCardDeck ? (
           <CardDeck

@@ -7,8 +7,10 @@ import Button from '@/components/Button/Button';
 import gameApi from '@/services/gameApi';
 import roomApi from '@/services/roomApi';
 import { RootState } from '@/store';
+import GameResult from '@/images/gameResult.svg';
 
 import s from './GameResults.scss';
+import CardResult from '@/components/Card/CardResult';
 
 function GameResults() {
   const roomData = useSelector(({ room }: RootState) => room.room);
@@ -37,10 +39,34 @@ function GameResults() {
   const handleSaveAsXLSX = () => {
     saveFile(`Game results.xlsx`);
   };
+  const currentDeck = useSelector(
+    ({ room }: RootState) => room.room?.settings?.currentDeck
+  );
+  const decks = useSelector(
+    ({ room }: RootState) => room.room?.settings?.decks
+  );
+  const getCurrentDeck = () => {
+    if (decks && currentDeck) {
+      return decks[currentDeck].values;
+    }
+    return [];
+  };
+
+  const resultDeck = () => {
+    // const deck = getCurrentDeck();
+    const data = gameApi.prepareDataToSave();
+    return data.map((item) => (
+      <CardResult key={item.title} value={item.average} />
+    ));
+  };
 
   const Results = () => (
-    <div className="">
+    <div className={s.gameResult}>
+      <div className={s.title}>
+        <GameResult />
+      </div>
       GAME RESULTS
+      <div className={s.deck}>{resultDeck()}</div>
       <Button handleClick={handleSaveAsCSV}>Download as .csv</Button>
       <Button handleClick={handleSaveAsXLSX}>Download as .xlsx</Button>
     </div>

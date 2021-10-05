@@ -4,7 +4,6 @@
 .card {
   position: relative;
   display: flex;
-  flex-direction: column;
   clear: both;
   width: 150px;
   min-width: 150px;
@@ -16,28 +15,36 @@
   border: 1px solid $color-primary-dark;
   border-radius: 12px;
   box-shadow: -1rem 0 1rem rgba(109, 109, 109, 0.8);
+  cursor: pointer;
   transition: 0.2s;
   scroll-snap-align: start;
 }
-.cardBottom .cardTop {
+.average {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 170px;
+  font-size: 56px;
+}
+
+.cardBottom,
+.cardTop {
   width: 100%;
   color: $color-primary-dark;
 }
 .cardBottom {
   transform: rotate(180deg);
 }
-
-.card:focus-within ~ .card,
-.card:hover ~ .card {
-  transform: translateX(100px);
+.card:not(:first-child) {
+  margin-left: -63px;
 }
-
 .card:hover {
   transform: translateY(-1rem);
 }
-
-.card:not(:first-child) {
-  margin-left: -100px;
+.card:focus-within ~ .card,
+.card:hover ~ .card {
+  transform: translateX(100px);
 }
 
 .card-header {

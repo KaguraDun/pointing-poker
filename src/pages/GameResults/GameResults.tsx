@@ -4,13 +4,15 @@ import { useSelector } from 'react-redux';
 import XLSX from 'xlsx';
 
 import Button from '@/components/Button/Button';
+import CardResult from '@/components/Card/CardResult';
+import GameResult from '@/images/gameResult.svg';
 import gameApi from '@/services/gameApi';
 import roomApi from '@/services/roomApi';
 import { RootState } from '@/store';
-import GameResult from '@/images/gameResult.svg';
 
 import s from './GameResults.scss';
-import CardResult from '@/components/Card/CardResult';
+import IssueCard from '@/components/IssueCard/IssueCard';
+import Result from '@/components/Result/Result';
 
 function GameResults() {
   const roomData = useSelector(({ room }: RootState) => room.room);
@@ -39,36 +41,22 @@ function GameResults() {
   const handleSaveAsXLSX = () => {
     saveFile(`Game results.xlsx`);
   };
-  const currentDeck = useSelector(
-    ({ room }: RootState) => room.room?.settings?.currentDeck
-  );
-  const decks = useSelector(
-    ({ room }: RootState) => room.room?.settings?.decks
-  );
-  const getCurrentDeck = () => {
-    if (decks && currentDeck) {
-      return decks[currentDeck].values;
-    }
-    return [];
-  };
-
-  const resultDeck = () => {
-    // const deck = getCurrentDeck();
-    const data = gameApi.prepareDataToSave();
-    return data.map((item) => (
-      <CardResult key={item.title} value={item.average} />
-    ));
-  };
 
   const Results = () => (
     <div className={s.gameResult}>
       <div className={s.title}>
         <GameResult />
       </div>
-      GAME RESULTS
-      <div className={s.deck}>{resultDeck()}</div>
-      <Button handleClick={handleSaveAsCSV}>Download as .csv</Button>
-      <Button handleClick={handleSaveAsXLSX}>Download as .xlsx</Button>
+      <div className={s.buttons}>
+        <Button handleClick={handleSaveAsCSV}>Download as .csv</Button>
+        <Button handleClick={handleSaveAsXLSX}>Download as .xlsx</Button>
+      </div>
+
+      <Result />
+      <div className={s.buttons}>
+        <Button handleClick={handleSaveAsCSV}>Download as .csv</Button>
+        <Button handleClick={handleSaveAsXLSX}>Download as .xlsx</Button>
+      </div>
     </div>
   );
 

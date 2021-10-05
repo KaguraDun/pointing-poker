@@ -24,7 +24,7 @@ const IssueCardNew = () => {
   return (
     <div className={s.issueCard}>
       <div className={s.wrapperNew}>
-        <h4 className={s.titleNew}>Create new issue</h4>
+        <p className={s.titleNew}>Create new issue</p>
         <Plus className={s.plus} onClick={handleClick} />
       </div>
       <Modal

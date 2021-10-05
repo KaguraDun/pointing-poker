@@ -6,15 +6,15 @@ import { useHistory } from 'react-router-dom';
 
 import CardDeck from '@/components/CardDeck/CardDeck';
 import Chat from '@/components/Chat/Chat';
-import IssueList from '@/components/IssueList/IssueList';
+import IssueCard from '@/components/IssueCard/IssueCard';
 import MemberCard from '@/components/MemberCard/MemberCard';
 import ScoreCard from '@/components/ScoreCard/ScoreCard';
 import Timer from '@/components/Timer/Timer';
 import { UserRoles } from '@/models/member';
+import gameApi from '@/services/gameApi';
 import roomApi from '@/services/roomApi';
 import { RootState } from '@/store';
 
-import gameApi from '../../services/gameApi';
 import s from './Game.scss';
 
 const Game = () => {
@@ -86,14 +86,16 @@ const Game = () => {
 
   const getIssuesList = () => {
     if (issues) {
-      return Object.values(issues).map((value, index) => (
-        <div>
-          <IssueList />
-          {/* replace when user list component will be complete */}
-          {`${String(index + 1) === currentIssueID ? '->' : ''}${index + 1} ${
-            value.title
-          } - ${gameHistory?.[String(index + 1)]?.averageScore || '...'}`}
-        </div>
+      return Object.values(issues).map((value) => (
+        <li key={`issue-list${value.ID}`} className={s.issueWrapper}>
+          <IssueCard
+            ID={value.ID}
+            link={value.link}
+            priority={value.priority}
+            title={value.title}
+          />
+          <ScoreCard score={gameHistory?.[value.ID]?.averageScore || '...'} />
+        </li>
       ));
     }
     return 'Error';
@@ -175,7 +177,7 @@ const Game = () => {
           surname={users?.[roomData.owner]?.surname}
         />
       </div>
-      <div className={s.issues}>{getIssuesList()}</div>
+      <ul className={s.issues}>{getIssuesList()}</ul>
       <div className={s.timer}>
         {isTimerEnabled ? (
           <Timer

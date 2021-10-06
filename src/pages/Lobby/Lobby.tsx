@@ -34,8 +34,8 @@ const Lobby = () => {
   }, []);
 
   useEffect(() => {
-    roomApi.subscribeOnGameStart(() => history.push('/game'));
-  }, [history]);
+    roomApi.subscribeOnGameStart(() => history.push(`/game/${roomID}`));
+  }, [history, roomID]);
 
   useEffect(() => {
     if (isGameStared) {

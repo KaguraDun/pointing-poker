@@ -8,8 +8,15 @@
   height: 250px;
   margin: 15px;
   cursor: pointer;
+  transition: 0.4s all;
+}
+.card:hover {
+  transform: translateY(-1rem);
 }
 
+.cardFront:hover {
+  background-color: $color-primary-light;
+}
 .cardFront {
   display: flex;
   flex-direction: column;
@@ -19,6 +26,7 @@
   border: 2px solid black;
   border-radius: 25px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  transition: 0.4s all;
 }
 
 .cardFront svg {
@@ -29,7 +37,6 @@
   width: 100%;
   color: black;
 }
-
 .cardBottom {
   transform: rotate(180deg);
 }
@@ -52,10 +59,6 @@
   background-size: 130%;
   border-radius: 25px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-}
-.cardBack:active {
-  transform: rotateY(180deg) translateX(-100%);
-  transform-origin: left;
 }
 .center {
   display: flex;

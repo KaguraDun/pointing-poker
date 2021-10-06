@@ -4,7 +4,6 @@
   justify-content: space-evenly;
   width: 250px;
   height: 70px;
-  margin: 15px;
   padding: 10px;
   color: black;
   font-weight: 700;
@@ -12,31 +11,67 @@
   font-style: roboto;
   border: solid 1px black;
 }
-.issueCard:active,
-.issueCard:focus {
-  background-color: $color-primary-light;
-}
 .wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
+.wrapperNew {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+}
 .title {
-  width: 124px;
-  margin-left: 10px;
+  width: 167px;
+  margin: -5px 0 0 0;
+  overflow-x: hidden;
   font-size: 22px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.titleNew {
+  font-size: 18px;
 }
 .subtitle {
-  margin: 0 0 0 10px;
-  font-size: 10px;
+  margin: 0;
+  font-size: 13px;
+}
+.link {
+  width: 167px;
+  margin: 0;
+  overflow-x: hidden;
+  font-size: 13px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .remove,
 .edit {
-  width: 30px;
-  height: 30px;
-  margin-left: 20px;
+  width: 25px;
+  height: 25px;
 }
-svg:hover {
+.iconBtn {
+  width: 30px;
+  background: none;
+  border: none;
   cursor: pointer;
-  fill: red;
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &:focus {
+    outline: none;
+  }
+  svg {
+    outline: none;
+    transition: transform 0.15s linear;
+  }
+
+  &:hover {
+    svg {
+      cursor: pointer;
+      fill: red;
+    }
+  }
 }

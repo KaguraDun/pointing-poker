@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Issue, IssuePriorities } from '@/models/issue';
+import { Issue, issueList, IssuePriorities } from '@/models/issue';
 
 import Button from '../Button/Button';
 import Dropdown from '../Dropdown/Dropdowns';
@@ -16,9 +16,10 @@ const CreateIssueForm = ({
   saveData,
 }: CreateIssueFormProps) => {
   const issueData: Issue = {
+    ID: '',
     title: '',
     link: '',
-    priority: null,
+    priority: IssuePriorities.medium,
   };
   type ErrorType = Record<string, boolean>;
 
@@ -64,6 +65,13 @@ const CreateIssueForm = ({
 
   const Error = ({ text }: ErrorProps) => <div className={s.error}>{text}</div>;
 
+  const getIssueValues = () => {
+    if (!issueList) return [];
+    return Object.entries(issueList).map(([key, value]) => ({
+      value: key,
+      name: value.name,
+    }));
+  };
   return (
     <div className={s.formWrapper}>
       <div className={s.formTitle}>Create Issue</div>
@@ -85,10 +93,10 @@ const CreateIssueForm = ({
           value={formData.link}
         />
         <Dropdown
-          defaultValue={IssuePriorities.medium}
+          defaultValue={formData.priority}
           handleOnChange={inputHandler('priority')}
           label="Priority"
-          options={IssuePriorities}
+          options={getIssueValues()}
         />
         <div className={s.submitButtons}>
           <Button handleClick={() => submitForm()}>Create</Button>

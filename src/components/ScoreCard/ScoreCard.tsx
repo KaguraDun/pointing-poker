@@ -2,9 +2,13 @@ import React from 'react';
 
 import s from './ScoreCard.scss';
 
-const ScoreCard = (score: string) => (
+interface Props {
+  score: string;
+}
+
+const ScoreCard = ({ score }: Props) => (
   <div className={s.scoreCard}>
-    <h4 className={s.score}>{score}</h4>
+    <p className={s.score}>{score}</p>
   </div>
 );
 

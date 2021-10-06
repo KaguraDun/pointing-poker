@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import chatSlice from '@/features/chat';
+import gameSlice from '@/features/game';
 import roomSlice from '@/features/room';
 
 const store = configureStore({
   reducer: {
-    chat: chatSlice,
     room: roomSlice,
+    game: gameSlice,
   },
   devTools: process.env.NODE_ENV === 'development',
 });

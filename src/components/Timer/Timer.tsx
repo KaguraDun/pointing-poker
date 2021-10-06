@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable react-redux/useSelector-prefer-selectors */
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import Button from '@/components/Button/Button';
+import { RootState } from '@/store';
 
+import gameApi from '../../services/gameApi';
 import s from './Timer.scss';
 
 interface Props {
@@ -21,21 +25,26 @@ const formatTime = (seconds: number) => {
 };
 
 const Timer = ({ durationInSeconds, handleTimerEnd, showControls }: Props) => {
-  const [start, setStart] = useState(false);
-  const [time, setTime] = useState(durationInSeconds);
+  const isTimerStart = useSelector(
+    ({ game }: RootState) => game.game.isTimerStart
+  );
+  const roundTime = useSelector(({ game }: RootState) => game.game.roundTime);
 
   useEffect(() => {
-    setTime(durationInSeconds);
-  }, [durationInSeconds]);
+    if (!isTimerStart && isTimerStart !== undefined) {
+      gameApi.setRoundTime(durationInSeconds);
+    }
+  }, [durationInSeconds, isTimerStart]);
 
   useEffect(() => {
-    if (!start) return null;
+    if (!isTimerStart) return null;
 
     const countDown = () => {
-      if (time > 0) {
-        setTime((seconds) => seconds - 1);
+      if (roundTime > 0) {
+        gameApi.setRoundTime(roundTime - 1);
       } else {
         handleTimerEnd();
+        gameApi.setTimerStart(false);
       }
     };
 
@@ -44,17 +53,17 @@ const Timer = ({ durationInSeconds, handleTimerEnd, showControls }: Props) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [time, start, handleTimerEnd]);
+  }, [roundTime, isTimerStart, handleTimerEnd]);
 
   const Controls = () => (
     <div>
-      {!start ? (
-        <Button handleClick={() => setStart(true)}>Start</Button>
+      {!isTimerStart ? (
+        <Button handleClick={() => gameApi.setTimerStart(true)}>Start</Button>
       ) : (
         <Button
           handleClick={() => {
-            setStart(false);
-            setTime(durationInSeconds);
+            gameApi.setTimerStart(false);
+            gameApi.setRoundTime(durationInSeconds);
           }}
         >
           Reset
@@ -65,7 +74,7 @@ const Timer = ({ durationInSeconds, handleTimerEnd, showControls }: Props) => {
 
   return (
     <div className={s.timer}>
-      <div className={s.digits}>{formatTime(time)}</div>
+      <div className={s.digits}>{formatTime(roundTime)}</div>
 
       {showControls ? <Controls /> : null}
     </div>

@@ -1,7 +1,8 @@
 import React from 'react';
 
-import s from './Footer.scss';
 import Logo from '@/images/back.svg';
+
+import s from './Header.scss';
 
 const Header = () => (
   <header className={s.header}>
@@ -10,9 +11,9 @@ const Header = () => (
         <Logo />
       </div>
       <div className={s.settings}>
-        <span></span>
-        <span></span>
-        <span></span>
+        <span />
+        <span />
+        <span />
       </div>
     </div>
   </header>

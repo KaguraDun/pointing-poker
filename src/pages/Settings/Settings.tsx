@@ -4,7 +4,10 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import Button from '@/components/Button/Button';
+import Chat from '@/components/Chat/Chat';
 import Dropdown from '@/components/Dropdown/Dropdowns';
+import IssueList from '@/components/IssueList/IssueList';
+import UsersList from '@/components/UsersList/UsersList';
 import roomApi from '@/services/roomApi';
 import { RootState } from '@/store';
 
@@ -66,8 +69,17 @@ const Settings = () => {
   const handleUpdateSettings = (newValue: any) => {
     roomApi.updateSettings(newValue);
   };
+
+  const getDeckValues = () => {
+    if (!decks) return [];
+    return Object.entries(decks).map(([key, value]) => ({
+      value: key,
+      name: value.name,
+    }));
+  };
+
   return (
-    <>
+    <div className={s.settings}>
       <div className={s.linkWrapper}>
         <label>
           Link to lobby
@@ -87,9 +99,8 @@ const Settings = () => {
         <Button handleClick={handleStartGame}>Start game</Button>
         <Button handleClick={handleCloseGame}>Close game</Button>
       </div>
-
       <form className={s.settingsForm}>
-        <h3>Game settings</h3>
+        <h3 className={s.formTitle}>Game settings</h3>
         <ToggleSwitch
           handleToggle={(e: ChangeEvent) =>
             handleUpdateSettings({
@@ -108,7 +119,7 @@ const Settings = () => {
             })
           }
           label="Select deck"
-          options={decks?.map((deck) => deck.name) || []}
+          options={getDeckValues()}
         />
         <ToggleSwitch
           handleToggle={(e: ChangeEvent) =>
@@ -153,7 +164,16 @@ const Settings = () => {
           </label>
         ) : null}
       </form>
-    </>
+      <div className={s.issuesList}>
+        <IssueList />
+      </div>
+      <div className={s.userList}>
+        <UsersList />
+      </div>
+      <div className={s.chat}>
+        <Chat />
+      </div>
+    </div>
   );
 };
 

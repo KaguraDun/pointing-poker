@@ -2,9 +2,9 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Footer from '@/components/Footer/Footer';
-import Header from '@/components/Footer/header';
-
+import Header from '@/components/Header/Header';
 import Game from '@/pages/Game/Game';
+import GameResults from '@/pages/GameResults/GameResults';
 import Home from '@/pages/Home/Home';
 import Lobby from '@/pages/Lobby/Lobby';
 import PageNotFound from '@/pages/PageNotFound/PageNotFound';
@@ -21,6 +21,7 @@ const App = () => (
         <Route component={Lobby} exact path="/lobby" />
         <Route component={Settings} exact path="/settings" />
         <Route component={Game} exact path="/game" />
+        <Route component={GameResults} exact path="/game-results" />
         <Route component={PageNotFound} />
       </Switch>
     </div>

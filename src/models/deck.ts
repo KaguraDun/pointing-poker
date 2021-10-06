@@ -8,4 +8,6 @@ interface Decks {
   values: Deck[];
 }
 
-export type { Deck, Decks };
+type DecksRecord = Record<string, Decks>;
+
+export type { Deck, Decks, DecksRecord };

@@ -21,12 +21,11 @@ const CardDeck = ({
   isCardSelected,
 }: Props) => (
   <div className={s.cardsDeck}>
-    {deck.map((item, index) => {
+    {deck.map((item) => {
       const isSelected = item.value === selectedValue;
 
       return (
         <Card
-          key={index}
           blockSelect={isCardSelected}
           flip={isSelected}
           handleSelectCard={handleSelectCard}

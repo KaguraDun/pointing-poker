@@ -7,9 +7,9 @@ import s from './Header.scss';
 const Header = () => (
   <header className={s.header}>
     <div className={s.container}>
-      <div className={s.logo}>
+      <a href="/" className={s.logo}>
         <Logo />
-      </div>
+      </a>
       <div className={s.settings}>
         <span />
         <span />

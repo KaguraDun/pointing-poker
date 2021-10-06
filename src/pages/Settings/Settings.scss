@@ -1,6 +1,19 @@
+.settings {
+  display: grid;
+  grid-template-areas:
+    'linkWrapper .'
+    'settings issuesList'
+    'usersList chat';
+  grid-template-rows: 60px 1fr 1fr;
+  grid-template-columns: 400px 550px;
+  gap: 15px 50px;
+}
+
 .linkWrapper {
   display: flex;
-  margin: 50px 0;
+  grid-area: linkWrapper;
+  align-items: flex-end;
+  justify-content: flex-start;
 }
 
 .inputWrapper {
@@ -9,16 +22,31 @@
 
 .gameButtons {
   display: flex;
-  justify-content: space-evenly;
+  align-items: flex-end;
+  justify-content: center;
   width: 100%;
 }
 
 .settingsForm {
   display: flex;
   flex-direction: column;
+  grid-area: settings;
   gap: 15px;
+}
+
+.formTitle {
+  margin: 0;
 }
 
 .inputRoundDuration {
   margin-left: 15px;
+}
+
+.issuesList {
+  grid-area: issuesList;
+  justify-self: flex-end;
+}
+
+.userList {
+  grid-area: usersList;
 }

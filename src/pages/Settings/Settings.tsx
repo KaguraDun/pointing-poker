@@ -78,7 +78,7 @@ const Settings = () => {
   };
 
   return (
-    <>
+    <div className={s.settings}>
       <div className={s.linkWrapper}>
         <label>
           Link to lobby
@@ -98,9 +98,8 @@ const Settings = () => {
         <Button handleClick={handleStartGame}>Start game</Button>
         <Button handleClick={handleCloseGame}>Close game</Button>
       </div>
-
       <form className={s.settingsForm}>
-        <h3>Game settings</h3>
+        <h3 className={s.formTitle}>Game settings</h3>
         <ToggleSwitch
           handleToggle={(e: ChangeEvent) =>
             handleUpdateSettings({
@@ -164,9 +163,15 @@ const Settings = () => {
           </label>
         ) : null}
       </form>
-      <IssueList />
-      <Chat />
-    </>
+      <div className={s.issuesList}>
+        <IssueList />
+      </div>
+      <div className={s.userList} />
+      <div className={s.chat}>
+        <Chat />
+      </div>
+      .
+    </div>
   );
 };
 

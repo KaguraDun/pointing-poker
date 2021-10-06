@@ -170,7 +170,7 @@ const Game = () => {
   };
 
   const handleViewGameResult = () => {
-    history.push('./game-results');
+    history.push('/game-results');
   };
 
   const handleSelectCard = (cardValue: string) => {

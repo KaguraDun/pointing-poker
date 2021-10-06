@@ -26,11 +26,6 @@ const Header = () => {
         <div className={s.logo} onClick={handleClick}>
           <Logo />
         </div>
-        <div className={s.settings}>
-          <span />
-          <span />
-          <span />
-        </div>
       </div>
       <Modal handleCloseModal={handleCloseModal} showModal={showModalAlert}>
         <div className={s.modalHome}>

@@ -161,7 +161,7 @@ const Game = () => {
         }
       });
     }
-    return userScoreSum / userCount;
+    return (userScoreSum / userCount).toFixed(2);
   };
 
   const handleTimerEnd = () => {

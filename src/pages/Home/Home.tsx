@@ -8,7 +8,7 @@ import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
 import LoginForm from '@/components/LoginForm/LoginForm';
 import Modal from '@/components/Modal/Modal';
 import { toggleModalConnectRoom } from '@/features/room';
-import Logo from '@/images/Logo.svg';
+import Logo from '@/images/logo.svg';
 import { Member } from '@/models/member';
 import roomApi from '@/services/roomApi';
 import saveStateApi from '@/services/saveStateApi';

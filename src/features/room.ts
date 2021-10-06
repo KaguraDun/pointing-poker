@@ -24,8 +24,8 @@ const roomSlice = createSlice({
     setRoomNotFound: (state, action) => {
       state.roomNotFound = action.payload;
     },
-    toggleModalConnectRoom: (state) => {
-      state.showModalConnectRoom = !state.showModalConnectRoom;
+    toggleModalConnectRoom: (state, action) => {
+      state.showModalConnectRoom = action.payload;
     },
     addChatMessage: (state, action) => {
       const { ID, userID, text } = action.payload;

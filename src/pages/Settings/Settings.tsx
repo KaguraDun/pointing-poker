@@ -1,5 +1,5 @@
 /* eslint-disable react-redux/useSelector-prefer-selectors */
-import React, { ChangeEvent, useEffect } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -15,6 +15,8 @@ import ToggleSwitch from '../../components/ToggleSwitch/ToggleSwitch';
 import s from './Settings.scss';
 
 const Settings = () => {
+  const [gameMessage, setGameMessage] = useState('');
+
   const roomData = useSelector(({ room }: RootState) => room.room);
 
   useEffect(() => {
@@ -97,13 +99,19 @@ const Settings = () => {
           Game message
           <input
             className={s.message}
-            onChange={(e: ChangeEvent) =>
+            onBlur={(e: ChangeEvent) =>
               handleUpdateSettings({
                 message: (e.target as HTMLInputElement).value,
               })
             }
+            onChange={(e) => setGameMessage(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.code === 'Enter') {
+                e.target.blur();
+              }
+            }}
             type="text"
-            value={messageText}
+            value={gameMessage || messageText}
           />
         </label>
         <ToggleSwitch

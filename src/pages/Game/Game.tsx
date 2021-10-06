@@ -64,6 +64,11 @@ const Game = () => {
   const isGameEnded = useSelector(({ game }: RootState) => game.game.isEnded);
 
   useEffect(() => {
+    roomApi.SubscribeRoomClose();
+    roomApi.subscribeOnUserDisconnected();
+  }, []);
+
+  useEffect(() => {
     if (!Object.keys(roomData).length) {
       roomApi.restoreDataFromServer();
     }
@@ -118,6 +123,7 @@ const Game = () => {
             <li key={`user-score${value.ID}`} className={s.userScore}>
               <ScoreCard key={Number(value.ID)} score={score || '...'} />
               <MemberCard
+                id={value.ID}
                 image={value.image}
                 name={value.name}
                 position={value.position}

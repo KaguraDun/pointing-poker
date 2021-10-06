@@ -24,6 +24,7 @@ const Lobby = () => {
 
   useEffect(() => {
     roomApi.SubscribeRoomClose();
+    roomApi.subscribeOnUserDisconnected();
   }, []);
 
   useEffect(() => {

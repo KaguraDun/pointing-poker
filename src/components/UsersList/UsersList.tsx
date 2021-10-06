@@ -18,6 +18,7 @@ const UsersList = () => {
     const usersList = Object.values(users).map((values) => (
       <li key={values.ID}>
         <MemberCard
+          id={values.ID}
           image={values.image}
           name={values.name}
           position={values.position}

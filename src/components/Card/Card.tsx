@@ -3,7 +3,6 @@
 import React from 'react';
 
 import s from './Card.scss';
-import DeleteIcon from '@/icons/delete.svg';
 
 interface Props {
   value: string;

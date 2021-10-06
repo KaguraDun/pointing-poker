@@ -46,7 +46,7 @@ const Settings = () => {
 
   const handleStartGame = () => {
     roomApi.startGame();
-    history.push(`/game`);
+    history.push(`/game/${lobbyLink}`);
   };
 
   const handleCloseGame = () => {

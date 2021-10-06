@@ -19,7 +19,7 @@ class SocketService {
   }
 
   connect() {
-    this.socket = io(this.ENDPOINT_LOCAL, {
+    this.socket = io(this.ENDPOINT_SERVER, {
       transports: ['websocket', 'polling'],
     });
     this.userID = this.socket.id;

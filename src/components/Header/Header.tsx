@@ -18,7 +18,7 @@ const Header = () => {
   const [showModalAlert, setShowModalAlert] = useState(false);
   const history = useHistory();
   const currentUserID = roomApi.getCurrentUserID();
-  const users = useSelector(({ room }: RootState) => room.room.users);
+  const users = useSelector(({ room }: RootState) => room?.room?.users);
 
   const handleClick = () => {
     if (window.location.pathname !== '/') {

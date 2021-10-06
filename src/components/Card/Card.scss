@@ -8,7 +8,12 @@
   height: 250px;
   margin: 15px;
   cursor: pointer;
+  transition: 0.4s all;
 }
+.card:hover {
+  transform: translateY(-1rem);
+}
+
 .cardFront:hover {
   background-color: $color-primary-light;
 }
@@ -33,10 +38,6 @@
   color: black;
 }
 
-.cardBottom {
-  transform: rotate(180deg);
-}
-
 .cardImage {
   width: 100%;
   height: 150px;
@@ -55,10 +56,6 @@
   background-size: 130%;
   border-radius: 25px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-}
-.cardBack:active {
-  transform: rotateY(180deg) translateX(-100%);
-  transform-origin: left;
 }
 .center {
   display: flex;

@@ -1,17 +1,23 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import Logo from '@/images/back.svg';
 
-import s from './Header.scss';
-import Modal from '../Modal/Modal';
 import Button from '../Button/Button';
-import { useHistory } from 'react-router-dom';
+import Modal from '../Modal/Modal';
+import s from './Header.scss';
 
 const Header = () => {
   const [showModalAlert, setShowModalAlert] = useState(false);
   const history = useHistory();
 
   const handleClick = () => {
-    setShowModalAlert(true);
+    console.log(window.location.pathname);
+    if (window.location.pathname !== '/') {
+      setShowModalAlert(true);
+    }
   };
   const handleCloseModal = () => {
     setShowModalAlert(false);

@@ -68,7 +68,7 @@ const IssueCard = ({
           >
             <EditIssueForm
               handleCloseModal={handleCloseModal}
-              Issue={{ title, link, priority, ID }}
+              issue={{ title, link, priority, ID }}
               saveData={(issueData) => editIssue(issueData)}
             />
           </Modal>

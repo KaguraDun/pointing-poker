@@ -10,6 +10,10 @@ import s from './UsersList.scss';
 
 const UsersList = () => {
   const users = useSelector(({ room }: RootState) => room.room.users);
+  const owner = useSelector(({ room }: RootState) => room.room.owner);
+  const currentUser = useSelector(({ room }: RootState) => room.userID);
+  const isOwner = owner === currentUser;
+
   if (users) {
     const usersList = Object.values(users).map((values) => (
       <li key={values.ID}>
@@ -18,6 +22,7 @@ const UsersList = () => {
           name={values.name}
           position={values.position}
           role={values.role}
+          showControls={isOwner}
           surname={values.surname}
         />
       </li>

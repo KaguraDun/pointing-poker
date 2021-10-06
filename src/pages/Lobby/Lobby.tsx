@@ -4,10 +4,13 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+import Chat from '@/components/Chat/Chat';
 import SessionData from '@/components/SessionData/SessionData';
 import UsersList from '@/components/UsersList/UsersList';
 import roomApi from '@/services/roomApi';
 import { RootState } from '@/store';
+
+import s from './Lobby.scss';
 
 const Lobby = () => {
   const history = useHistory();
@@ -38,10 +41,17 @@ const Lobby = () => {
   }, [history, isGameStared]);
 
   return (
-    <div>
-      Lobby
-      <SessionData />
-      <UsersList />
+    <div className={s.lobby}>
+      <h2 className={s.title}>Waiting for the start of the game</h2>
+      <div className={s.sessionData}>
+        <SessionData />
+      </div>
+      <div className={s.userList}>
+        <UsersList />
+      </div>
+      <div className={s.chat}>
+        <Chat />
+      </div>
     </div>
   );
 };

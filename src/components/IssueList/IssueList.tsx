@@ -17,6 +17,7 @@ const IssueList = () => {
         ID={issue.ID}
         link={issue.link}
         priority={issue.priority}
+        showControls
         title={issue.title}
       />
     ));

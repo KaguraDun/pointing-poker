@@ -57,3 +57,8 @@
 .chat {
   grid-area: chat;
 }
+
+.message {
+  display: flex;
+  justify-content: center;
+}

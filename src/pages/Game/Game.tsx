@@ -102,6 +102,7 @@ const Game = () => {
             ID={value.ID}
             link={value.link}
             priority={value.priority}
+            selected={currentIssueID === value.ID}
             showControls={isUserRoleDealer}
             title={value.title}
           />

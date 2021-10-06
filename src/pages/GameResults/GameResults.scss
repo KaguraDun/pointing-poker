@@ -1,3 +1,18 @@
 .gameResults {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 50px;
+}
+.title {
+  width: 100%;
+  text-align: center;
+}
+.title svg {
+  width: 300px;
 }

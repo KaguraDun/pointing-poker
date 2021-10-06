@@ -4,6 +4,10 @@ import { useSelector } from 'react-redux';
 import XLSX from 'xlsx';
 
 import Button from '@/components/Button/Button';
+import CardResult from '@/components/Card/CardResult';
+import IssueCard from '@/components/IssueCard/IssueCard';
+import Result from '@/components/Result/Result';
+import GameResult from '@/images/gameResult.svg';
 import gameApi from '@/services/gameApi';
 import roomApi from '@/services/roomApi';
 import { RootState } from '@/store';
@@ -39,10 +43,20 @@ function GameResults() {
   };
 
   const Results = () => (
-    <div className="">
-      GAME RESULTS
-      <Button handleClick={handleSaveAsCSV}>Download as .csv</Button>
-      <Button handleClick={handleSaveAsXLSX}>Download as .xlsx</Button>
+    <div className={s.gameResult}>
+      <div className={s.title}>
+        <GameResult />
+      </div>
+      <div className={s.buttons}>
+        <Button handleClick={handleSaveAsCSV}>Download as .csv</Button>
+        <Button handleClick={handleSaveAsXLSX}>Download as .xlsx</Button>
+      </div>
+
+      <Result />
+      <div className={s.buttons}>
+        <Button handleClick={handleSaveAsCSV}>Download as .csv</Button>
+        <Button handleClick={handleSaveAsXLSX}>Download as .xlsx</Button>
+      </div>
     </div>
   );
 

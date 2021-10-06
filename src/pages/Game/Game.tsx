@@ -74,14 +74,6 @@ const Game = () => {
     }
   }, [roomData]);
 
-  useEffect(() => {
-    const isIssuesEmpty = issues && Object.keys(issues).length === 0;
-    if (currentIssueID === null && !isIssuesEmpty) {
-      const firstIssueID = Object.keys(issues)[0];
-      gameApi.runNextRound(firstIssueID);
-    }
-  }, [currentIssueID, issues]);
-
   const isUserRolePlayer = (userID: string) =>
     users?.[userID]?.role === UserRoles.player;
 
@@ -123,13 +115,11 @@ const Game = () => {
       return Object.values(users).map((value) => {
         const score = roundHistory?.roundData?.[value.ID]?.score;
         const showUserScore = dealerAsPlayer || isUserRolePlayer(value.ID);
+
         if (showUserScore) {
           return (
             <li key={`user-score${value.ID}`} className={s.userScore}>
-              <ScoreCard
-                key={Number(value.ID)}
-                score={isTimerStart ? '...' : score || '...'}
-              />
+              <ScoreCard score={isTimerStart ? '...' : score || '...'} />
               <MemberCard
                 id={value.ID}
                 image={value.image}
@@ -170,11 +160,9 @@ const Game = () => {
 
   const handleTimerEnd = () => {
     gameApi.updateRoundAverageScore(currentIssueID, calculateAverageScore());
+
     const issuesArr = Object.keys(issues);
-    const nextIssue = issuesArr.indexOf(currentIssueID) + 1;
-    if (issuesArr[nextIssue]) {
-      gameApi.runNextRound(issuesArr[nextIssue]);
-    } else {
+    if (currentIssueID === issuesArr[issuesArr.length - 1]) {
       gameApi.gameEnd();
     }
   };

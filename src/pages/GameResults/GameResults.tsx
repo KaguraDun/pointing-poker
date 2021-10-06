@@ -5,14 +5,14 @@ import XLSX from 'xlsx';
 
 import Button from '@/components/Button/Button';
 import CardResult from '@/components/Card/CardResult';
+import IssueCard from '@/components/IssueCard/IssueCard';
+import Result from '@/components/Result/Result';
 import GameResult from '@/images/gameResult.svg';
 import gameApi from '@/services/gameApi';
 import roomApi from '@/services/roomApi';
 import { RootState } from '@/store';
 
 import s from './GameResults.scss';
-import IssueCard from '@/components/IssueCard/IssueCard';
-import Result from '@/components/Result/Result';
 
 function GameResults() {
   const roomData = useSelector(({ room }: RootState) => room.room);

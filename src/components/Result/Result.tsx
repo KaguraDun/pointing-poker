@@ -1,7 +1,9 @@
-import gameApi from '@/services/gameApi';
-import { RootState } from '@/store';
 import React from 'react';
 import { useSelector } from 'react-redux';
+
+import gameApi from '@/services/gameApi';
+import { RootState } from '@/store';
+
 import CardResult from '../Card/CardResult';
 import IssueCard from '../IssueCard/IssueCard';
 import s from './Result.scss';
@@ -14,29 +16,32 @@ const Result = () => {
   const resultDeck = () => {
     const data = gameApi.prepareDataToSave();
     console.log(data);
-
     return data.map((item) => {
       const { link, title, priority, average, ...userScore } = item;
-      return Object.entries(userScore).map(([key, value]) => {
-        console.log(data);
-        return (
-          <div className={s.result}>
-            <IssueCard
-              key={item.link}
-              title={item.title}
-              link={item.link}
-              priority={item.priority}
-              ID={CurrentIssueID}
-              showControls={false}
-            />
-            <CardResult key={value} value={value} />
-            <div>Average: {average}</div>
+      return (
+        <div className={s.result}>
+          <IssueCard
+            key={item.link}
+            ID={CurrentIssueID}
+            link={item.link}
+            priority={item.priority}
+            showControls={false}
+            title={item.title}
+          />
+          <div className={s.cards}>
+            {Object.entries(userScore).map(([key, value]) => {
+              return (
+                <div className={s.card}>
+                  <CardResult key={value} value={value} />
+                  <div>Average: {average}</div>
+                </div>
+              );
+            })}
           </div>
-        );
-      });
+        </div>
+      );
     });
   };
-
   return <div className={s.issue}>{resultDeck()}</div>;
 };
 

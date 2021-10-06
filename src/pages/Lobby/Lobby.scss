@@ -9,8 +9,13 @@
   gap: 15px 50px;
 }
 
-.title {
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
   grid-area: title;
+}
+
+.title {
   margin: 0 auto;
 }
 

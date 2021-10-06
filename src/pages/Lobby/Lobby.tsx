@@ -19,6 +19,9 @@ const Lobby = () => {
   const isGameStared = useSelector(
     ({ game }: RootState) => game.game.isStarted
   );
+  const roomMessage = useSelector(
+    ({ room }: RootState) => room.room?.settings?.message
+  );
   useEffect(() => {
     if (!Object.keys(roomData).length) {
       roomApi.restoreDataFromServer();
@@ -42,7 +45,11 @@ const Lobby = () => {
 
   return (
     <div className={s.lobby}>
-      <h2 className={s.title}>Waiting for the start of the game</h2>
+      <div className={s.titleWrapper}>
+        <h2 className={s.title}>Waiting for the start of the game</h2>
+        <p className={s.title}>{roomMessage}</p>
+      </div>
+
       <div className={s.sessionData}>
         <SessionData />
       </div>

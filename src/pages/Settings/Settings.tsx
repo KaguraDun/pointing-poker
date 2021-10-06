@@ -40,6 +40,10 @@ const Settings = () => {
     ({ room }: RootState) => room.room.settings?.roundDurationSeconds
   );
 
+  const messageText = useSelector(
+    ({ room }: RootState) => room.room.settings?.message
+  );
+
   const handleCopyLink = () => {
     navigator.clipboard.writeText(lobbyLink);
   };
@@ -89,6 +93,19 @@ const Settings = () => {
       </div>
       <form className={s.settingsForm}>
         <h3 className={s.formTitle}>Game settings</h3>
+        <label className={s.roundDuration}>
+          Game message
+          <input
+            className={s.message}
+            onChange={(e: ChangeEvent) =>
+              handleUpdateSettings({
+                message: (e.target as HTMLInputElement).value,
+              })
+            }
+            type="text"
+            value={messageText}
+          />
+        </label>
         <ToggleSwitch
           handleToggle={(e: ChangeEvent) =>
             handleUpdateSettings({

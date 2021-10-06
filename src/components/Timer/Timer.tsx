@@ -29,6 +29,10 @@ const Timer = ({ durationInSeconds, handleTimerEnd, showControls }: Props) => {
     ({ game }: RootState) => game.game.isTimerStart
   );
   const roundTime = useSelector(({ game }: RootState) => game.game.roundTime);
+  const issues = useSelector(({ room }: RootState) => room.room.issues);
+  const currentIssueID = useSelector(
+    ({ game }: RootState) => game.game.currentIssueID
+  );
 
   useEffect(() => {
     if (!isTimerStart && isTimerStart !== undefined) {
@@ -55,18 +59,34 @@ const Timer = ({ durationInSeconds, handleTimerEnd, showControls }: Props) => {
     };
   }, [roundTime, isTimerStart, handleTimerEnd]);
 
+  const handleTimerStart = () => {
+    const issuesArr = Object.keys(issues);
+    const isIssuesEmpty = issues && issuesArr.length === 0;
+    const nextIssue = issuesArr.indexOf(currentIssueID) + 1;
+
+    let issueID = '';
+
+    if (currentIssueID === null && !isIssuesEmpty) {
+      // eslint-disable-next-line prefer-destructuring
+      issueID = issuesArr[0];
+    } else {
+      issueID = issuesArr[nextIssue];
+    }
+    gameApi.setTimerStart(true);
+    gameApi.runNextRound(issueID);
+  };
+
   const Controls = () => (
     <div>
       {!isTimerStart ? (
-        <Button handleClick={() => gameApi.setTimerStart(true)}>Start</Button>
+        <Button handleClick={handleTimerStart}>Start</Button>
       ) : (
         <Button
           handleClick={() => {
-            gameApi.setTimerStart(false);
-            gameApi.setRoundTime(durationInSeconds);
+            gameApi.setRoundTime(0);
           }}
         >
-          Reset
+          End round
         </Button>
       )}
     </div>

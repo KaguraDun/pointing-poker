@@ -38,8 +38,18 @@
   margin: 0;
 }
 
+.dropdown {
+  max-width: 50%;
+}
+
+.roundDuration {
+  display: flex;
+  flex-direction: column;
+}
+
 .inputRoundDuration {
-  margin-left: 15px;
+  max-width: 50%;
+  font-size: inherit;
 }
 
 .issuesList {

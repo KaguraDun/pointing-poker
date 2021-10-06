@@ -67,12 +67,13 @@ const gameApi = {
   prepareDataToSave() {
     const { roundHistory } = store.getState().game.game;
     const roomData = store.getState().room.room;
-    if (roundHistory) {
+    if (roundHistory && roomData) {
       const users = Object.values(roomData.users).map(
         (user) => `${user.name} ${user.surname}`
       );
 
       const data = Object.entries(roundHistory).map(([key, values]) => {
+        if (!roomData.issues[key]) return {};
         const { title, link, priority } = roomData.issues[key];
         const score = roundHistory[key].averageScore;
         const userScores = {};

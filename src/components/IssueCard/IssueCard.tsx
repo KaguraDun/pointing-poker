@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import React, { useState } from 'react';
 
 import DeleteIcon from '@/icons/delete.svg';
@@ -15,9 +16,17 @@ interface Props {
   priority: IssuePriorities;
   ID: string;
   showControls: boolean;
+  selected?: boolean;
 }
 
-const IssueCard = ({ link, title, priority, ID, showControls }: Props) => {
+const IssueCard = ({
+  link,
+  title,
+  priority,
+  ID,
+  showControls,
+  selected,
+}: Props) => {
   const [showModalEditIssue, setShowModalEditIssue] = useState(false);
   const handleClick = () => {
     setShowModalEditIssue(true);
@@ -33,7 +42,7 @@ const IssueCard = ({ link, title, priority, ID, showControls }: Props) => {
     gameApi.editIssue(ID, issueData);
   };
   return (
-    <div key={ID} className={s.issueCard}>
+    <div key={ID} className={cn(s.issueCard, selected ? s.selected : false)}>
       <div className={s.wrapper}>
         <a className={s.link} href={link} rel="noreferrer" target="_blank">
           {link}

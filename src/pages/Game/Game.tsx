@@ -74,13 +74,6 @@ const Game = () => {
     }
   }, [roomData]);
 
-  useEffect(() => {
-    if (currentIssueID === null) {
-      const firstIssueID = Object.keys(issues)[0];
-      gameApi.runNextRound(firstIssueID);
-    }
-  }, [currentIssueID, issues]);
-
   const isUserRolePlayer = (userID: string) =>
     users?.[userID]?.role === UserRoles.player;
 
@@ -101,13 +94,17 @@ const Game = () => {
             ID={value.ID}
             link={value.link}
             priority={value.priority}
+            selected={currentIssueID === value.ID}
             showControls={isUserRoleDealer}
             title={value.title}
           />
           <ScoreCard score={gameHistory?.[value.ID]?.averageScore || '...'} />
         </li>
       ));
-      issueList.push(<IssueCardNew />);
+      if (isUserRoleDealer) {
+        issueList.push(<IssueCardNew />);
+      }
+
       return issueList;
     }
     return 'Error';
@@ -118,10 +115,11 @@ const Game = () => {
       return Object.values(users).map((value) => {
         const score = roundHistory?.roundData?.[value.ID]?.score;
         const showUserScore = dealerAsPlayer || isUserRolePlayer(value.ID);
+
         if (showUserScore) {
           return (
             <li key={`user-score${value.ID}`} className={s.userScore}>
-              <ScoreCard key={Number(value.ID)} score={score || '...'} />
+              <ScoreCard score={isTimerStart ? '...' : score || '...'} />
               <MemberCard
                 id={value.ID}
                 image={value.image}
@@ -157,16 +155,14 @@ const Game = () => {
         }
       });
     }
-    return userScoreSum / userCount;
+    return Number((userScoreSum / userCount).toFixed(2));
   };
 
   const handleTimerEnd = () => {
     gameApi.updateRoundAverageScore(currentIssueID, calculateAverageScore());
+
     const issuesArr = Object.keys(issues);
-    const nextIssue = issuesArr.indexOf(currentIssueID) + 1;
-    if (issuesArr[nextIssue]) {
-      gameApi.runNextRound(issuesArr[nextIssue]);
-    } else {
+    if (currentIssueID === issuesArr[issuesArr.length - 1]) {
       gameApi.gameEnd();
     }
   };
@@ -182,6 +178,7 @@ const Game = () => {
   };
 
   const showCardDeck = dealerAsPlayer || isUserRolePlayer(currentUserID);
+  const isIssuesEmpty = () => issues && Object.keys(issues).length === 0;
 
   return (
     <div className={s.game}>
@@ -196,13 +193,15 @@ const Game = () => {
       </div>
       <ul className={s.issues}>{getIssuesList()}</ul>
       <div className={s.timer}>
-        {isTimerEnabled ? (
+        {!isIssuesEmpty() ? (
           <Timer
             durationInSeconds={roundDuration}
             handleTimerEnd={handleTimerEnd}
             showControls={isUserRoleDealer}
           />
-        ) : null}
+        ) : (
+          <p className={s.message}>Please add at least one issue</p>
+        )}
       </div>
       <div className={s.viewGameResults}>
         {isGameEnded ? (

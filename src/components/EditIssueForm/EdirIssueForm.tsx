@@ -9,7 +9,7 @@ import s from './EditIssueForm.scss';
 interface CreateIssueFormProps {
   saveData: (data: Issue) => void;
   handleCloseModal: () => void;
-  Issue: {
+  issue: {
     ID: string;
     title: string;
     link: string;
@@ -18,15 +18,15 @@ interface CreateIssueFormProps {
 }
 
 const EditIssueForm = ({
-  Issue,
+  issue,
   handleCloseModal,
   saveData,
 }: CreateIssueFormProps) => {
   const issueData: Issue = {
-    ID: Issue.ID,
-    title: Issue.title,
-    link: Issue.link,
-    priority: Issue.priority,
+    ID: issue.ID,
+    title: issue.title,
+    link: issue.link,
+    priority: issue.priority,
   };
   type ErrorType = Record<string, boolean>;
 

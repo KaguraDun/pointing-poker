@@ -3,6 +3,7 @@
 import React from 'react';
 
 import s from './Card.scss';
+import DeleteIcon from '@/icons/delete.svg';
 
 interface Props {
   value: string;
@@ -30,7 +31,7 @@ const Card = ({
       {!flip ? (
         <div className={s.cardFront}>
           <div className={s.cardTop}>{value}</div>
-          {children}
+          <div className={s.center}>{children}</div>
           <div className={s.cardBottom}>{value}</div>
         </div>
       ) : (

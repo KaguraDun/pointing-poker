@@ -10,6 +10,7 @@
 }
 
 .modal {
+  z-index: $z-index-modal;
   display: flex;
   align-items: center;
   justify-content: center;

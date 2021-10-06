@@ -23,10 +23,10 @@ const EditIssueForm = ({
   saveData,
 }: CreateIssueFormProps) => {
   const issueData: Issue = {
-    ID: issue.ID,
-    title: issue.title,
-    link: issue.link,
-    priority: issue.priority,
+    ID: issue?.ID,
+    title: issue?.title,
+    link: issue?.link,
+    priority: issue?.priority,
   };
   type ErrorType = Record<string, boolean>;
 

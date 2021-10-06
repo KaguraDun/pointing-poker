@@ -31,7 +31,11 @@ const Home = () => {
 
   const closeModal = () => {
     setShowModalCreateRoom(false);
-    dispatch(toggleModalConnectRoom);
+  };
+
+  const closeModalConnectRoom = () => {
+    dispatch(toggleModalConnectRoom(false));
+    saveStateApi.clearStorage();
   };
 
   const createRoom = (dealerData: Member) => {
@@ -79,9 +83,12 @@ const Home = () => {
             <Button type="submit">Connect to lobby</Button>
           </form>
 
-          <Modal handleCloseModal={closeModal} showModal={showModalConnectRoom}>
+          <Modal
+            handleCloseModal={closeModalConnectRoom}
+            showModal={showModalConnectRoom}
+          >
             <LoginForm
-              handleCloseModal={closeModal}
+              handleCloseModal={closeModalConnectRoom}
               saveData={(userData) => AddUser(userData)}
             />
           </Modal>

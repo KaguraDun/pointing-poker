@@ -70,11 +70,12 @@ const roomApi = {
         socket.emit(roomEvents.CONNECT_TO_ROOM, roomID);
         socket.on(roomEvents.GET_ROOM_FROM_SERVER, (responseRoom: Room) => {
           store.dispatch(addRoom(responseRoom));
-          store.dispatch(toggleModalConnectRoom());
+          store.dispatch(toggleModalConnectRoom(true));
           store.dispatch(setRoomNotFound(false));
         });
       } else {
         store.dispatch(setRoomNotFound(true));
+        store.dispatch(toggleModalConnectRoom(false));
       }
     });
   },

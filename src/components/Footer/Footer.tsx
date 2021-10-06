@@ -10,9 +10,7 @@ const Footer = () => (
   <footer className={s.footer}>
     <div className={s.container}>
       <div className={s.leftWrapper}>
-        <div className={s.youtube}>
-          <Youtube />
-        </div>
+        <div className={s.youtube}></div>
       </div>
       <div className={s.wrapper}>
         <a
@@ -34,7 +32,7 @@ const Footer = () => (
           target="_blank"
         >
           <Github />
-          <span>KaguraDun</span>
+          <span>Vasily Kovnev</span>
         </a>
         <a
           className={s.github}
@@ -43,7 +41,7 @@ const Footer = () => (
           target="_blank"
         >
           <Github />
-          <span>angietune</span>
+          <span>Natalia Lazareva</span>
         </a>
       </div>
     </div>

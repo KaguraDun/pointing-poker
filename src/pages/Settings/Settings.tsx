@@ -110,59 +110,32 @@ const Settings = () => {
           isOn={dealerAsPlayer || false}
           name="Dealer as player"
         />
-
-        <Dropdown
-          defaultValue={currentDeck}
-          handleOnChange={(e: ChangeEvent) =>
-            handleUpdateSettings({
-              currentDeck: (e.target as HTMLInputElement).value,
-            })
-          }
-          label="Select deck"
-          options={getDeckValues()}
-        />
-        <ToggleSwitch
-          handleToggle={(e: ChangeEvent) =>
-            handleUpdateSettings({
-              newPlayersJoinWithAdmit: (e.target as HTMLInputElement).checked,
-            })
-          }
-          isOn={newPlayersJoinWithAdmit || false}
-          name="New players join with admit"
-        />
-        <ToggleSwitch
-          handleToggle={(e: ChangeEvent) =>
-            handleUpdateSettings({
-              autoTurnOver: (e.target as HTMLInputElement).checked,
-            })
-          }
-          isOn={autoTurnOver || false}
-          name="Automatically turn over cards"
-        />
-        <ToggleSwitch
-          handleToggle={(e: ChangeEvent) =>
-            handleUpdateSettings({
-              enableTimer: (e.target as HTMLInputElement).checked,
-            })
-          }
-          isOn={enableTimer || false}
-          name="Enable timer"
-        />
-        {enableTimer ? (
-          <label>
-            Round duration in seconds
-            <input
-              className={s.inputRoundDuration}
-              onChange={(e: ChangeEvent) =>
-                handleUpdateSettings({
-                  roundDurationSeconds: (e.target as HTMLInputElement).value,
-                })
-              }
-              type="number"
-              value={roundDurationSeconds}
-            />
-          </label>
-        ) : null}
+        <div className={s.dropdown}>
+          <Dropdown
+            defaultValue={currentDeck}
+            handleOnChange={(e: ChangeEvent) =>
+              handleUpdateSettings({
+                currentDeck: (e.target as HTMLInputElement).value,
+              })
+            }
+            label="Select deck"
+            options={getDeckValues()}
+          />
+        </div>
+        <label className={s.roundDuration}>
+          Round duration in seconds
+          <input
+            className={s.inputRoundDuration}
+            min="5"
+            onChange={(e: ChangeEvent) =>
+              handleUpdateSettings({
+                roundDurationSeconds: (e.target as HTMLInputElement).value,
+              })
+            }
+            type="number"
+            value={roundDurationSeconds}
+          />
+        </label>
       </form>
       <div className={s.issuesList}>
         <IssueList />

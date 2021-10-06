@@ -24,7 +24,12 @@ const Lobby = () => {
 
   useEffect(() => {
     roomApi.SubscribeRoomClose();
+    roomApi.subscribeOnUserDisconnected();
   }, []);
+
+  useEffect(() => {
+    roomApi.subscribeOnGameStart(() => history.push('/game'));
+  }, [history]);
 
   useEffect(() => {
     if (isGameStared) {

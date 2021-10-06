@@ -94,6 +94,33 @@ const roomApi = {
 
     this.getRoomFromServer(roomID);
   },
+  removeUser(userID: string) {
+    const roomID = this.getCurrentRoomID();
+    socket.emit(roomEvents.DISCONNECT_FROM_ROOM, { roomID, userID });
+    this.getRoomFromServer(roomID);
+  },
+  subscribeOnUserDisconnected() {
+    socket.on(
+      roomEvents.USER_DISCONNECTED,
+      ({ roomID, userID }: { roomID: string; userID: string }) => {
+        if (
+          roomApi.isTheSameRoom(roomID) &&
+          this.getCurrentUserID() === userID
+        ) {
+          store.dispatch(resetState());
+          saveStateApi.clearStorage();
+          window.location = '/';
+        }
+      }
+    );
+  },
+  subscribeOnGameStart(callback: any) {
+    socket.on(roomEvents.GAME_BEGUN, (roomID: string) => {
+      if (roomApi.isTheSameRoom(roomID)) {
+        callback();
+      }
+    });
+  },
   SubscribeRoomClose() {
     socket.on(roomEvents.ROOM_CLOSED, (responseID: string) => {
       if (roomApi.isTheSameRoom(responseID)) {

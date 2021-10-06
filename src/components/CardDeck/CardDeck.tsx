@@ -31,7 +31,8 @@ const CardDeck = ({
           handleSelectCard={handleSelectCard}
           value={item.value}
         >
-          <SP />
+          {item.value}
+          <SP className={s.sp} />
         </Card>
       );
     })}

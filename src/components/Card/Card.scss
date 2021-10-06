@@ -20,24 +20,28 @@
   border-radius: 25px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
+
 .cardFront svg {
   margin: 0 auto;
 }
+
 .cardBottom .cardTop {
   width: 100%;
   color: black;
 }
+
 .cardBottom {
   transform: rotate(180deg);
 }
+
 .cardImage {
   width: 100%;
   height: 150px;
-  // background-image: url('@/images/add.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100px 100px;
 }
+
 .cardBack {
   width: 100%;
   height: 100%;

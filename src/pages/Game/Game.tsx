@@ -185,6 +185,7 @@ const Game = () => {
   };
 
   const showCardDeck = dealerAsPlayer || isUserRolePlayer(currentUserID);
+  const isIssuesEmpty = () => issues && Object.keys(issues).length === 0;
 
   return (
     <div className={s.game}>
@@ -199,13 +200,15 @@ const Game = () => {
       </div>
       <ul className={s.issues}>{getIssuesList()}</ul>
       <div className={s.timer}>
-        {isTimerEnabled ? (
+        {!isIssuesEmpty() ? (
           <Timer
             durationInSeconds={roundDuration}
             handleTimerEnd={handleTimerEnd}
             showControls={isUserRoleDealer}
           />
-        ) : null}
+        ) : (
+          <p className={s.message}>Please add at least one issue</p>
+        )}
       </div>
       <div className={s.viewGameResults}>
         {isGameEnded ? (

@@ -37,6 +37,7 @@ interface Room {
 }
 
 interface Settings {
+  message: string;
   dealerAsPlayer: boolean;
   decks: DecksRecord;
   currentDeck: string;

@@ -15,10 +15,13 @@ import s from './Lobby.scss';
 const Lobby = () => {
   const history = useHistory();
   const roomData = useSelector(({ room }: RootState) => room.room);
+  const roomID = useSelector(({ room }: RootState) => room.room.ID);
   const isGameStared = useSelector(
     ({ game }: RootState) => game.game.isStarted
   );
-
+  const roomMessage = useSelector(
+    ({ room }: RootState) => room.room?.settings?.message
+  );
   useEffect(() => {
     if (!Object.keys(roomData).length) {
       roomApi.restoreDataFromServer();
@@ -36,13 +39,17 @@ const Lobby = () => {
 
   useEffect(() => {
     if (isGameStared) {
-      history.push('/game');
+      history.push(`/game/${roomID}`);
     }
-  }, [history, isGameStared]);
+  }, [history, isGameStared, roomID]);
 
   return (
     <div className={s.lobby}>
-      <h2 className={s.title}>Waiting for the start of the game</h2>
+      <div className={s.titleWrapper}>
+        <h2 className={s.title}>Waiting for the start of the game</h2>
+        <p className={s.title}>{roomMessage}</p>
+      </div>
+
       <div className={s.sessionData}>
         <SessionData />
       </div>

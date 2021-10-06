@@ -18,9 +18,9 @@ const App = () => (
     <div className={s.container}>
       <Switch>
         <Route component={Home} exact path="/" />
-        <Route component={Lobby} exact path="/lobby" />
+        <Route component={Lobby} exact path="/lobby/:id" />
         <Route component={Settings} exact path="/settings" />
-        <Route component={Game} exact path="/game" />
+        <Route component={Game} exact path="/game/:id" />
         <Route component={GameResults} exact path="/game-results" />
         <Route component={PageNotFound} />
       </Switch>

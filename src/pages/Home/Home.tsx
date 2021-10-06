@@ -27,6 +27,7 @@ const Home = () => {
     ({ room }: RootState) => room.showModalConnectRoom
   );
   const roomNotFound = useSelector(({ room }: RootState) => room.roomNotFound);
+  const roomID = useSelector(({ room }: RootState) => room.room?.ID);
   const history = useHistory();
 
   const closeModal = () => {
@@ -45,12 +46,13 @@ const Home = () => {
 
   const ConnectToRoom = (e: SubmitEvent) => {
     e.preventDefault();
-    roomApi.connect(roomURL);
+    const enteredID = roomURL.split('/');
+    roomApi.connect(enteredID[enteredID.length - 1]);
   };
 
   const AddUser = (userData: Member) => {
     roomApi.AddUser(userData);
-    history.push('/lobby');
+    history.push(`/lobby/${roomID}`);
   };
 
   return (

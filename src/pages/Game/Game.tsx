@@ -62,7 +62,9 @@ const Game = () => {
   );
 
   const isGameEnded = useSelector(({ game }: RootState) => game.game.isEnded);
-
+  const roomMessage = useSelector(
+    ({ room }: RootState) => room.room?.settings?.message
+  );
   useEffect(() => {
     roomApi.SubscribeRoomClose();
     roomApi.subscribeOnUserDisconnected();
@@ -190,6 +192,7 @@ const Game = () => {
           role={users?.[roomData.owner]?.role}
           surname={users?.[roomData.owner]?.surname}
         />
+        <p>{roomMessage}</p>
       </div>
       <ul className={s.issues}>{getIssuesList()}</ul>
       <div className={s.timer}>

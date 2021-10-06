@@ -28,6 +28,10 @@ const Lobby = () => {
   }, []);
 
   useEffect(() => {
+    roomApi.subscribeOnGameStart(() => history.push('/game'));
+  }, [history]);
+
+  useEffect(() => {
     if (isGameStared) {
       history.push('/game');
     }

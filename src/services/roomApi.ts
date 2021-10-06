@@ -114,10 +114,16 @@ const roomApi = {
       }
     );
   },
-  subscribeOnGameStart() {},
-  SubscribeRoomClose() {
-    socket.on(roomEvents.ROOM_CLOSED, (roomID: string) => {
+  subscribeOnGameStart(callback: any) {
+    socket.on(roomEvents.GAME_BEGUN, (roomID: string) => {
       if (roomApi.isTheSameRoom(roomID)) {
+        callback();
+      }
+    });
+  },
+  SubscribeRoomClose() {
+    socket.on(roomEvents.ROOM_CLOSED, (responseID: string) => {
+      if (roomApi.isTheSameRoom(responseID)) {
         store.dispatch(resetState());
         saveStateApi.clearStorage();
         window.location = '/';

@@ -16,7 +16,7 @@ interface Props {
   priority: IssuePriorities;
   ID: string;
   showControls: boolean;
-  selected: boolean;
+  selected?: boolean;
 }
 
 const IssueCard = ({

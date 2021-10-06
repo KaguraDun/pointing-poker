@@ -9,6 +9,7 @@ import IssueCard from '../IssueCard/IssueCard';
 import s from './Result.scss';
 
 const Result = () => {
+  // eslint-disable-next-line react-redux/useSelector-prefer-selectors
   const CurrentIssueID = useSelector(
     ({ game }: RootState) => game.game.currentIssueID
   );
@@ -21,7 +22,6 @@ const Result = () => {
       return (
         <div className={s.result}>
           <IssueCard
-            key={item.link}
             ID={CurrentIssueID}
             link={item.link}
             priority={item.priority}
@@ -29,14 +29,12 @@ const Result = () => {
             title={item.title}
           />
           <div className={s.cards}>
-            {Object.entries(userScore).map(([key, value]) => {
-              return (
-                <div className={s.card}>
-                  <CardResult key={value} value={value} />
-                  <div>Average: {average}</div>
-                </div>
-              );
-            })}
+            {Object.entries(userScore).map(([key, value]) => (
+              <div className={s.card}>
+                <CardResult key={value} value={value} />
+                <div>Average: {average}</div>
+              </div>
+            ))}
           </div>
         </div>
       );

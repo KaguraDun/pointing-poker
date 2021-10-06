@@ -125,7 +125,10 @@ const Game = () => {
         if (showUserScore) {
           return (
             <li key={`user-score${value.ID}`} className={s.userScore}>
-              <ScoreCard key={Number(value.ID)} score={score || '...'} />
+              <ScoreCard
+                key={Number(value.ID)}
+                score={isTimerStart ? '...' : score || '...'}
+              />
               <MemberCard
                 id={value.ID}
                 image={value.image}

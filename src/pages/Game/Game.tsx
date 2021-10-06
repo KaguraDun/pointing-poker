@@ -75,7 +75,8 @@ const Game = () => {
   }, [roomData]);
 
   useEffect(() => {
-    if (currentIssueID === null) {
+    const isIssuesEmpty = issues && Object.keys(issues).length === 0;
+    if (currentIssueID === null && !isIssuesEmpty) {
       const firstIssueID = Object.keys(issues)[0];
       gameApi.runNextRound(firstIssueID);
     }

@@ -14,9 +14,6 @@
   transform: translateY(-1rem);
 }
 
-.cardFront:hover {
-  background-color: $color-primary-light;
-}
 .cardFront {
   display: flex;
   flex-direction: column;
@@ -27,6 +24,10 @@
   border-radius: 25px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   transition: 0.4s all;
+}
+
+.cardFront:hover {
+  background-color: $color-primary-light;
 }
 
 .cardFront svg {

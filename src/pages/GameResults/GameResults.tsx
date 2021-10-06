@@ -4,8 +4,6 @@ import { useSelector } from 'react-redux';
 import XLSX from 'xlsx';
 
 import Button from '@/components/Button/Button';
-import CardResult from '@/components/Card/CardResult';
-import IssueCard from '@/components/IssueCard/IssueCard';
 import Result from '@/components/Result/Result';
 import GameResult from '@/images/gameResult.svg';
 import gameApi from '@/services/gameApi';

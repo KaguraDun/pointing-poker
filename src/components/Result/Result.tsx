@@ -16,7 +16,7 @@ const Result = () => {
 
   const resultDeck = () => {
     const data = gameApi.prepareDataToSave();
-    console.log(data);
+
     return data.map((item) => {
       const { link, title, priority, average, ...userScore } = item;
       return (
@@ -31,7 +31,7 @@ const Result = () => {
           <div className={s.cards}>
             {Object.entries(userScore).map(([key, value]) => (
               <div className={s.card}>
-                <CardResult key={value} value={value} />
+                <CardResult key={key + value} value={value} />
                 <div>Average: {average}</div>
               </div>
             ))}

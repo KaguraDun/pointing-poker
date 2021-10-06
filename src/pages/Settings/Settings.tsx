@@ -7,6 +7,7 @@ import Button from '@/components/Button/Button';
 import Chat from '@/components/Chat/Chat';
 import Dropdown from '@/components/Dropdown/Dropdowns';
 import IssueList from '@/components/IssueList/IssueList';
+import UsersList from '@/components/UsersList/UsersList';
 import roomApi from '@/services/roomApi';
 import { RootState } from '@/store';
 
@@ -166,11 +167,12 @@ const Settings = () => {
       <div className={s.issuesList}>
         <IssueList />
       </div>
-      <div className={s.userList} />
+      <div className={s.userList}>
+        <UsersList />
+      </div>
       <div className={s.chat}>
         <Chat />
       </div>
-      .
     </div>
   );
 };

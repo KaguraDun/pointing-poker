@@ -36,18 +36,6 @@ const Settings = () => {
     ({ room }: RootState) => room.room.settings?.currentDeck
   );
 
-  const newPlayersJoinWithAdmit = useSelector(
-    ({ room }: RootState) => room.room.settings?.newPlayersJoinWithAdmit
-  );
-
-  const autoTurnOver = useSelector(
-    ({ room }: RootState) => room.room.settings?.autoTurnOver
-  );
-
-  const enableTimer = useSelector(
-    ({ room }: RootState) => room.room.settings?.enableTimer
-  );
-
   const roundDurationSeconds = useSelector(
     ({ room }: RootState) => room.room.settings?.roundDurationSeconds
   );

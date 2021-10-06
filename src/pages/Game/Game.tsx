@@ -107,7 +107,10 @@ const Game = () => {
           <ScoreCard score={gameHistory?.[value.ID]?.averageScore || '...'} />
         </li>
       ));
-      issueList.push(<IssueCardNew />);
+      if (isUserRoleDealer) {
+        issueList.push(<IssueCardNew />);
+      }
+
       return issueList;
     }
     return 'Error';

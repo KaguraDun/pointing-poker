@@ -41,14 +41,11 @@ const Chat = () => {
 
   const MessageBox = ({ messages }: MessageBoxProps) => (
     <div className={s.messageBox}>
-      {messages
-        .slice(0)
-        .reverse()
-        .map(({ ID, userID, text }) => (
-          <div key={ID} className={s.message}>
-            <span>{`${getUserName(userID)}: ${text}`}</span>
-          </div>
-        ))}
+      {messages.map(({ ID, userID, text }) => (
+        <div key={ID} className={s.message}>
+          <span>{`${getUserName(userID)}: ${text}`}</span>
+        </div>
+      ))}
       <div ref={bottomRef} />
     </div>
   );

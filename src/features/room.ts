@@ -29,7 +29,7 @@ const roomSlice = createSlice({
     },
     addChatMessage: (state, action) => {
       const { ID, userID, text } = action.payload;
-      state.chatMessages.unshift({ ID, userID, text });
+      state.chatMessages.push({ ID, userID, text });
     },
     resetState: (state) => {
       state.room = initialState;

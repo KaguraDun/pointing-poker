@@ -1,5 +1,5 @@
 /* eslint-disable react-redux/useSelector-prefer-selectors */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { ChatMessage } from '@/models/chat';
@@ -13,10 +13,15 @@ const Chat = () => {
   const [message, setMessage] = useState('');
   const messageList = useSelector(({ room }: RootState) => room.chatMessages);
   const userList = useSelector(({ room }: RootState) => room.room.users);
+  const bottomRef = useRef(null);
 
   useEffect(() => {
     chatApi.updateMessageList();
   }, []);
+
+  useEffect(() => {
+    bottomRef.current.scrollIntoView({ behavoir: 'smooth' });
+  });
 
   const submitMessage = (e: SubmitEvent) => {
     e.preventDefault();
@@ -41,6 +46,7 @@ const Chat = () => {
           <span>{`${getUserName(userID)}: ${text}`}</span>
         </div>
       ))}
+      <div ref={bottomRef} />
     </div>
   );
 

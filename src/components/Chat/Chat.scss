@@ -11,9 +11,9 @@
 }
 
 .messageBox {
-  flex: 1 0 auto;
-  padding: 10px 10px 0;
-  overflow-y: scroll;
+  margin-top: auto;
+  padding: 10px 10px 2px;
+  overflow: auto;
 }
 
 .input {

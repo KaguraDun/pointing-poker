@@ -1,0 +1,81 @@
+.issueCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 250px;
+  height: 70px;
+  padding: 10px;
+  color: black;
+  font-weight: 700;
+  font-size: 26px;
+  font-style: roboto;
+  border: solid 1px black;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.wrapperNew {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+}
+.title {
+  width: 167px;
+  margin: -5px 0 0 0;
+  overflow-x: hidden;
+  font-size: 22px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.titleNew {
+  font-size: 18px;
+}
+.subtitle {
+  margin: 0;
+  font-size: 13px;
+}
+.link {
+  width: 167px;
+  margin: 0;
+  overflow-x: hidden;
+  font-size: 13px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.remove,
+.edit {
+  width: 25px;
+  height: 25px;
+}
+.iconBtn {
+  width: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &:focus {
+    outline: none;
+  }
+  svg {
+    outline: none;
+    transition: transform 0.15s linear;
+  }
+
+  &:hover {
+    svg {
+      cursor: pointer;
+      fill: red;
+    }
+  }
+}
+
+.selected {
+  background: lightgreen;
+}

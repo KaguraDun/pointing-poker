@@ -1,0 +1,58 @@
+.title {
+  width: 200px;
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  clear: both;
+  width: 150px;
+  min-width: 150px;
+  height: 225px;
+  margin: 0;
+  padding: 1rem;
+  color: $color-primary-dark;
+  background: #fff;
+  border: 1px solid $color-primary-dark;
+  border-radius: 12px;
+  box-shadow: -1rem 0 1rem rgba(109, 109, 109, 0.8);
+  cursor: pointer;
+  transition: 0.2s;
+  scroll-snap-align: start;
+}
+.average {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 120px;
+  height: 100px;
+  overflow: hidden;
+  font-size: 80px;
+  text-align: center;
+  background: url('../../icons/romb.svg') no-repeat center;
+  background-size: cover;
+}
+
+.cardBottom,
+.cardTop {
+  width: 100%;
+  color: $color-primary-dark;
+}
+.cardBottom {
+  transform: rotate(180deg);
+}
+.card:not(:first-child) {
+  margin-left: -63px;
+}
+.card:hover {
+  transform: translateY(-1rem);
+}
+.card:focus-within ~ .card,
+.card:hover ~ .card {
+  transform: translateX(100px);
+}
+
+.card-header {
+  margin-bottom: auto;
+}

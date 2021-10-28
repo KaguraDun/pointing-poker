@@ -1,0 +1,32 @@
+.lobby {
+  display: grid;
+  grid-template-areas:
+    'title title'
+    'sessionData sessionData'
+    'userList chat';
+  grid-template-rows: 50px 100px 500px;
+  grid-template-columns: 2fr 2fr;
+  gap: 15px 50px;
+}
+
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
+  grid-area: title;
+}
+
+.title {
+  margin: 0 auto;
+}
+
+.sessionData {
+  grid-area: sessionData;
+}
+
+.userList {
+  grid-area: userList;
+}
+
+.chat {
+  grid-area: chat;
+}

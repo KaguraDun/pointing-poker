@@ -1,0 +1,102 @@
+/* eslint-disable react-redux/useSelector-prefer-selectors */
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
+import Button from '@/components/Button/Button';
+import ErrorMessage from '@/components/ErrorMessage/ErrorMessage';
+import LoginForm from '@/components/LoginForm/LoginForm';
+import Modal from '@/components/Modal/Modal';
+import { toggleModalConnectRoom } from '@/features/room';
+import Logo from '@/images/logo.svg';
+import { Member } from '@/models/member';
+import roomApi from '@/services/roomApi';
+import saveStateApi from '@/services/saveStateApi';
+import { RootState } from '@/store';
+
+import s from './Home.scss';
+
+const Home = () => {
+  const dispatch = useDispatch();
+  const [roomURL, setRoomURL] = useState('');
+  const [showModalCreateRoom, setShowModalCreateRoom] = useState(false);
+
+  saveStateApi.clearStorage();
+
+  const showModalConnectRoom = useSelector(
+    ({ room }: RootState) => room.showModalConnectRoom
+  );
+  const roomNotFound = useSelector(({ room }: RootState) => room.roomNotFound);
+  const roomID = useSelector(({ room }: RootState) => room.room?.ID);
+  const history = useHistory();
+
+  const closeModal = () => {
+    setShowModalCreateRoom(false);
+  };
+
+  const closeModalConnectRoom = () => {
+    dispatch(toggleModalConnectRoom(false));
+    saveStateApi.clearStorage();
+  };
+
+  const createRoom = (dealerData: Member) => {
+    roomApi.createRoom(dealerData);
+    history.push('/settings');
+  };
+
+  const ConnectToRoom = (e: SubmitEvent) => {
+    e.preventDefault();
+    const enteredID = roomURL.split('/');
+    roomApi.connect(enteredID[enteredID.length - 1]);
+  };
+
+  const AddUser = (userData: Member) => {
+    roomApi.AddUser(userData);
+    history.push(`/lobby/${roomID}`);
+  };
+
+  return (
+    <div className={s.home}>
+      <div className={s.logo}>
+        <Logo />
+      </div>
+      <div className={s.buttonsWrapper}>
+        <div className={s.createRoomWrapper}>
+          <Button handleClick={() => setShowModalCreateRoom(true)}>
+            Create room
+          </Button>
+          <Modal handleCloseModal={closeModal} showModal={showModalCreateRoom}>
+            <LoginForm
+              handleCloseModal={closeModal}
+              saveData={(dealerData) => createRoom(dealerData)}
+              userRole="dealer"
+            />
+          </Modal>
+        </div>
+
+        <div className={s.connectWrapper}>
+          <form className={s.connectForm} onSubmit={(e) => ConnectToRoom(e)}>
+            {roomNotFound ? <ErrorMessage text="Room not found!" /> : null}
+            <input
+              className={s.connectInput}
+              onChange={(e) => setRoomURL(e.target.value)}
+              type="text"
+            />
+            <Button type="submit">Connect to lobby</Button>
+          </form>
+
+          <Modal
+            handleCloseModal={closeModalConnectRoom}
+            showModal={showModalConnectRoom}
+          >
+            <LoginForm
+              handleCloseModal={closeModalConnectRoom}
+              saveData={(userData) => AddUser(userData)}
+            />
+          </Modal>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default Home;

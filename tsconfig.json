@@ -1,0 +1,65 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "target": "es5",
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@/components/*": [
+        "src/components/*"
+      ],
+      "@/features/*": [
+        "src/features/*"
+      ],
+      "@/icons/*": [
+        "src/icons/*"
+      ],
+      "@/models/*": [
+        "src/models/*"
+      ],
+      "@/pages/*": [
+        "src/pages/*"
+      ],
+      "@/services/*": [
+        "src/services/*"
+      ],
+      "@/styles/*": [
+        "src/styles/*"
+      ],
+      "@/test/*": [
+        "src/test/*"
+      ]
+    }
+  },
+
+  "include": [
+    "src/**/*"
+  ]
+}

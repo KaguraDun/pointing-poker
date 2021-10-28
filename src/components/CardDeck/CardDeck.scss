@@ -1,0 +1,10 @@
+.cardsDeck {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 800px;
+}
+.sp {
+  width: 30px;
+}

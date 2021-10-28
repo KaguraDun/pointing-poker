@@ -1,0 +1,69 @@
+@import '@/styles/variables';
+* {
+  box-sizing: border-box;
+}
+
+.card {
+  width: 150px;
+  height: 250px;
+  margin: 15px;
+  cursor: pointer;
+  transition: 0.4s all;
+}
+.card:hover {
+  transform: translateY(-1rem);
+}
+
+.cardFront {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 25px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  transition: 0.4s all;
+}
+
+.cardFront:hover {
+  background-color: $color-primary-light;
+}
+
+.cardFront svg {
+  margin: 0 auto;
+}
+
+.cardBottom .cardTop {
+  width: 100%;
+  color: black;
+}
+.cardBottom {
+  transform: rotate(180deg);
+}
+
+.cardImage {
+  width: 100%;
+  height: 150px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100px 100px;
+}
+
+.cardBack {
+  width: 100%;
+  height: 100%;
+  background-color: $color-primary-medium;
+  background-image: url('@/images/back.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 130%;
+  border-radius: 25px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+.center {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  font-size: 60px;
+}

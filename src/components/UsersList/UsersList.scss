@@ -1,0 +1,7 @@
+.usersList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+  @include clear-list-style;
+}

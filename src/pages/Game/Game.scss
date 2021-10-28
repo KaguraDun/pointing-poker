@@ -1,0 +1,64 @@
+.game {
+  display: grid;
+  grid-template-areas:
+    'dealer timer timer userScores'
+    'issues viewGameResults viewGameResults userScores'
+    'deck deck deck chat';
+  grid-template-rows: 0.2fr 0.2fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1.5fr;
+  gap: 0 0;
+}
+
+.dealer {
+  grid-area: dealer;
+}
+
+.issues {
+  grid-area: issues;
+  @include clear-list-style;
+}
+.issueWrapper {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  margin-bottom: 10px;
+}
+
+.timer {
+  grid-area: timer;
+}
+
+.viewGameResults {
+  display: flex;
+  grid-area: viewGameResults;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.deck {
+  grid-area: deck;
+}
+
+.userScore {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.userScores {
+  display: flex;
+  flex-direction: column;
+  grid-area: userScores;
+
+  @include clear-list-style;
+}
+
+.chat {
+  grid-area: chat;
+}
+
+.message {
+  display: flex;
+  justify-content: center;
+}

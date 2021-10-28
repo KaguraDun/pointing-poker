@@ -1,0 +1,71 @@
+.memberCard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 250px;
+  height: 50px;
+  padding: 10px;
+  color: black;
+  font-weight: 700;
+  font-size: 26px;
+  font-style: roboto;
+  border: solid 1px black;
+}
+.memberCard:active,
+.memberCard:focus {
+  background-color: $color-primary-light;
+}
+.dealer {
+  position: absolute;
+  top: -16px;
+  left: -9px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 25px;
+}
+.image {
+  width: 48px;
+  height: 48px;
+  margin-right: 10px;
+  font-size: 10px;
+  background-color: rgb(random(255), random(255), random(255));
+  border-radius: 50%;
+  box-shadow: 0 4px 4px 0 #00000040 inset;
+}
+.remove {
+  transform: scale(0.6);
+}
+.infoWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.title {
+  width: 120px;
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: 22px;
+  line-height: 18px;
+  white-space: nowrap;
+}
+
+.position {
+  margin: 0;
+  color: $color-primary-light;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.buttonRemoveUser {
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+.remove:hover {
+  cursor: pointer;
+  fill: red;
+}

@@ -1,0 +1,68 @@
+.settings {
+  display: grid;
+  grid-template-areas:
+    'linkWrapper .'
+    'settings issuesList'
+    'usersList chat';
+  grid-template-rows: 60px 1fr 1fr;
+  grid-template-columns: 550px 550px;
+  gap: 15px 50px;
+}
+
+.linkWrapper {
+  display: flex;
+  grid-area: linkWrapper;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.inputWrapper {
+  display: flex;
+}
+
+.gameButtons {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+}
+
+.settingsForm {
+  display: flex;
+  flex-direction: column;
+  grid-area: settings;
+  gap: 15px;
+}
+
+.formTitle {
+  margin: 0;
+}
+
+.dropdown {
+  max-width: 50%;
+}
+
+.roundDuration {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputRoundDuration {
+  max-width: 50%;
+  font-size: inherit;
+}
+
+.issuesList {
+  grid-area: issuesList;
+  justify-self: flex-end;
+}
+
+.userList {
+  grid-area: usersList;
+}
+
+.message {
+  width: 50%;
+  margin-top: 10px;
+  font-size: inherit;
+}

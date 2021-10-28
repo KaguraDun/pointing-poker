@@ -1,0 +1,27 @@
+@import '@/styles/variables';
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 525px;
+  height: 300px;
+  font-size: 18px;
+  border: 1px solid $color-primary-dark;
+}
+
+.messageBox {
+  margin-top: auto;
+  padding: 10px 10px 2px;
+  overflow: auto;
+}
+
+.input {
+  width: 100%;
+}
+
+.controls {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+}

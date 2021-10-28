@@ -31,6 +31,7 @@ const roomApi = {
   restoreDataFromServer() {
     const data = saveStateApi.loadStateFromStorage();
     if (data) {
+      this.reconnect(data.roomID);
       this.getRoomFromServer(data.roomID);
       store.dispatch(setUserID(data.userID));
     }
@@ -43,24 +44,20 @@ const roomApi = {
   createRoom(dealerData: Member) {
     socket.emit(roomEvents.CREATE_ROOM, dealerData);
     socket.on(roomEvents.GET_ROOM_FROM_SERVER, (response: Room) => {
-      if (!this.isRoomIDKnown()) {
-        store.dispatch(addRoom(response));
-        const userID = store.getState().room.room.owner;
+      store.dispatch(addRoom(response));
+      const userID = store.getState().room.room.owner;
 
-        store.dispatch(setUserID(userID));
-        this.saveDataToStorage();
-      }
+      store.dispatch(setUserID(userID));
+      this.saveDataToStorage();
     });
   },
   getRoomFromServer(roomID: string) {
     socket.emit(roomEvents.GET_ROOM_FROM_CLIENT, roomID);
     socket.on(roomEvents.GET_ROOM_FROM_SERVER, (response: Room) => {
-      if (!this.isRoomIDKnown() || this.isTheSameRoom(response.ID)) {
-        const { game, ...room } = response;
+      const { game, ...room } = response;
 
-        store.dispatch(addRoom(room));
-        store.dispatch(updateGameState(game));
-      }
+      store.dispatch(addRoom(room));
+      store.dispatch(updateGameState(game));
     });
   },
   connect(roomID: string) {
@@ -79,6 +76,9 @@ const roomApi = {
       }
     });
   },
+  reconnect(roomID: string) {
+    socket.emit(roomEvents.RECONNECT_TO_ROOM, roomID);
+  },
   AddUser(userData: Member) {
     const roomID = this.getCurrentRoomID();
 
@@ -89,6 +89,8 @@ const roomApi = {
 
     socket.emit(UserEvents.ADD_USER_FROM_CLIENT, { userData, roomID });
     socket.on(roomEvents.USER_CONNECTED, ({ userID }: Response) => {
+      if (this.getCurrentUserID() !== '') return;
+
       store.dispatch(setUserID(userID));
       saveStateApi.saveStateToStorage({ roomID, userID });
     });
@@ -147,7 +149,6 @@ const roomApi = {
     store.dispatch(resetState());
     saveStateApi.clearStorage();
   },
-
   updateSettings(newSettings: Settings) {
     const roomID = this.getCurrentRoomID();
     socket.emit(roomEvents.UPDATE_SETTINGS, { roomID, newSettings });

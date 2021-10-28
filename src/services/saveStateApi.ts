@@ -7,15 +7,15 @@ interface SaveState {
 
 const saveStateApi = {
   loadStateFromStorage: () => {
-    const userData = localStorage.getItem(USER);
+    const userData = sessionStorage.getItem(USER);
     if (userData) return JSON.parse(userData);
     return null;
   },
   saveStateToStorage: ({ roomID, userID }: SaveState) => {
-    localStorage.setItem(USER, JSON.stringify({ roomID, userID }));
+    sessionStorage.setItem(USER, JSON.stringify({ roomID, userID }));
   },
   clearStorage: () => {
-    localStorage.clear();
+    sessionStorage.clear();
   },
 };
 
